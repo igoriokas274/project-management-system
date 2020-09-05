@@ -15,4 +15,7 @@
 3. Sales Manager - When the customer approves the Quotation and/or the contract is signed, the status in the Project module and in the Quotation must be changed. Quotation must be set as CONFIRMED;
 4. Sales Manager - From CONFIRMED quotation user must create ORDER. From this point Project Manager works only with ORDERS;
 5. Project Manager - in Order set Items delivery terms;
-6. Supply Manager - form Order orders goods that are not currently in Stock.
+6. Supply Manager - orders goods, that are not currently in Stock, form items list in Order;
+7. Project Manager - when goods are delivered in Stock, the Project Manager can deliver them to the project or return them from project to main stock;
+8. Project Manager - from Order module can form an Invoice from the Items delivered in the project.
+9. ...
