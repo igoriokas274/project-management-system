@@ -21,10 +21,10 @@ public class Customers {
     @Column(name = "customerName", nullable = false)
     private String supplierName;
 
-    @Column(name = "customerRegistrationNumber")
+    @Column(name = "customerRegistrationNumber", nullable = false)
     private String customerRegistrationNumber;
 
-    @Column(name = "customerVATNumber")
+    @Column(name = "customerVATNumber", nullable = false)
     private String customerVATNumber;
 
     @Embedded
@@ -35,6 +35,25 @@ public class Customers {
 
     @Column(name = "customerEmail")
     private String contactEmail;
+
+    @Column(name = "SWIFT")
+    private String swift;
+
+    @Column(name = "bankCode", nullable = false)
+    private String bankCode;
+
+    @Column(name = "bankName", nullable = false)
+    private String bankName;
+
+    @Column(name = "bankAccount", nullable = false)
+    private String bankAccount;
+
+    @Embedded
+    private PayTerms payTerms = new PayTerms();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "currencyId")
+    List<Contacts> currencyId = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -85,14 +104,6 @@ public class Customers {
         this.customerRegistrationNumber = customerRegistrationNumber;
     }
 
-    public String getCustomerVATNumber() {
-        return customerVATNumber;
-    }
-
-    public void setCustomerVATNumber(String customerVATNumber) {
-        this.customerVATNumber = customerVATNumber;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -117,8 +128,64 @@ public class Customers {
         this.contactEmail = contactEmail;
     }
 
+    public String getCustomerVATNumber() {
+        return customerVATNumber;
+    }
+
+    public void setCustomerVATNumber(String customerVATNumber) {
+        this.customerVATNumber = customerVATNumber;
+    }
+
+    public String getSwift() {
+        return swift;
+    }
+
+    public void setSwift(String swift) {
+        this.swift = swift;
+    }
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public PayTerms getPayTerms() {
+        return payTerms;
+    }
+
+    public void setPayTerms(PayTerms payTerms) {
+        this.payTerms = payTerms;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
     public Date getLastUpdatedDate() {
         return lastUpdatedDate;
+    }
+
+    public List<Contacts> getCurrencyId() {
+        return currencyId;
+    }
+
+    public void setCurrencyId(List<Contacts> currencyId) {
+        this.currencyId = currencyId;
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {

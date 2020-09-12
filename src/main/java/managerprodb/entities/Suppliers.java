@@ -21,10 +21,10 @@ public class Suppliers {
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
 
-    @Column(name = "supplierRegistrationNumber")
+    @Column(name = "supplierRegistrationNumber", nullable = false)
     private String supplierRegistrationNumber;
 
-    @Column(name = "supplierVATNumber")
+    @Column(name = "supplierVATNumber", nullable = false)
     private String supplierVATNumber;
 
     @Embedded
@@ -35,6 +35,25 @@ public class Suppliers {
 
     @Column(name = "supplierEmail")
     private String contactEmail;
+
+    @Column(name = "SWIFT")
+    private String swift;
+
+    @Column(name = "bankCode", nullable = false)
+    private String bankCode;
+
+    @Column(name = "bankName", nullable = false)
+    private String bankName;
+
+    @Column(name = "bankAccount", nullable = false)
+    private String bankAccount;
+
+    @Embedded
+    private PayTerms payTerms = new PayTerms();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "currencyId")
+    List<Contacts> currencyId = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -115,6 +134,54 @@ public class Suppliers {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getSwift() {
+        return swift;
+    }
+
+    public void setSwift(String swift) {
+        this.swift = swift;
+    }
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public PayTerms getPayTerms() {
+        return payTerms;
+    }
+
+    public void setPayTerms(PayTerms payTerms) {
+        this.payTerms = payTerms;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public List<Contacts> getCurrencyId() {
+        return currencyId;
+    }
+
+    public void setCurrencyId(List<Contacts> currencyId) {
+        this.currencyId = currencyId;
     }
 
     public Date getLastUpdatedDate() {
