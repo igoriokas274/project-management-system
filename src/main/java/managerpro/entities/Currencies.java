@@ -15,16 +15,18 @@ public class Currencies {
     @Column(name = "currencyCode", nullable = false, length = 3)
     private String currencyCode;
 
-    @Column(name = "lastUpdatedDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "lastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;
 
-    @Column(name = "lastUpdatedBy")
+    @Column(name = "lastUpdatedBy", nullable = false)
     private String lastUpdatedBy;
 
-    @Column(name = "createdDate", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createdDate",nullable = false, updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy", updatable = false)
+    @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
     public Long getCurrencyId() {

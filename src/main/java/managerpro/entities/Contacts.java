@@ -20,14 +20,8 @@ public class Contacts {
     @Column(name = "department")
     private String contactDepartment;
 
-    @Column(name = "address")
-    private String contactAddress;
-
-    @Column(name = "city")
-    private String contactCity;
-
-    @Column(name = "countryId")
-    private Long countryId;
+    @Embedded
+    private Address address = new Address();
 
     @Column(name = "contactPhone")
     private String contactPhone;
@@ -35,11 +29,15 @@ public class Contacts {
     @Column(name = "contactEmail")
     private String contactEmail;
 
-    @Column(name = "gender")
+    @Column(name = "gender", length = 1)
     private Character contactGender;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthdate")
     private Date contactBirthdate;
+
+    @Column(name = "userId")
+    private Long userId;
 
     @Column(name = "customerId")
     private Long customerId;
@@ -47,20 +45,22 @@ public class Contacts {
     @Column(name = "supplierId")
     private Long supplierId;
 
-    @Column(name = "lastUpdatedDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "lastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;
 
-    @Column(name = "lastUpdatedBy")
+    @Column(name = "lastUpdatedBy", nullable = false)
     private String lastUpdatedBy;
 
-    @Column(name = "createdDate", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createdDate",nullable = false, updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy", updatable = false)
+    @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed")
-    private Boolean isClosed;
+    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    private boolean isClosed;
 
     public Long getContactId() {
         return contactId;
@@ -94,30 +94,6 @@ public class Contacts {
         this.contactDepartment = contactDepartment;
     }
 
-    public String getContactAddress() {
-        return contactAddress;
-    }
-
-    public void setContactAddress(String contactAddress) {
-        this.contactAddress = contactAddress;
-    }
-
-    public String getContactCity() {
-        return contactCity;
-    }
-
-    public void setContactCity(String contactCity) {
-        this.contactCity = contactCity;
-    }
-
-    public Long getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
-    }
-
     public String getContactPhone() {
         return contactPhone;
     }
@@ -148,6 +124,14 @@ public class Contacts {
 
     public void setContactBirthdate(Date contactBirthdate) {
         this.contactBirthdate = contactBirthdate;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getCustomerId() {
@@ -198,11 +182,11 @@ public class Contacts {
         this.createdBy = createdBy;
     }
 
-    public Boolean getClosed() {
+    public boolean isClosed() {
         return isClosed;
     }
 
-    public void setClosed(Boolean closed) {
+    public void setClosed(boolean closed) {
         isClosed = closed;
     }
 }
