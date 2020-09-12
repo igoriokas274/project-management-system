@@ -9,10 +9,10 @@ public class Countries {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "countryId")
+    @Column(name = "countryId", nullable = false, unique = true)
     private Long countryId;
 
-    @Column(name = "countryCode")
+    @Column(name = "countryCode", nullable = false, length = 3)
     private String countryCode;
 
     @Column(name = "lastUpdatedDate")
@@ -21,10 +21,10 @@ public class Countries {
     @Column(name = "lastUpdatedBy")
     private String lastUpdatedBy;
 
-    @Column(name = "createdDate")
+    @Column(name = "createdDate", updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy")
+    @Column(name = "createdBy", updatable = false)
     private String createdBy;
 
     public Long getCountryId() {

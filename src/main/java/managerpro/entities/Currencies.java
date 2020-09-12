@@ -1,9 +1,6 @@
 package managerpro.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,10 +8,11 @@ import java.util.Date;
 public class Currencies {
 
     @Id
-    @Column(name = "currencyId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "currencyId", nullable = false, unique = true)
     private Long currencyId;
 
-    @Column(name = "currencyCode")
+    @Column(name = "currencyCode", nullable = false, length = 3)
     private String currencyCode;
 
     @Column(name = "lastUpdatedDate")
@@ -23,10 +21,10 @@ public class Currencies {
     @Column(name = "lastUpdatedBy")
     private String lastUpdatedBy;
 
-    @Column(name = "createdDate")
+    @Column(name = "createdDate", updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy")
+    @Column(name = "createdBy", updatable = false)
     private String createdBy;
 
     public Long getCurrencyId() {

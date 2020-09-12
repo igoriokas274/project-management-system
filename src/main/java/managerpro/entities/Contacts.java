@@ -8,10 +8,10 @@ import java.util.Date;
 public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contactId")
+    @Column(name = "contactId", nullable = false, unique = true)
     private Long contactId;
 
-    @Column(name = "fullName")
+    @Column(name = "fullName", nullable = false)
     private String contactFullName;
 
     @Column(name = "title")
@@ -53,10 +53,10 @@ public class Contacts {
     @Column(name = "lastUpdatedBy")
     private String lastUpdatedBy;
 
-    @Column(name = "createdDate")
+    @Column(name = "createdDate", updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy")
+    @Column(name = "createdBy", updatable = false)
     private String createdBy;
 
     @Column(name = "closed")
