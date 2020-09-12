@@ -8,14 +8,14 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/managerpro?serverTimezone=UTC</property>
-        <property name="connection.username">root</property> <!-- Use the actual User Name for Your database -->
-        <property name="connection.password"> </property> <!-- No passwd added by default -->
+        <property name="connection.username">manager</property> <!-- Use the actual User Name for Your database -->
+        <property name="connection.password">manager</property> <!-- No passwd added by default -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
         <mapping class="managerpro.entities.Contacts"/>
         <mapping class="managerpro.entities.Countries"/>
         <mapping class="managerpro.entities.Currencies"/>

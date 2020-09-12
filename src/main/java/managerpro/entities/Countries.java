@@ -1,9 +1,6 @@
 package managerpro.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,10 +8,11 @@ import java.util.Date;
 public class Countries {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "countryId")
-    private String countryId;
+    private Long countryId;
 
-    @Column
+    @Column(name = "countryCode")
     private String countryCode;
 
     @Column(name = "lastUpdatedDate")
@@ -29,11 +27,11 @@ public class Countries {
     @Column(name = "createdBy")
     private String createdBy;
 
-    public String getCountryId() {
+    public Long getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(String countryId) {
+    public void setCountryId(Long countryId) {
         this.countryId = countryId;
     }
 
