@@ -1,19 +1,19 @@
-package managerpro.entities;
+package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "COUNTRIES")
-public class Countries {
+@Table(name = "CURRENCIES")
+public class Currencies {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "countryId", nullable = false, unique = true)
-    private Long countryId;
+    @Column(name = "currencyId", nullable = false, unique = true)
+    private Long currencyId;
 
-    @Column(name = "countryCode", nullable = false, length = 3)
-    private String countryCode;
+    @Column(name = "currencyCode", nullable = false, length = 3)
+    private String currencyCode;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -26,23 +26,23 @@ public class Countries {
     @Column(name = "createdDate",nullable = false, updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy", nullable = false, updatable = false)
+    @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getCountryId() {
-        return countryId;
+    public Long getCurrencyId() {
+        return currencyId;
     }
 
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
+    public void setCurrencyId(Long currencyId) {
+        this.currencyId = currencyId;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
     public Date getLastUpdatedDate() {

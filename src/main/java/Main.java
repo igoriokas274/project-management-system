@@ -1,4 +1,4 @@
-import managerpro.utils.HibernateUtil;
+import managerprodb.utils.HibernateUtil;
 import org.hibernate.Session;
 
 public class Main {

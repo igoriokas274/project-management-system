@@ -1,4 +1,4 @@
-package managerpro.entities;
+package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -39,11 +39,13 @@ public class Contacts {
     @Column(name = "userId")
     private Long userId;
 
-    @Column(name = "customerId")
-    private Long customerId;
+    @ManyToOne
+    @JoinColumn(name = "supplierId")
+    private Suppliers suppliers;
 
-    @Column(name = "supplierId")
-    private Long supplierId;
+    @ManyToOne
+    @JoinColumn(name = "customerId")
+    private Customers customers;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -134,20 +136,20 @@ public class Contacts {
         this.userId = userId;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public Customers getCustomers() {
+        return customers;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomers(Customers customers) {
+        this.customers = customers;
     }
 
-    public Long getSupplierId() {
-        return supplierId;
+    public Suppliers getSuppliers() {
+        return suppliers;
     }
 
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
+    public void setSuppliers(Suppliers suppliers) {
+        this.suppliers = suppliers;
     }
 
     public Date getLastUpdatedDate() {

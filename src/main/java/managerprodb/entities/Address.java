@@ -1,4 +1,4 @@
-package managerpro.entities;
+package managerprodb.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
