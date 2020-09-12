@@ -21,6 +21,12 @@ public class Suppliers {
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
 
+    @Column(name = "supplierRegistrationNumber")
+    private String supplierRegistrationNumber;
+
+    @Column(name = "supplierVATNumber")
+    private String supplierVATNumber;
+
     @Embedded
     private Address address = new Address();
 
@@ -69,6 +75,22 @@ public class Suppliers {
 
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
+    }
+
+    public String getSupplierRegistrationNumber() {
+        return supplierRegistrationNumber;
+    }
+
+    public void setSupplierRegistrationNumber(String supplierRegistrationNumber) {
+        this.supplierRegistrationNumber = supplierRegistrationNumber;
+    }
+
+    public String getSupplierVATNumber() {
+        return supplierVATNumber;
+    }
+
+    public void setSupplierVATNumber(String supplierVATNumber) {
+        this.supplierVATNumber = supplierVATNumber;
     }
 
     public Address getAddress() {

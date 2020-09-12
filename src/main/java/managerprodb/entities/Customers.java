@@ -21,6 +21,12 @@ public class Customers {
     @Column(name = "customerName", nullable = false)
     private String supplierName;
 
+    @Column(name = "customerRegistrationNumber")
+    private String customerRegistrationNumber;
+
+    @Column(name = "customerVATNumber")
+    private String customerVATNumber;
+
     @Embedded
     private Address address = new Address();
 
@@ -69,6 +75,22 @@ public class Customers {
 
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
+    }
+
+    public String getCustomerRegistrationNumber() {
+        return customerRegistrationNumber;
+    }
+
+    public void setCustomerRegistrationNumber(String customerRegistrationNumber) {
+        this.customerRegistrationNumber = customerRegistrationNumber;
+    }
+
+    public String getCustomerVATNumber() {
+        return customerVATNumber;
+    }
+
+    public void setCustomerVATNumber(String customerVATNumber) {
+        this.customerVATNumber = customerVATNumber;
     }
 
     public Address getAddress() {
