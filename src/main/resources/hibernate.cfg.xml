@@ -13,11 +13,11 @@
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
-        <!-- Set the current session context -->
-        <property name="current_session_context_class">thread</property>
+        <property name="format_sql">true</property>
 
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
         <mapping class="managerpro.entities.Contacts"/>
-        <mapping class="managerpro.entities."/>
+        <mapping class="managerpro.entities.Countries"/>
+        <mapping class="managerpro.entities.Currencies"/>
     </session-factory>
 </hibernate-configuration>

@@ -7,15 +7,15 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "COUNTRIES")
-public class Countries {
+@Table(name = "CURRENCIES")
+public class Currencies {
 
     @Id
-    @Column(name = "countryId")
-    private String countryId;
+    @Column(name = "currencyId")
+    private Long currencyId;
 
-    @Column
-    private String countryCode;
+    @Column(name = "currencyCode")
+    private String currencyCode;
 
     @Column(name = "lastUpdatedDate")
     private Date lastUpdatedDate;
@@ -29,20 +29,20 @@ public class Countries {
     @Column(name = "createdBy")
     private String createdBy;
 
-    public String getCountryId() {
-        return countryId;
+    public Long getCurrencyId() {
+        return currencyId;
     }
 
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
+    public void setCurrencyId(Long currencyId) {
+        this.currencyId = currencyId;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
     public Date getLastUpdatedDate() {
