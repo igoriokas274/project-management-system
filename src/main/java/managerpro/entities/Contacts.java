@@ -59,6 +59,9 @@ public class Contacts {
     @Column(name = "createdBy")
     private String createdBy;
 
+    @Column(name = "closed")
+    private Boolean isClosed;
+
     public Long getContactId() {
         return contactId;
     }
@@ -193,5 +196,13 @@ public class Contacts {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Boolean getClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(Boolean closed) {
+        isClosed = closed;
     }
 }
