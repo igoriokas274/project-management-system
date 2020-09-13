@@ -13,7 +13,7 @@ public class Suppliers {
     private Long supplierId;
 
     @OneToMany(mappedBy = "suppliers")
-    private Set<Contacts> contacts = new HashSet<Contacts>();
+    private Set<Contacts> contacts = new HashSet<>();
 
     @Column(name = "supplierName", nullable = false)
     private String supplierName;

@@ -13,10 +13,10 @@ public class Customers {
     private Long customerId;
 
     @OneToMany(mappedBy = "customers")
-    private Set<Contacts> contacts = new HashSet<Contacts>();
+    private Set<Contacts> contacts = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private Set<Projects> projects = new HashSet<Projects>();
+    private Set<Projects> projects = new HashSet<>();
 
     @Column(name = "customerName", nullable = false)
     private String supplierName;

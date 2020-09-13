@@ -22,7 +22,7 @@ public class Employee {
     private EmployeeDepartments employeeDepartments;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "employees")
-    private Set<Projects> projects = new HashSet<Projects>();
+    private Set<Projects> projects = new HashSet<>();
 
     @Column(name = "bankCode", nullable = false)
     private String bankCode;

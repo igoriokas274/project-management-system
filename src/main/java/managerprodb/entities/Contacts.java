@@ -20,7 +20,7 @@ public class Contacts {
     @Column(name = "department")
     private String contactDepartment;
 
-    @Embedded
+    @Embedded  // @AttributeOverrides() ???
     private Address address = new Address();
 
     @Column(name = "contactPhone")
