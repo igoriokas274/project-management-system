@@ -2,26 +2,23 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "CURRENCIES")
-public class Currencies {
+@Table(name = "EMPLOYEE_DEPARTMENTS")
+public class EmployeeDepartments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "currencyId", nullable = false, unique = true)
-    private Long currencyId;
+    @Column(name = "departmentId", nullable = false, unique = true)
+    private Long departmentId;
 
-    @Column(name = "currencyCode", nullable = false, length = 3)
-    private String currencyCode;
+    @Column(name = "departmentName")
+    private String departmentName;
 
-    @ManyToOne
-    @JoinColumn(name = "supplierId")
-    private Suppliers suppliers;
-
-    @ManyToOne
-    @JoinColumn(name = "customerId")
-    private Customers customers;
+    @OneToMany(mappedBy = "employeeDepartments")
+    private Set<Employee> employees = new HashSet<Employee>();
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -37,36 +34,28 @@ public class Currencies {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getCurrencyId() {
-        return currencyId;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setCurrencyId(Long currencyId) {
-        this.currencyId = currencyId;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public Suppliers getSuppliers() {
-        return suppliers;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setSuppliers(Suppliers suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Customers getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public Date getLastUpdatedDate() {

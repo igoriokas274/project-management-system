@@ -29,8 +29,9 @@ public class Contacts {
     @Column(name = "contactEmail")
     private String contactEmail;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender", length = 1)
-    private Character contactGender;
+    private Gender gender;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "birthdate")
@@ -62,7 +63,7 @@ public class Contacts {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
     public Long getContactId() {
@@ -113,12 +114,12 @@ public class Contacts {
         this.contactEmail = contactEmail;
     }
 
-    public Character getContactGender() {
-        return contactGender;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setContactGender(Character contactGender) {
-        this.contactGender = contactGender;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public Date getContactBirthdate() {

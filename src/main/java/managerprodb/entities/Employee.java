@@ -15,6 +15,10 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     private Contacts contacts;
 
+    @ManyToOne
+    @JoinColumn(name = "departmentId")
+    private EmployeeDepartments employeeDepartments;
+
     @Column(name = "bankCode", nullable = false)
     private String bankCode;
 
@@ -55,6 +59,14 @@ public class Employee {
 
     public void setContacts(Contacts contacts) {
         this.contacts = contacts;
+    }
+
+    public EmployeeDepartments getEmployeeDepartments() {
+        return employeeDepartments;
+    }
+
+    public void setEmployeeDepartments(EmployeeDepartments employeeDepartments) {
+        this.employeeDepartments = employeeDepartments;
     }
 
     public String getBankCode() {

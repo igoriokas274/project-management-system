@@ -1,9 +1,7 @@
 package managerprodb.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "CUSTOMERS")
@@ -15,7 +13,7 @@ public class Customers {
     private Long customerId;
 
     @OneToMany(mappedBy = "customers")
-    private List<Contacts> contacts;
+    private Set<Contacts> contacts = new HashSet<Contacts>();
 
     @Column(name = "customerName", nullable = false)
     private String supplierName;
@@ -47,12 +45,11 @@ public class Customers {
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
-    @OneToMany(mappedBy = "customers")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
     private List<PayTerms> payTerms;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "currencyId")
-    List<Contacts> currencyId = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    private List<Currencies> currencies;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -79,11 +76,11 @@ public class Customers {
         this.customerId = customerId;
     }
 
-    public List<Contacts> getContacts() {
+    public Set<Contacts> getContacts() {
         return contacts;
     }
 
-    public void setContacts(List<Contacts> contacts) {
+    public void setContacts(Set<Contacts> contacts) {
         this.contacts = contacts;
     }
 
@@ -179,12 +176,12 @@ public class Customers {
         return lastUpdatedDate;
     }
 
-    public List<Contacts> getCurrencyId() {
-        return currencyId;
+    public List<Currencies> getCurrencies() {
+        return currencies;
     }
 
-    public void setCurrencyId(List<Contacts> currencyId) {
-        this.currencyId = currencyId;
+    public void setCurrencies(List<Currencies> currencies) {
+        this.currencies = currencies;
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
