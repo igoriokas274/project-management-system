@@ -39,6 +39,8 @@ public class Items {
     @Column(name = "salesPrice", precision = 8, scale = 2)
     private BigDecimal salesPrice;
 
+    //TODO add average purchase price
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "items")
     private Set<VATValues> vatValues = new HashSet<>();
 
