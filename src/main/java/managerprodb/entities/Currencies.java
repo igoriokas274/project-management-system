@@ -8,12 +8,8 @@ import java.util.Date;
 public class Currencies {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "currencyId", nullable = false, unique = true)
-    private Long currencyId;
-
-    @Column(name = "currencyCode", nullable = false, length = 3)
-    private String currencyCode;
+    @Column(name = "currencyId", nullable = false, unique = true, length = 2)
+    private String currencyId;
 
     @ManyToOne
     @JoinColumn(name = "supplierId")
@@ -37,20 +33,23 @@ public class Currencies {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getCurrencyId() {
+    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    private boolean isClosed;
+
+    public String getCurrencyId() {
         return currencyId;
     }
 
-    public void setCurrencyId(Long currencyId) {
+    public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
+    public boolean isClosed() {
+        return isClosed;
     }
 
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     public Suppliers getSuppliers() {

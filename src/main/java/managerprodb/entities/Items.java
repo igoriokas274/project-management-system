@@ -36,7 +36,7 @@ public class Items {
     @Column(name = "minStockLevel")
     private Integer minStockLevel;
 
-    @Column(name = "salesPrice", precision = 8, scale = 2)
+    @Column(name = "salesPrice", precision = 10, scale = 2)
     private BigDecimal salesPrice;
 
     //TODO add average purchase price

@@ -8,12 +8,8 @@ import java.util.Date;
 public class Countries {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "countryId", nullable = false, unique = true)
-    private Long countryId;
-
-    @Column(name = "countryCode", nullable = false, length = 3)
-    private String countryCode;
+    @Column(name = "countryId", nullable = false, unique = true, length = 3)
+    private String countryId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -29,20 +25,23 @@ public class Countries {
     @Column(name = "createdBy", nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getCountryId() {
+    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    private boolean isClosed;
+
+    public String getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Long countryId) {
+    public void setCountryId(String countryId) {
         this.countryId = countryId;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public boolean isClosed() {
+        return isClosed;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     public Date getLastUpdatedDate() {

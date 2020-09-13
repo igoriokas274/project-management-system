@@ -1,6 +1,7 @@
 package managerprodb.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,8 @@ public class VATValues {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "vatValue")
-    private Integer vatValue;
+    @Column(name = "vatValue", nullable = false, precision = 3, scale = 2)
+    private BigDecimal vatValue;
 
     @ManyToOne
     @JoinColumn(name = "itemId")
@@ -52,12 +53,20 @@ public class VATValues {
         this.description = description;
     }
 
-    public Integer getVatValue() {
+    public BigDecimal getVatValue() {
         return vatValue;
     }
 
-    public void setVatValue(Integer vatValue) {
+    public void setVatValue(BigDecimal vatValue) {
         this.vatValue = vatValue;
+    }
+
+    public Items getItems() {
+        return items;
+    }
+
+    public void setItems(Items items) {
+        this.items = items;
     }
 
     public Date getLastUpdatedDate() {

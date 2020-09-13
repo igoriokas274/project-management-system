@@ -1,6 +1,7 @@
 package managerprodb.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -8,8 +9,8 @@ import java.util.Date;
 public class PayTerms {
 
     @Id
-    @Column(name = "term")
-    private Integer term;
+    @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
+    private BigDecimal term;
 
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -33,11 +34,11 @@ public class PayTerms {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Integer getTerm() {
+    public BigDecimal getTerm() {
         return term;
     }
 
-    public void setTerm(Integer term) {
+    public void setTerm(BigDecimal term) {
         this.term = term;
     }
 
