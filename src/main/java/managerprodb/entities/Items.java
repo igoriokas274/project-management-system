@@ -27,7 +27,7 @@ public class Items {
 
     @ManyToOne
     @JoinColumn(name = "stockId")
-    private Stocks stocks;
+    private StockTypes stockTypes;
 
     @ManyToOne
     @JoinColumn(name = "supplierId")
@@ -94,12 +94,12 @@ public class Items {
         this.itemType = itemType;
     }
 
-    public Stocks getStocks() {
-        return stocks;
+    public StockTypes getStockTypes() {
+        return stockTypes;
     }
 
-    public void setStocks(Stocks stocks) {
-        this.stocks = stocks;
+    public void setStockTypes(StockTypes stockTypes) {
+        this.stockTypes = stockTypes;
     }
 
     public Suppliers getSuppliers() {
@@ -173,5 +173,4 @@ public class Items {
     public void setClosed(boolean closed) {
         isClosed = closed;
     }
-
 }

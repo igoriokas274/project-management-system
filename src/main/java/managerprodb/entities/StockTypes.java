@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "STOCKS")
-public class Stocks {
+@Table(name = "STOCK_TYPES")
+public class StockTypes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +19,8 @@ public class Stocks {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "stocks")
+    @OneToMany(mappedBy = "stockTypes")
     private Set<Items> items;
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Items> items) {
-        this.items = items;
-    }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -109,5 +101,14 @@ public class Stocks {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
+    }
+
+
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
     }
 }

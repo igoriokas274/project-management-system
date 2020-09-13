@@ -30,7 +30,7 @@
         <mapping class="managerprodb.entities.ProjectType"/>
         <mapping class="managerprodb.entities.Items"/>
         <mapping class="managerprodb.entities.VATValues"/>
-        <mapping class="managerprodb.entities.Stocks"/>
+        <mapping class="managerprodb.entities.StockTypes"/>
         <mapping class="managerprodb.entities.ItemType"/>
 
 

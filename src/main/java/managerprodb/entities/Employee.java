@@ -145,6 +145,4 @@ public class Employee {
     public void setProjects(Set<Projects> projects) {
         this.projects = projects;
     }
-
-
 }
