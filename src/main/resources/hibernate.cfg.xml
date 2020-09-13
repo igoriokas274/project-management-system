@@ -15,11 +15,13 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <mapping class="managerprodb.entities.Contacts"/>
         <mapping class="managerprodb.entities.Countries"/>
         <mapping class="managerprodb.entities.Currencies"/>
         <mapping class="managerprodb.entities.Suppliers"/>
         <mapping class="managerprodb.entities.Customers"/>
+        <mapping class="managerprodb.entities.Employee"/>
+        <mapping class="managerprodb.entities.PayTerms"/>
     </session-factory>
 </hibernate-configuration>

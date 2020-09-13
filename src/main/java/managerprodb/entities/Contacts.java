@@ -36,8 +36,9 @@ public class Contacts {
     @Column(name = "birthdate")
     private Date contactBirthdate;
 
-    @Column(name = "userId")
-    private Long userId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
+    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "supplierId")
@@ -128,12 +129,12 @@ public class Contacts {
         this.contactBirthdate = contactBirthdate;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Customers getCustomers() {

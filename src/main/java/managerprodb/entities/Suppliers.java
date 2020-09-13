@@ -14,9 +14,8 @@ public class Suppliers {
     @Column(name = "supplierId", nullable = false, unique = true)
     private Long supplierId;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "supplierId")
-    List<Contacts> contacts = new ArrayList<>();
+    @OneToMany(mappedBy = "suppliers")
+    private List<Contacts> contacts;
 
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
@@ -48,8 +47,8 @@ public class Suppliers {
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
-    @Embedded
-    private PayTerms payTerms = new PayTerms();
+    @OneToMany(mappedBy = "suppliers")
+    private List<PayTerms> payTerms;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "currencyId")
@@ -164,16 +163,16 @@ public class Suppliers {
         return bankAccount;
     }
 
-    public PayTerms getPayTerms() {
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public List<PayTerms> getPayTerms() {
         return payTerms;
     }
 
-    public void setPayTerms(PayTerms payTerms) {
+    public void setPayTerms(List<PayTerms> payTerms) {
         this.payTerms = payTerms;
-    }
-
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
     }
 
     public List<Contacts> getCurrencyId() {
