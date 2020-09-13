@@ -15,6 +15,9 @@ public class Customers {
     @OneToMany(mappedBy = "customers")
     private Set<Contacts> contacts = new HashSet<Contacts>();
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    private Set<Projects> projects = new HashSet<Projects>();
+
     @Column(name = "customerName", nullable = false)
     private String supplierName;
 
@@ -218,5 +221,13 @@ public class Customers {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
+    }
+
+    public Set<Projects> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projects> projects) {
+        this.projects = projects;
     }
 }

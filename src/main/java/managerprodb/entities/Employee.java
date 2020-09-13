@@ -2,6 +2,8 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEE")
@@ -18,6 +20,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "departmentId")
     private EmployeeDepartments employeeDepartments;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "employees")
+    private Set<Projects> projects = new HashSet<Projects>();
 
     @Column(name = "bankCode", nullable = false)
     private String bankCode;
@@ -132,4 +137,14 @@ public class Employee {
     public void setClosed(boolean closed) {
         isClosed = closed;
     }
+
+    public Set<Projects> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projects> projects) {
+        this.projects = projects;
+    }
+
+
 }

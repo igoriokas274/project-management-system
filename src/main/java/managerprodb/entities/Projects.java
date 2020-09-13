@@ -2,6 +2,7 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,6 +30,16 @@ public class Projects {
 
     @OneToMany(mappedBy = "projects")
     private Set<ProjectType> projectTypes;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "EMPLOYEE_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
+            inverseJoinColumns = @JoinColumn(name = "employeeId"))
+    private Set<Employee> employees = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "CUSTOMER_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
+            inverseJoinColumns = @JoinColumn(name = "customerId"))
+    private Set<Customers> customers = new HashSet<>();
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")
     private String projectMemo1;
@@ -101,6 +112,14 @@ public class Projects {
         this.projectTypes = projectTypes;
     }
 
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
     public String getProjectMemo1() {
         return projectMemo1;
     }
@@ -155,5 +174,13 @@ public class Projects {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
     }
 }
