@@ -51,6 +51,9 @@ public class Suppliers {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
     private List<Currencies> currencies;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
+    private List<Items> items;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;

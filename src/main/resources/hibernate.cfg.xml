@@ -27,5 +27,11 @@
         <mapping class="managerprodb.entities.Projects"/>
         <mapping class="managerprodb.entities.ProjectStatus"/>
         <mapping class="managerprodb.entities.ProjectType"/>
+        <mapping class="managerprodb.entities.Items"/>
+        <mapping class="managerprodb.entities.VATValues"/>
+        <mapping class="managerprodb.entities.Stocks"/>
+        <mapping class="managerprodb.entities.ItemType"/>
+
+
     </session-factory>
 </hibernate-configuration>
