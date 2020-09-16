@@ -49,12 +49,36 @@ public class Countries {
         this.countryId = countryId;
     }
 
-    public boolean isClosed() {
-        return isClosed;
+    public Set<Contacts> getContacts() {
+        return contacts;
     }
 
-    public void setClosed(boolean closed) {
-        isClosed = closed;
+    public void setContacts(Set<Contacts> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
+    }
+
+    public Set<Suppliers> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(Set<Suppliers> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    public Set<StockTypes> getStockTypes() {
+        return stockTypes;
+    }
+
+    public void setStockTypes(Set<StockTypes> stockTypes) {
+        this.stockTypes = stockTypes;
     }
 
     public Date getLastUpdatedDate() {
@@ -89,35 +113,11 @@ public class Countries {
         this.createdBy = createdBy;
     }
 
-    public Set<Contacts> getContacts() {
-        return contacts;
+    public boolean isClosed() {
+        return isClosed;
     }
 
-    public void setContacts(Set<Contacts> contacts) {
-        this.contacts = contacts;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Set<StockTypes> getStockTypes() {
-        return stockTypes;
-    }
-
-    public void setStockTypes(Set<StockTypes> stockTypes) {
-        this.stockTypes = stockTypes;
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 }

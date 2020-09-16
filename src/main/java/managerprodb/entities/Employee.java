@@ -2,6 +2,7 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,15 +14,20 @@ public class Employee {
     @Column(name = "employeeId", nullable = false, unique = true)
     private Long employeeId;
 
-    @OneToOne(targetEntity = Contacts.class) // Checked
+    @OneToOne(targetEntity = Contacts.class)
     private Contacts contacts;
 
     @ManyToOne
-    @JoinColumn(name = "departmentId") // Checked
+    @JoinColumn(name = "departmentId")
     private EmployeeDepartments employeeDepartments;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "employees") // Checked
-    private Set<Projects> projects;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "EMPLOYEE_PROJECTS",
+            joinColumns = {@JoinColumn(name = "employeeId")},
+            inverseJoinColumns = {@JoinColumn(name = "projectId")}
+    )
+    private Set<Projects> projects = new HashSet<Projects>();
 
     @Column(name = "bankCode", nullable = false)
     private String bankCode;
@@ -40,10 +46,10 @@ public class Employee {
     private String lastUpdatedBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdDate",nullable = false, updatable = false)
+    @Column(name = "createdDate", nullable = false, updatable = false)
     private Date createdDate;
 
-    @Column(name = "createdBy",nullable = false, updatable = false)
+    @Column(name = "createdBy", nullable = false, updatable = false)
     private String createdBy;
 
     @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
@@ -71,6 +77,14 @@ public class Employee {
 
     public void setEmployeeDepartments(EmployeeDepartments employeeDepartments) {
         this.employeeDepartments = employeeDepartments;
+    }
+
+    public Set<Projects> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projects> projects) {
+        this.projects = projects;
     }
 
     public String getBankCode() {
@@ -135,13 +149,5 @@ public class Employee {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
-    }
-
-    public Set<Projects> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Projects> projects) {
-        this.projects = projects;
     }
 }

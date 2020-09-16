@@ -32,10 +32,6 @@ public class Contacts {
     @Column(name = "zipCode")
     private String zipCode;
 
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
-
     @Column(name = "contactPhone")
     private String contactPhone;
 
@@ -50,15 +46,19 @@ public class Contacts {
     @Column(name = "birthdate")
     private Date contactBirthdate;
 
-    @OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL) // Checked
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
+
+    @OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL)
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "supplierId") // Checked
+    @JoinColumn(name = "supplierId")
     private Suppliers suppliers;
 
     @ManyToOne
-    @JoinColumn(name = "customerId") // Checked
+    @JoinColumn(name = "customerId")
     private Customers customers;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -110,6 +110,38 @@ public class Contacts {
         this.contactDepartment = contactDepartment;
     }
 
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public String getContactPhone() {
         return contactPhone;
     }
@@ -142,6 +174,14 @@ public class Contacts {
         this.contactBirthdate = contactBirthdate;
     }
 
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -150,20 +190,20 @@ public class Contacts {
         this.employee = employee;
     }
 
-    public Customers getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
-    }
-
     public Suppliers getSuppliers() {
         return suppliers;
     }
 
     public void setSuppliers(Suppliers suppliers) {
         this.suppliers = suppliers;
+    }
+
+    public Customers getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Customers customers) {
+        this.customers = customers;
     }
 
     public Date getLastUpdatedDate() {
@@ -204,45 +244,5 @@ public class Contacts {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public Countries getCountries() {
-        return countries;
-    }
-
-    public void setCountries(Countries countries) {
-        this.countries = countries;
     }
 }

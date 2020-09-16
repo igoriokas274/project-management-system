@@ -2,6 +2,7 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,18 @@ public class Projects {
     @Column(name = "projectId")
     private Long projectId;
 
+    @OneToMany(mappedBy = "projects")
+    private Set<ProjectStatus> projectStatuses = new HashSet<ProjectStatus>();
+
+    @OneToMany(mappedBy = "projects")
+    private Set<ProjectType> projectTypes = new HashSet<ProjectType>();
+
+    @ManyToMany(mappedBy = "projects")
+    private Set<Employee> employees = new HashSet<Employee>();
+
+    @ManyToMany(mappedBy = "projects")
+    private Set<Customers> customers = new HashSet<Customers>();
+
     @Column(name = "projectName")
     private String projectName;
 
@@ -21,24 +34,8 @@ public class Projects {
     private Date projectStartDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "getProjectEndDate")
-    private Date getProjectEndDate;
-
-    @OneToMany(mappedBy = "projects") // Checked
-    private Set<ProjectStatus> projectStatuses;
-
-    @OneToMany(mappedBy = "projects") // Checked
-    private Set<ProjectType> projectTypes;
-
-    @ManyToMany // Checked
-    @JoinTable(name = "EMPLOYEE_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
-            inverseJoinColumns = @JoinColumn(name = "employeeId"))
-    private Set<Employee> employees;
-
-    @ManyToMany(cascade = CascadeType.ALL) // Checked
-    @JoinTable(name = "CUSTOMER_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
-            inverseJoinColumns = @JoinColumn(name = "customerId"))
-    private Set<Customers> customers;
+    @Column(name = "ProjectEndDate")
+    private Date ProjectEndDate;
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")
     private String projectMemo1;
@@ -71,30 +68,6 @@ public class Projects {
         this.projectId = projectId;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public Date getProjectStartDate() {
-        return projectStartDate;
-    }
-
-    public void setProjectStartDate(Date projectStartDate) {
-        this.projectStartDate = projectStartDate;
-    }
-
-    public Date getGetProjectEndDate() {
-        return getProjectEndDate;
-    }
-
-    public void setGetProjectEndDate(Date getProjectEndDate) {
-        this.getProjectEndDate = getProjectEndDate;
-    }
-
     public Set<ProjectStatus> getProjectStatuses() {
         return projectStatuses;
     }
@@ -117,6 +90,38 @@ public class Projects {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Date getProjectStartDate() {
+        return projectStartDate;
+    }
+
+    public void setProjectStartDate(Date projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    public Date getProjectEndDate() {
+        return ProjectEndDate;
+    }
+
+    public void setProjectEndDate(Date projectEndDate) {
+        ProjectEndDate = projectEndDate;
     }
 
     public String getProjectMemo1() {
@@ -173,13 +178,5 @@ public class Projects {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
     }
 }

@@ -13,10 +13,10 @@ public class PayTerms {
     @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
     private BigDecimal term;
 
-    @OneToMany(mappedBy = "payTerms") // OK
+    @OneToMany(mappedBy = "payTerms")
     private Set<Customers> customers;
 
-    @OneToMany(mappedBy = "payTerms") // OK
+    @OneToMany(mappedBy = "payTerms")
     private Set<Suppliers> suppliers;
 
     @Temporal(TemporalType.TIMESTAMP)
