@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
@@ -7,16 +7,15 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/managerpro?serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/managerpro?serverTimezone=UTC&amp;autoReconnect=true&amp;useUnicode=true&amp;createDatabaseIfNotExist=true&amp;characterEncoding=utf-8</property>
         <property name="connection.username">manager</property> <!-- Use the actual User Name for Your database -->
         <property name="connection.password">manager</property> <!-- No passwd added by default -->
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <property name="hbm2ddl.auto">drop</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <mapping class="managerprodb.entities.Contacts"/>
         <mapping class="managerprodb.entities.Countries"/>
         <mapping class="managerprodb.entities.Currencies"/>
