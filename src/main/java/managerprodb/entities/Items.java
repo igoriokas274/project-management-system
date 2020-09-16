@@ -24,11 +24,11 @@ public class Items {
     private ItemType itemType;
 
     @ManyToOne
-    @JoinColumn(name = "stockId") // OK
+    @JoinColumn(name = "stockId")
     private StockTypes stockTypes;
 
     @ManyToOne
-    @JoinColumn(name = "supplierId") // OK
+    @JoinColumn(name = "supplierId")
     private Suppliers suppliers;
 
     @Column(name = "minStockLevel")
@@ -37,10 +37,8 @@ public class Items {
     @Column(name = "salesPrice", precision = 10, scale = 2)
     private BigDecimal salesPrice;
 
-    //TODO add average purchase price
-
     @ManyToOne
-    @JoinColumn(name = "vatId") // OK
+    @JoinColumn(name = "vatId")
     private VATValues vatValues;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,7 +57,6 @@ public class Items {
 
     @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
     private boolean isClosed;
-
 
     public Long getItemId() {
         return itemId;

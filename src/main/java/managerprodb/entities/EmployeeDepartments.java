@@ -16,7 +16,7 @@ public class EmployeeDepartments {
     @Column(name = "departmentName")
     private String departmentName;
 
-    @OneToMany(mappedBy = "employeeDepartments") // Checked
+    @OneToMany(mappedBy = "employeeDepartments")
     private Set<Employee> employees;
 
     @Temporal(TemporalType.TIMESTAMP)

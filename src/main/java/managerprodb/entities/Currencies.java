@@ -12,10 +12,10 @@ public class Currencies {
     @Column(name = "currencyId", nullable = false, unique = true, length = 2)
     private String currencyId;
 
-    @OneToMany(mappedBy = "currencies") // OK
+    @OneToMany(mappedBy = "currencies")
     private Set<Suppliers> suppliers;
 
-    @OneToMany(mappedBy = "currencies") // OK
+    @OneToMany(mappedBy = "currencies")
     private Set<Customers> customers;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,14 +41,6 @@ public class Currencies {
 
     public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
-    }
-
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setClosed(boolean closed) {
-        isClosed = closed;
     }
 
     public Set<Suppliers> getSuppliers() {
@@ -97,5 +89,13 @@ public class Currencies {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 }

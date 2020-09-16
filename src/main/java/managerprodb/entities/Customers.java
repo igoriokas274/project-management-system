@@ -1,7 +1,9 @@
 package managerprodb.entities;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMERS")
@@ -12,11 +14,28 @@ public class Customers {
     @Column(name = "customerId", nullable = false, unique = true)
     private Long customerId;
 
-    @OneToMany(mappedBy = "customers") // Checked
+    @OneToMany(mappedBy = "customers")
     private Set<Contacts> contacts;
 
-    @ManyToMany(mappedBy = "customers") // Checked
-    private Set<Projects> projects ;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "CUSTOMER_PROJECTS",
+            joinColumns = {@JoinColumn(name = "customerId")},
+            inverseJoinColumns = {@JoinColumn(name = "projectId")}
+    )
+    private Set<Projects> projects = new HashSet<Projects>();
+
+    @ManyToOne
+    @JoinColumn(name = "term")
+    private PayTerms payTerms;
+
+    @ManyToOne
+    @JoinColumn(name = "currencyId")
+    private Currencies currencies;
+
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
 
     @Column(name = "customerName", nullable = false)
     private String supplierName;
@@ -39,10 +58,6 @@ public class Customers {
     @Column(name = "zipCode")
     private String zipCode;
 
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
-
     @Column(name = "customerPhone")
     private String contactPhone;
 
@@ -60,14 +75,6 @@ public class Customers {
 
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
-
-    @ManyToOne
-    @JoinColumn(name = "term")// OK
-    private PayTerms payTerms;
-
-    @ManyToOne
-    @JoinColumn(name = "currencyId") // OK
-    private Currencies currencies;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -102,6 +109,38 @@ public class Customers {
         this.contacts = contacts;
     }
 
+    public Set<Projects> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projects> projects) {
+        this.projects = projects;
+    }
+
+    public PayTerms getPayTerms() {
+        return payTerms;
+    }
+
+    public void setPayTerms(PayTerms payTerms) {
+        this.payTerms = payTerms;
+    }
+
+    public Currencies getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(Currencies currencies) {
+        this.currencies = currencies;
+    }
+
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
+    }
+
     public String getSupplierName() {
         return supplierName;
     }
@@ -118,6 +157,46 @@ public class Customers {
         this.customerRegistrationNumber = customerRegistrationNumber;
     }
 
+    public String getCustomerVATNumber() {
+        return customerVATNumber;
+    }
+
+    public void setCustomerVATNumber(String customerVATNumber) {
+        this.customerVATNumber = customerVATNumber;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public String getContactPhone() {
         return contactPhone;
     }
@@ -132,14 +211,6 @@ public class Customers {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
-    }
-
-    public String getCustomerVATNumber() {
-        return customerVATNumber;
-    }
-
-    public void setCustomerVATNumber(String customerVATNumber) {
-        this.customerVATNumber = customerVATNumber;
     }
 
     public String getSwift() {
@@ -172,22 +243,6 @@ public class Customers {
 
     public void setBankAccount(String bankAccount) {
         this.bankAccount = bankAccount;
-    }
-
-    public PayTerms getPayTerms() {
-        return payTerms;
-    }
-
-    public void setPayTerms(PayTerms payTerms) {
-        this.payTerms = payTerms;
-    }
-
-    public Currencies getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(Currencies currencies) {
-        this.currencies = currencies;
     }
 
     public Date getLastUpdatedDate() {
@@ -228,53 +283,5 @@ public class Customers {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
-    }
-
-    public Set<Projects> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Projects> projects) {
-        this.projects = projects;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public Countries getCountries() {
-        return countries;
-    }
-
-    public void setCountries(Countries countries) {
-        this.countries = countries;
     }
 }

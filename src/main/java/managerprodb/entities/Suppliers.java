@@ -12,7 +12,7 @@ public class Suppliers {
     @Column(name = "supplierId", nullable = false, unique = true)
     private Long supplierId;
 
-    @OneToMany(mappedBy = "suppliers") // Checked
+    @OneToMany(mappedBy = "suppliers")
     private Set<Contacts> contacts;
 
     @Column(name = "supplierName", nullable = false)
@@ -59,14 +59,14 @@ public class Suppliers {
     private String bankAccount;
 
     @ManyToOne
-    @JoinColumn(name = "term") // OK
+    @JoinColumn(name = "term")
     private PayTerms payTerms;
 
     @ManyToOne
-    @JoinColumn(name = "currencyId") // OK
+    @JoinColumn(name = "currencyId")
     private Currencies currencies;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers") // OK
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
     private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -277,5 +277,4 @@ public class Suppliers {
     public void setClosed(boolean closed) {
         isClosed = closed;
     }
-
 }
