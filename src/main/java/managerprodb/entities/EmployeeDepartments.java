@@ -2,7 +2,6 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,8 +16,8 @@ public class EmployeeDepartments {
     @Column(name = "departmentName")
     private String departmentName;
 
-    @OneToMany(mappedBy = "employeeDepartments")
-    private Set<Employee> employees = new HashSet<Employee>();
+    @OneToMany(mappedBy = "employeeDepartments") // Checked
+    private Set<Employee> employees;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)

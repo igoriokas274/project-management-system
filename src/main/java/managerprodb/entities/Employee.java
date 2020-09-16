@@ -2,7 +2,6 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,15 +13,15 @@ public class Employee {
     @Column(name = "employeeId", nullable = false, unique = true)
     private Long employeeId;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(targetEntity = Contacts.class) // Checked
     private Contacts contacts;
 
     @ManyToOne
-    @JoinColumn(name = "departmentId")
+    @JoinColumn(name = "departmentId") // Checked
     private EmployeeDepartments employeeDepartments;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "employees")
-    private Set<Projects> projects = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "employees") // Checked
+    private Set<Projects> projects;
 
     @Column(name = "bankCode", nullable = false)
     private String bankCode;

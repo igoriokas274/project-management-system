@@ -3,6 +3,7 @@ package managerprodb.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "VAT_VALUES")
@@ -19,9 +20,8 @@ public class VATValues {
     @Column(name = "vatValue", nullable = false, precision = 3, scale = 2)
     private BigDecimal vatValue;
 
-    @ManyToOne
-    @JoinColumn(name = "itemId")
-    private Items items;
+    @OneToMany(mappedBy = "vatValues")
+    private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -61,11 +61,11 @@ public class VATValues {
         this.vatValue = vatValue;
     }
 
-    public Items getItems() {
+    public Set<Items> getItems() {
         return items;
     }
 
-    public void setItems(Items items) {
+    public void setItems(Set<Items> items) {
         this.items = items;
     }
 
