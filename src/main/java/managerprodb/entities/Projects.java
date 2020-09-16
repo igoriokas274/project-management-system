@@ -2,7 +2,6 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,21 +24,21 @@ public class Projects {
     @Column(name = "getProjectEndDate")
     private Date getProjectEndDate;
 
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "projects") // Checked
     private Set<ProjectStatus> projectStatuses;
 
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "projects") // Checked
     private Set<ProjectType> projectTypes;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany // Checked
     @JoinTable(name = "EMPLOYEE_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
             inverseJoinColumns = @JoinColumn(name = "employeeId"))
-    private Set<Employee> employees = new HashSet<>();
+    private Set<Employee> employees;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL) // Checked
     @JoinTable(name = "CUSTOMER_PROJECTS", joinColumns = @JoinColumn(name = "projectId"),
             inverseJoinColumns = @JoinColumn(name = "customerId"))
-    private Set<Customers> customers = new HashSet<>();
+    private Set<Customers> customers;
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")
     private String projectMemo1;

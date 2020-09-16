@@ -16,11 +16,24 @@ public class StockTypes {
     @Column(name = "stockName", nullable = false)
     private String stockName;
 
-    @Embedded
-    private Address address;
-
-    @OneToMany(mappedBy = "stockTypes")
+    @OneToMany(mappedBy = "stockTypes") // OK
     private Set<Items> items;
+
+    @Column(name = "addressLine1")
+    private String addressLine1;
+
+    @Column(name = "addressLine2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zipCode")
+    private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -53,14 +66,6 @@ public class StockTypes {
 
     public void setStockName(String stockName) {
         this.stockName = stockName;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public Date getLastUpdatedDate() {
@@ -110,5 +115,45 @@ public class StockTypes {
 
     public void setItems(Set<Items> items) {
         this.items = items;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
     }
 }

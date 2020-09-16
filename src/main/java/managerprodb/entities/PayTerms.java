@@ -3,6 +3,7 @@ package managerprodb.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "PAY_TERMS")
@@ -12,13 +13,11 @@ public class PayTerms {
     @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
     private BigDecimal term;
 
-    @ManyToOne
-    @JoinColumn(name = "customerId")
-    private Customers customers;
+    @OneToMany(mappedBy = "payTerms") // OK
+    private Set<Customers> customers;
 
-    @ManyToOne
-    @JoinColumn(name = "supplierId")
-    private Suppliers suppliers;
+    @OneToMany(mappedBy = "payTerms") // OK
+    private Set<Suppliers> suppliers;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -42,19 +41,19 @@ public class PayTerms {
         this.term = term;
     }
 
-    public Customers getCustomers() {
+    public Set<Customers> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(Customers customers) {
+    public void setCustomers(Set<Customers> customers) {
         this.customers = customers;
     }
 
-    public Suppliers getSuppliers() {
+    public Set<Suppliers> getSuppliers() {
         return suppliers;
     }
 
-    public void setSuppliers(Suppliers suppliers) {
+    public void setSuppliers(Set<Suppliers> suppliers) {
         this.suppliers = suppliers;
     }
 

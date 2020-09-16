@@ -2,6 +2,7 @@ package managerprodb.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "CURRENCIES")
@@ -11,13 +12,11 @@ public class Currencies {
     @Column(name = "currencyId", nullable = false, unique = true, length = 2)
     private String currencyId;
 
-    @ManyToOne
-    @JoinColumn(name = "supplierId")
-    private Suppliers suppliers;
+    @OneToMany(mappedBy = "currencies") // OK
+    private Set<Suppliers> suppliers;
 
-    @ManyToOne
-    @JoinColumn(name = "customerId")
-    private Customers customers;
+    @OneToMany(mappedBy = "currencies") // OK
+    private Set<Customers> customers;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -52,19 +51,19 @@ public class Currencies {
         isClosed = closed;
     }
 
-    public Suppliers getSuppliers() {
+    public Set<Suppliers> getSuppliers() {
         return suppliers;
     }
 
-    public void setSuppliers(Suppliers suppliers) {
+    public void setSuppliers(Set<Suppliers> suppliers) {
         this.suppliers = suppliers;
     }
 
-    public Customers getCustomers() {
+    public Set<Customers> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(Customers customers) {
+    public void setCustomers(Set<Customers> customers) {
         this.customers = customers;
     }
 

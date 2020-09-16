@@ -20,8 +20,21 @@ public class Contacts {
     @Column(name = "department")
     private String contactDepartment;
 
-    @Embedded  // @AttributeOverrides() ???
-    private Address address = new Address();
+    @Column(name = "addressLine1")
+    private String addressLine1;
+
+    @Column(name = "addressLine2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zipCode")
+    private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
 
     @Column(name = "contactPhone")
     private String contactPhone;
@@ -37,16 +50,15 @@ public class Contacts {
     @Column(name = "birthdate")
     private Date contactBirthdate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employeeId")
+    @OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL) // Checked
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "supplierId")
+    @JoinColumn(name = "supplierId") // Checked
     private Suppliers suppliers;
 
     @ManyToOne
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customerId") // Checked
     private Customers customers;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -194,11 +206,43 @@ public class Contacts {
         isClosed = closed;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
     }
 }

@@ -12,8 +12,8 @@ public class Suppliers {
     @Column(name = "supplierId", nullable = false, unique = true)
     private Long supplierId;
 
-    @OneToMany(mappedBy = "suppliers")
-    private Set<Contacts> contacts = new HashSet<>();
+    @OneToMany(mappedBy = "suppliers") // Checked
+    private Set<Contacts> contacts;
 
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
@@ -24,8 +24,21 @@ public class Suppliers {
     @Column(name = "supplierVATNumber", nullable = false)
     private String supplierVATNumber;
 
-    @Embedded
-    private Address address = new Address();
+    @Column(name = "addressLine1")
+    private String addressLine1;
+
+    @Column(name = "addressLine2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zipCode")
+    private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
 
     @Column(name = "supplierPhone")
     private String contactPhone;
@@ -45,14 +58,16 @@ public class Suppliers {
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
-    private List<PayTerms> payTerms;
+    @ManyToOne
+    @JoinColumn(name = "term") // OK
+    private PayTerms payTerms;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
-    private List<Currencies> currencies;
+    @ManyToOne
+    @JoinColumn(name = "currencyId") // OK
+    private Currencies currencies;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
-    private List<Items> items;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers") // OK
+    private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -111,12 +126,44 @@ public class Suppliers {
         this.supplierVATNumber = supplierVATNumber;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
     }
 
     public String getContactPhone() {
@@ -167,20 +214,28 @@ public class Suppliers {
         this.bankAccount = bankAccount;
     }
 
-    public List<PayTerms> getPayTerms() {
+    public PayTerms getPayTerms() {
         return payTerms;
     }
 
-    public void setPayTerms(List<PayTerms> payTerms) {
+    public void setPayTerms(PayTerms payTerms) {
         this.payTerms = payTerms;
     }
 
-    public List<Currencies> getCurrencies() {
+    public Currencies getCurrencies() {
         return currencies;
     }
 
-    public void setCurrencies(List<Currencies> currencies) {
+    public void setCurrencies(Currencies currencies) {
         this.currencies = currencies;
+    }
+
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
     }
 
     public Date getLastUpdatedDate() {

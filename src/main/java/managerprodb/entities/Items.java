@@ -3,8 +3,6 @@ package managerprodb.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "ITEMS")
@@ -26,11 +24,11 @@ public class Items {
     private ItemType itemType;
 
     @ManyToOne
-    @JoinColumn(name = "stockId")
+    @JoinColumn(name = "stockId") // OK
     private StockTypes stockTypes;
 
     @ManyToOne
-    @JoinColumn(name = "supplierId")
+    @JoinColumn(name = "supplierId") // OK
     private Suppliers suppliers;
 
     @Column(name = "minStockLevel")
@@ -41,8 +39,9 @@ public class Items {
 
     //TODO add average purchase price
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "items")
-    private Set<VATValues> vatValues = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "vatId") // OK
+    private VATValues vatValues;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -126,11 +125,11 @@ public class Items {
         this.salesPrice = salesPrice;
     }
 
-    public Set<VATValues> getVatValues() {
+    public VATValues getVatValues() {
         return vatValues;
     }
 
-    public void setVatValues(Set<VATValues> vatValues) {
+    public void setVatValues(VATValues vatValues) {
         this.vatValues = vatValues;
     }
 

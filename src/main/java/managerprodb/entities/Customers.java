@@ -12,11 +12,11 @@ public class Customers {
     @Column(name = "customerId", nullable = false, unique = true)
     private Long customerId;
 
-    @OneToMany(mappedBy = "customers")
-    private Set<Contacts> contacts = new HashSet<>();
+    @OneToMany(mappedBy = "customers") // Checked
+    private Set<Contacts> contacts;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private Set<Projects> projects = new HashSet<>();
+    @ManyToMany(mappedBy = "customers") // Checked
+    private Set<Projects> projects ;
 
     @Column(name = "customerName", nullable = false)
     private String supplierName;
@@ -27,8 +27,21 @@ public class Customers {
     @Column(name = "customerVATNumber", nullable = false)
     private String customerVATNumber;
 
-    @Embedded
-    private Address address = new Address();
+    @Column(name = "addressLine1")
+    private String addressLine1;
+
+    @Column(name = "addressLine2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zipCode")
+    private String zipCode;
+
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Countries countries;
 
     @Column(name = "customerPhone")
     private String contactPhone;
@@ -48,11 +61,13 @@ public class Customers {
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private List<PayTerms> payTerms;
+    @ManyToOne
+    @JoinColumn(name = "term")// OK
+    private PayTerms payTerms;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private List<Currencies> currencies;
+    @ManyToOne
+    @JoinColumn(name = "currencyId") // OK
+    private Currencies currencies;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -101,14 +116,6 @@ public class Customers {
 
     public void setCustomerRegistrationNumber(String customerRegistrationNumber) {
         this.customerRegistrationNumber = customerRegistrationNumber;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public String getContactPhone() {
@@ -167,24 +174,24 @@ public class Customers {
         this.bankAccount = bankAccount;
     }
 
-    public List<PayTerms> getPayTerms() {
+    public PayTerms getPayTerms() {
         return payTerms;
     }
 
-    public void setPayTerms(List<PayTerms> payTerms) {
+    public void setPayTerms(PayTerms payTerms) {
         this.payTerms = payTerms;
+    }
+
+    public Currencies getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(Currencies currencies) {
+        this.currencies = currencies;
     }
 
     public Date getLastUpdatedDate() {
         return lastUpdatedDate;
-    }
-
-    public List<Currencies> getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(List<Currencies> currencies) {
-        this.currencies = currencies;
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
@@ -229,5 +236,45 @@ public class Customers {
 
     public void setProjects(Set<Projects> projects) {
         this.projects = projects;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Countries getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Countries countries) {
+        this.countries = countries;
     }
 }

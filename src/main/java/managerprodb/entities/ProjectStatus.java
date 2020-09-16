@@ -16,7 +16,7 @@ public class ProjectStatus {
     private String projectStatusName;
 
     @ManyToOne
-    @JoinColumn(name = "projectId")
+    @JoinColumn(name = "projectId") // checked
     private Projects projects;
 
     @Temporal(TemporalType.TIMESTAMP)
