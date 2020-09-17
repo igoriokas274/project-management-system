@@ -23,6 +23,14 @@
     <source.dir>./src/main/java</source.dir>
     <main.class>Main</main.class>
     <build.dir>./target/</build.dir>
+    <mysqldump.exec>/usr/bin/mysqldump</mysqldump.exec>
+    <mysqldump.workdir>db-snapshots</mysqldump.workdir>
+    <mysqldump.db>managerpro</mysqldump.db>
+    <mysqldump.user>root</mysqldump.user>
+    <mysqldump.password>1My_sql!SQL</mysqldump.password>
+    <mysqldump.host>localhost</mysqldump.host>
+    <mysqldump.output>db-snaphot-${version}</mysqldump.output>
+
     <maven.javadoc.skip>false</maven.javadoc.skip>
     <junit-platform.version>5.4.1</junit-platform.version>
     <hibernate.version>5.4.21.Final</hibernate.version>
@@ -33,7 +41,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <scope>runtime</scope>
+      <scope>compile</scope>
     </dependency>
 
     <dependency>
@@ -174,6 +182,34 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>3.0.0</version>
+      </plugin>
+
+      <plugin>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin -->
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>mysql-dump-create</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>${mysqldump.exec}</executable>
+              <workingDirectory>${mysqldump.workdir}</workingDirectory>
+              <arguments>
+                <argument>--user=${mysqldump.user}</argument>
+                <argument>--password=${mysqldump.password}</argument>
+                <argument>--host=${mysqldump.host}</argument>
+                <argument>--result-file=${mysqldump.output}.sql</argument>
+                <argument>${mysqldump.db}</argument>
+              </arguments>
+            </configuration>
       </plugin>
 
     </plugins>
