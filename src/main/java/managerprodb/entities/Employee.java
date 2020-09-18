@@ -17,6 +17,10 @@ public class Employee {
     @OneToOne(targetEntity = Contacts.class)
     private Contacts contacts;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dateOfEmployment", nullable = false)
+    private Date dateOfEmployment;
+
     @ManyToOne
     @JoinColumn(name = "departmentId")
     private EmployeeDepartments employeeDepartments;

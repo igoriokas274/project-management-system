@@ -26,10 +26,10 @@
     <mysqldump.exec>/usr/bin/mysqldump</mysqldump.exec>
     <mysqldump.workdir>db-snapshots</mysqldump.workdir>
     <mysqldump.db>managerpro</mysqldump.db>
-    <mysqldump.user>root</mysqldump.user>
-    <mysqldump.password>1My_sql!SQL</mysqldump.password>
+    <mysqldump.user>manager</mysqldump.user>
+    <mysqldump.password>manager</mysqldump.password>
     <mysqldump.host>localhost</mysqldump.host>
-    <mysqldump.output>db-snaphot-${version}</mysqldump.output>
+    <mysqldump.output>db-snaphot-${project.version}</mysqldump.output>
 
     <maven.javadoc.skip>false</maven.javadoc.skip>
     <junit-platform.version>5.4.1</junit-platform.version>
