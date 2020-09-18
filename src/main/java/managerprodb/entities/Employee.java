@@ -154,4 +154,12 @@ public class Employee {
     public void setClosed(boolean closed) {
         isClosed = closed;
     }
+
+    public Date getDateOfEmployment() {
+        return dateOfEmployment;
+    }
+
+    public void setDateOfEmployment(Date dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
+    }
 }

@@ -16,13 +16,13 @@ public class HibernateUtil {
             try {
                 Configuration configuration = new Configuration();
                 configuration.configure("/hibernate.cfg.xml");
-
+                LOGGER.info("Hibernate Configuration loaded");
                 sessionFactory = configuration.buildSessionFactory();
             } catch (Exception e) {
                 e.printStackTrace();
-                LOGGER.error(e);
+                LOGGER.error("Initial SessionFactory creation failed." + e);
             } finally {
-                LOGGER.info("\u001B[33mSession Factory Built\u001B[0m");
+                LOGGER.info("SessionFactory Built");
             }
         }
         return sessionFactory;
@@ -32,7 +32,7 @@ public class HibernateUtil {
         if (!sessionFactory.isClosed()) {
             sessionFactory.close();
         }
-        LOGGER.info("\u001B[33mSession Factory Closed\u001B[0m");
+        LOGGER.info("SessionFactory Closed");
     }
 
 }
