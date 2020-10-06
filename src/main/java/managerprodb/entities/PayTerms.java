@@ -1,11 +1,16 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "PAY_TERMS")
 public class PayTerms {
 
@@ -33,59 +38,29 @@ public class PayTerms {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public BigDecimal getTerm() {
-        return term;
-    }
+    public PayTerms() {}
 
-    public void setTerm(BigDecimal term) {
+    public PayTerms(BigDecimal term, Set<Customers> customers, Set<Suppliers> suppliers, Date lastUpdatedDate,
+                    String lastUpdatedBy, Date createdDate, String createdBy) {
         this.term = term;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
         this.customers = customers;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
         this.suppliers = suppliers;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "PayTerms{" +
+                "term=" + term +
+                ", customers=" + customers +
+                ", suppliers=" + suppliers +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
     }
 }

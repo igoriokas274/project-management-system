@@ -1,10 +1,15 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "CURRENCIES")
 public class Currencies {
 
@@ -35,67 +40,31 @@ public class Currencies {
     @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
     private boolean isClosed;
 
-    public String getCurrencyId() {
-        return currencyId;
-    }
+    public Currencies() {}
 
-    public void setCurrencyId(String currencyId) {
+    public Currencies(String currencyId, Set<Suppliers> suppliers, Set<Customers> customers, Date lastUpdatedDate,
+                      String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
         this.currencyId = currencyId;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
         this.suppliers = suppliers;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
         this.customers = customers;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+        this.isClosed = isClosed;
     }
 
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setClosed(boolean closed) {
-        isClosed = closed;
+    @Override
+    public String toString() {
+        return "Currencies{" +
+                "currencyId='" + currencyId + '\'' +
+                ", suppliers=" + suppliers +
+                ", customers=" + customers +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                ", isClosed=" + isClosed +
+                '}';
     }
 }

@@ -1,11 +1,16 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "VAT_VALUES")
 public class VATValues {
 
@@ -37,67 +42,30 @@ public class VATValues {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getVatId() {
-        return vatId;
-    }
+    public VATValues() {}
 
-    public void setVatId(Long vatId) {
-        this.vatId = vatId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
+    public VATValues(String description, BigDecimal vatValue, Set<Items> items, Date lastUpdatedDate,
+                     String lastUpdatedBy, Date createdDate, String createdBy) {
         this.description = description;
-    }
-
-    public BigDecimal getVatValue() {
-        return vatValue;
-    }
-
-    public void setVatValue(BigDecimal vatValue) {
         this.vatValue = vatValue;
-    }
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Items> items) {
         this.items = items;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "VATValues{" +
+                "vatId=" + vatId +
+                ", description='" + description + '\'' +
+                ", vatValue=" + vatValue +
+                ", items=" + items +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
     }
 }

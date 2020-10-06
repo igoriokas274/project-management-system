@@ -1,10 +1,15 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "ITEMS")
 public class Items {
 
@@ -58,115 +63,43 @@ public class Items {
     @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
     private boolean isClosed;
 
-    public Long getItemId() {
-        return itemId;
-    }
+    public Items() {}
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
+    public Items(String itemName, String itemDescription, ItemType itemType, StockTypes stockTypes, Suppliers suppliers,
+                 Integer minStockLevel, BigDecimal salesPrice, VATValues vatValues, Date lastUpdatedDate,
+                 String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
         this.itemName = itemName;
-    }
-
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
-    }
-
-    public ItemType getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
-    }
-
-    public StockTypes getStockTypes() {
-        return stockTypes;
-    }
-
-    public void setStockTypes(StockTypes stockTypes) {
         this.stockTypes = stockTypes;
-    }
-
-    public Suppliers getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Suppliers suppliers) {
         this.suppliers = suppliers;
-    }
-
-    public Integer getMinStockLevel() {
-        return minStockLevel;
-    }
-
-    public void setMinStockLevel(Integer minStockLevel) {
         this.minStockLevel = minStockLevel;
-    }
-
-    public BigDecimal getSalesPrice() {
-        return salesPrice;
-    }
-
-    public void setSalesPrice(BigDecimal salesPrice) {
         this.salesPrice = salesPrice;
-    }
-
-    public VATValues getVatValues() {
-        return vatValues;
-    }
-
-    public void setVatValues(VATValues vatValues) {
         this.vatValues = vatValues;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+        this.isClosed = isClosed;
     }
 
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setClosed(boolean closed) {
-        isClosed = closed;
+    @Override
+    public String toString() {
+        return "Items{" +
+                "itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", itemType=" + itemType +
+                ", stockTypes=" + stockTypes +
+                ", suppliers=" + suppliers +
+                ", minStockLevel=" + minStockLevel +
+                ", salesPrice=" + salesPrice +
+                ", vatValues=" + vatValues +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                ", isClosed=" + isClosed +
+                '}';
     }
 }

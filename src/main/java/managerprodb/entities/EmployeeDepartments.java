@@ -1,10 +1,15 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "EMPLOYEE_DEPARTMENTS")
 public class EmployeeDepartments {
 
@@ -33,59 +38,28 @@ public class EmployeeDepartments {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getDepartmentId() {
-        return departmentId;
-    }
+    public EmployeeDepartments() {}
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
+    public EmployeeDepartments(String departmentName, Set<Employee> employees, Date lastUpdatedDate,
+                               String lastUpdatedBy, Date createdDate, String createdBy) {
         this.departmentName = departmentName;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDepartments{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", employees=" + employees +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
     }
 }

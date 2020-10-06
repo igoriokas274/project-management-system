@@ -1,9 +1,14 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "PROJECT_STATUS")
 public class ProjectStatus {
 
@@ -33,59 +38,28 @@ public class ProjectStatus {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getProjectStatusId() {
-        return projectStatusId;
-    }
+   public ProjectStatus() {}
 
-    public void setProjectStatusId(Long projectStatusId) {
-        this.projectStatusId = projectStatusId;
-    }
-
-    public String getProjectStatusName() {
-        return projectStatusName;
-    }
-
-    public void setProjectStatusName(String projectStatusName) {
+    public ProjectStatus(String projectStatusName, Projects projects, Date lastUpdatedDate, String lastUpdatedBy,
+                         Date createdDate, String createdBy) {
         this.projectStatusName = projectStatusName;
-    }
-
-    public Projects getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Projects projects) {
         this.projects = projects;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectStatus{" +
+                "projectStatusId=" + projectStatusId +
+                ", projectStatusName='" + projectStatusName + '\'' +
+                ", projects=" + projects +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
     }
 }

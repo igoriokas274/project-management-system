@@ -1,9 +1,14 @@
 package managerprodb.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "PROJECT_TYPE")
 public class ProjectType {
 
@@ -33,59 +38,28 @@ public class ProjectType {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public Long getProjectTypeId() {
-        return projectTypeId;
-    }
+    public ProjectType() {}
 
-    public void setProjectTypeId(Long projectTypeId) {
-        this.projectTypeId = projectTypeId;
-    }
-
-    public String getProjectTypeName() {
-        return projectTypeName;
-    }
-
-    public void setProjectTypeName(String projectTypeName) {
+    public ProjectType(String projectTypeName, Projects projects, Date lastUpdatedDate, String lastUpdatedBy,
+                       Date createdDate, String createdBy) {
         this.projectTypeName = projectTypeName;
-    }
-
-    public Projects getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Projects projects) {
         this.projects = projects;
-    }
-
-    public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectType{" +
+                "projectTypeId=" + projectTypeId +
+                ", projectTypeName='" + projectTypeName + '\'' +
+                ", projects=" + projects +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
+                ", createdDate=" + createdDate +
+                ", createdBy='" + createdBy + '\'' +
+                '}';
     }
 }
