@@ -1,8 +1,8 @@
--- MariaDB dump 10.17  Distrib 10.5.5-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.18  Distrib 10.5.8-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: managerpro
 -- ------------------------------------------------------
--- Server version	10.5.5-MariaDB
+-- Server version	10.5.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -554,6 +554,545 @@ LOCK TABLES `VAT_VALUES` WRITE;
 /*!40000 ALTER TABLE `VAT_VALUES` DISABLE KEYS */;
 /*!40000 ALTER TABLE `VAT_VALUES` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `contacts`
+--
+
+DROP TABLE IF EXISTS `contacts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contacts` (
+  `contact_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address_line1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_line2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
+  `department` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `full_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `contact_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `closed` int(11) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_id` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_id` bigint(20) DEFAULT NULL,
+  `employee_employee_id` bigint(20) DEFAULT NULL,
+  `supplier_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`contact_id`),
+  KEY `FK6m9l9635wmsrwgejpa6q7o947` (`country_id`),
+  KEY `FK7fn6qgtowm81subo3un6k5yoq` (`customer_id`),
+  KEY `FKg32et05l6xn1klh29rgq1fjhn` (`employee_employee_id`),
+  KEY `FKaklq8ij85cy15gicnmm287f84` (`supplier_id`),
+  CONSTRAINT `FK6m9l9635wmsrwgejpa6q7o947` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
+  CONSTRAINT `FK7fn6qgtowm81subo3un6k5yoq` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  CONSTRAINT `FKaklq8ij85cy15gicnmm287f84` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`),
+  CONSTRAINT `FKg32et05l6xn1klh29rgq1fjhn` FOREIGN KEY (`employee_employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contacts`
+--
+
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `countries`
+--
+
+DROP TABLE IF EXISTS `countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `countries` (
+  `country_id` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  PRIMARY KEY (`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countries`
+--
+
+LOCK TABLES `countries` WRITE;
+/*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `currencies`
+--
+
+DROP TABLE IF EXISTS `currencies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currencies` (
+  `currency_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  PRIMARY KEY (`currency_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `currencies`
+--
+
+LOCK TABLES `currencies` WRITE;
+/*!40000 ALTER TABLE `currencies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `currencies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_projects`
+--
+
+DROP TABLE IF EXISTS `customer_projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_projects` (
+  `customer_id` bigint(20) NOT NULL,
+  `project_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`customer_id`,`project_id`),
+  KEY `FKbe2it5qmqcyoiefmfexw5iheo` (`project_id`),
+  CONSTRAINT `FKbe2it5qmqcyoiefmfexw5iheo` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`),
+  CONSTRAINT `FKsdp09o4y1vhdypjhys5h24t24` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_projects`
+--
+
+LOCK TABLES `customer_projects` WRITE;
+/*!40000 ALTER TABLE `customer_projects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `customer_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address_line1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_line2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bank_account` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `customer_registration_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `customervatnumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `customer_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `swift` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_id` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `currency_id` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `term` decimal(3,2) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`),
+  KEY `FK7b7p2myt0y31l4nyj1p7sk0b1` (`country_id`),
+  KEY `FKq3wmhipr9kq0epd2id1umuygx` (`currency_id`),
+  KEY `FKjseko8laojw03a58dc8y2nl4k` (`term`),
+  CONSTRAINT `FK7b7p2myt0y31l4nyj1p7sk0b1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
+  CONSTRAINT `FKjseko8laojw03a58dc8y2nl4k` FOREIGN KEY (`term`) REFERENCES `pay_terms` (`term`),
+  CONSTRAINT `FKq3wmhipr9kq0epd2id1umuygx` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`currency_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee`
+--
+
+DROP TABLE IF EXISTS `employee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employee` (
+  `employee_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `bank_account` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `contacts_contact_id` bigint(20) DEFAULT NULL,
+  `department_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`employee_id`),
+  KEY `FKdyn9sfhicdg52kuw2952p8lmg` (`contacts_contact_id`),
+  KEY `FK7j6qu48rm5l3wmkqv4l05mtna` (`department_id`),
+  CONSTRAINT `FK7j6qu48rm5l3wmkqv4l05mtna` FOREIGN KEY (`department_id`) REFERENCES `employee_departments` (`department_id`),
+  CONSTRAINT `FKdyn9sfhicdg52kuw2952p8lmg` FOREIGN KEY (`contacts_contact_id`) REFERENCES `contacts` (`contact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee`
+--
+
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee_departments`
+--
+
+DROP TABLE IF EXISTS `employee_departments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employee_departments` (
+  `department_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `department_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  PRIMARY KEY (`department_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee_departments`
+--
+
+LOCK TABLES `employee_departments` WRITE;
+/*!40000 ALTER TABLE `employee_departments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `employee_departments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee_projects`
+--
+
+DROP TABLE IF EXISTS `employee_projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employee_projects` (
+  `employee_id` bigint(20) NOT NULL,
+  `project_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`employee_id`,`project_id`),
+  KEY `FKnxw95o16xcyxe3qaiy1tyarnc` (`project_id`),
+  CONSTRAINT `FK97jl81fsrbblkqfoqwg2o7yps` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
+  CONSTRAINT `FKnxw95o16xcyxe3qaiy1tyarnc` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee_projects`
+--
+
+LOCK TABLES `employee_projects` WRITE;
+/*!40000 ALTER TABLE `employee_projects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `employee_projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `item_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `item_description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `item_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `item_type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `min_stock_level` int(11) DEFAULT NULL,
+  `sales_price` decimal(10,2) DEFAULT NULL,
+  `stock_id` bigint(20) DEFAULT NULL,
+  `supplier_id` bigint(20) DEFAULT NULL,
+  `vat_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`item_id`),
+  KEY `FKeqlguxlwroq9qubbtf050n1v7` (`stock_id`),
+  KEY `FK19no9r2d31i2g27fh8h72xif8` (`supplier_id`),
+  KEY `FKinlt7obet9mt6sfirl9429opq` (`vat_id`),
+  CONSTRAINT `FK19no9r2d31i2g27fh8h72xif8` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`),
+  CONSTRAINT `FKeqlguxlwroq9qubbtf050n1v7` FOREIGN KEY (`stock_id`) REFERENCES `stock_types` (`stock_id`),
+  CONSTRAINT `FKinlt7obet9mt6sfirl9429opq` FOREIGN KEY (`vat_id`) REFERENCES `vat_values` (`vat_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `items`
+--
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pay_terms`
+--
+
+DROP TABLE IF EXISTS `pay_terms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pay_terms` (
+  `term` decimal(3,2) NOT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  PRIMARY KEY (`term`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pay_terms`
+--
+
+LOCK TABLES `pay_terms` WRITE;
+/*!40000 ALTER TABLE `pay_terms` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pay_terms` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_status`
+--
+
+DROP TABLE IF EXISTS `project_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project_status` (
+  `project_status_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `project_status_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`project_status_id`),
+  KEY `FKat74svjd9fp73higp9mep2dip` (`project_id`),
+  CONSTRAINT `FKat74svjd9fp73higp9mep2dip` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_status`
+--
+
+LOCK TABLES `project_status` WRITE;
+/*!40000 ALTER TABLE `project_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_type`
+--
+
+DROP TABLE IF EXISTS `project_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project_type` (
+  `project_type_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `project_type_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`project_type_id`),
+  KEY `FK6kypnv8ujfl06myffbinhq7ft` (`project_id`),
+  CONSTRAINT `FK6kypnv8ujfl06myffbinhq7ft` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_type`
+--
+
+LOCK TABLES `project_type` WRITE;
+/*!40000 ALTER TABLE `project_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projects`
+--
+
+DROP TABLE IF EXISTS `projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projects` (
+  `project_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_end_date` date DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `project_memo1` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `project_memo2` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `project_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `project_start_date` date DEFAULT NULL,
+  PRIMARY KEY (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projects`
+--
+
+LOCK TABLES `projects` WRITE;
+/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `stock_types`
+--
+
+DROP TABLE IF EXISTS `stock_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `stock_types` (
+  `stock_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address_line1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_line2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `stock_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_id` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`stock_id`),
+  KEY `FKdgirthrr3pijtuda52r1ih9x` (`country_id`),
+  CONSTRAINT `FKdgirthrr3pijtuda52r1ih9x` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stock_types`
+--
+
+LOCK TABLES `stock_types` WRITE;
+/*!40000 ALTER TABLE `stock_types` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `suppliers`
+--
+
+DROP TABLE IF EXISTS `suppliers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `suppliers` (
+  `supplier_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address_line1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_line2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bank_account` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supplier_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supplier_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT 0,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `supplier_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `supplier_registration_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `suppliervatnumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `swift` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_id` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `currency_id` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `term` decimal(3,2) DEFAULT NULL,
+  PRIMARY KEY (`supplier_id`),
+  KEY `FKjcuohexsi23vnpxi0t25kvwg7` (`country_id`),
+  KEY `FK8nfhun55mc7gsfkvub7if534y` (`currency_id`),
+  KEY `FK9f4keh4khxbrm7fwv7ua8amvu` (`term`),
+  CONSTRAINT `FK8nfhun55mc7gsfkvub7if534y` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`currency_id`),
+  CONSTRAINT `FK9f4keh4khxbrm7fwv7ua8amvu` FOREIGN KEY (`term`) REFERENCES `pay_terms` (`term`),
+  CONSTRAINT `FKjcuohexsi23vnpxi0t25kvwg7` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+LOCK TABLES `suppliers` WRITE;
+/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vat_values`
+--
+
+DROP TABLE IF EXISTS `vat_values`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vat_values` (
+  `vat_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_updated_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_updated_date` datetime NOT NULL,
+  `vat_value` decimal(3,2) NOT NULL,
+  PRIMARY KEY (`vat_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vat_values`
+--
+
+LOCK TABLES `vat_values` WRITE;
+/*!40000 ALTER TABLE `vat_values` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vat_values` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -564,4 +1103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-07 13:30:47
+-- Dump completed on 2020-12-12 14:31:24

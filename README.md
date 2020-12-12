@@ -1,4 +1,4 @@
-# Project management system (PMS)
+# Project management application (PMA)
 
 ## System description (working procedures)
 1. Sales Manager - Create new Project and give it a name. Set project status to "in sales process". Fill all required info about it - start and stop dates, select customer etc.;
