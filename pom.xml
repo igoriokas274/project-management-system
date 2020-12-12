@@ -8,7 +8,7 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>dev.sda.team3</groupId>
+	<groupId>dev.sda.team2</groupId>
 	<artifactId>project-management-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>project-management-application</name>
@@ -21,10 +21,10 @@
 		<mysqldump.exec>/usr/bin/mysqldump</mysqldump.exec>
 		<mysqldump.workdir>db-snapshots</mysqldump.workdir>
 		<mysqldump.db>managerpro</mysqldump.db>
-		<mysqldump.user>manager</mysqldump.user>
-		<mysqldump.password>manager</mysqldump.password>
+		<mysqldump.user>manager</mysqldump.user> <!-- add your own username -->
+		<mysqldump.password>manager</mysqldump.password> <!-- add your own password for DB -->
 		<mysqldump.host>localhost</mysqldump.host>
-		<mysqldump.output>db-snaphot-${project.version}</mysqldump.output>
+		<mysqldump.output>db-snapshot-${project.version}</mysqldump.output>
 	</properties>
 
 	<dependencies>
