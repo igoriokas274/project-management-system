@@ -1,4 +1,4 @@
-package dev.sda.team3.pma;
+package dev.sda.team2.pma;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

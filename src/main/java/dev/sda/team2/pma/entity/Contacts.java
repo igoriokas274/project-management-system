@@ -1,4 +1,4 @@
-package dev.sda.team3.pma.entity;
+package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;

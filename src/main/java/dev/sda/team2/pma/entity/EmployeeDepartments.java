@@ -1,23 +1,23 @@
-package dev.sda.team3.pma.entity;
+package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "PROJECT_TYPE")
-public class ProjectType {
+@Table(name = "EMPLOYEE_DEPARTMENTS")
+public class EmployeeDepartments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "projectTypeId", nullable = false, unique = true)
-    private Long projectTypeId;
+    @Column(name = "departmentId", nullable = false, unique = true)
+    private Long departmentId;
 
-    @Column(name = "projectTypeName")
-    private String projectTypeName;
+    @Column(name = "departmentName")
+    private String departmentName;
 
-    @ManyToOne
-    @JoinColumn(name = "projectId")
-    private Projects projects;
+    @OneToMany(mappedBy = "employeeDepartments")
+    private Set<Employee> employees;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -33,39 +33,39 @@ public class ProjectType {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public ProjectType() {}
+    public EmployeeDepartments() {}
 
-    public ProjectType(String projectTypeName, Date lastUpdatedDate, String lastUpdatedBy,
-                       Date createdDate, String createdBy) {
-        this.projectTypeName = projectTypeName;
+    public EmployeeDepartments(String departmentName, Date lastUpdatedDate,
+                               String lastUpdatedBy, Date createdDate, String createdBy) {
+        this.departmentName = departmentName;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
     }
 
-    public Long getProjectTypeId() {
-        return projectTypeId;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setProjectTypeId(Long projectTypeId) {
-        this.projectTypeId = projectTypeId;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getProjectTypeName() {
-        return projectTypeName;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setProjectTypeName(String projectTypeName) {
-        this.projectTypeName = projectTypeName;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public Projects getProjects() {
-        return projects;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setProjects(Projects projects) {
-        this.projects = projects;
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public Date getLastUpdatedDate() {
@@ -102,10 +102,10 @@ public class ProjectType {
 
     @Override
     public String toString() {
-        return "ProjectType{" +
-                "projectTypeId=" + projectTypeId +
-                ", projectTypeName='" + projectTypeName + '\'' +
-                ", projects=" + projects +
+        return "EmployeeDepartments{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
+                ", employees=" + employees +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +

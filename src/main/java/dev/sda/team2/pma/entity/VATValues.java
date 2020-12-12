@@ -1,23 +1,27 @@
-package dev.sda.team3.pma.entity;
+package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "PROJECT_STATUS")
-public class ProjectStatus {
+@Table(name = "VAT_VALUES")
+public class VATValues {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "projectStatusId", nullable = false, unique = true)
-    private Long projectStatusId;
+    @Column(name = "vatId", nullable = false, unique = true)
+    private Long vatId;
 
-    @Column(name = "projectStatusName")
-    private String projectStatusName;
+    @Column(name = "description")
+    private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "projectId")
-    private Projects projects;
+    @Column(name = "vatValue", nullable = false, precision = 3, scale = 2)
+    private BigDecimal vatValue;
+
+    @OneToMany(mappedBy = "vatValues")
+    private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -33,39 +37,48 @@ public class ProjectStatus {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-   public ProjectStatus() {}
+    public VATValues() {}
 
-    public ProjectStatus(String projectStatusName, Date lastUpdatedDate, String lastUpdatedBy,
-                         Date createdDate, String createdBy) {
-        this.projectStatusName = projectStatusName;
+    public VATValues(String description, BigDecimal vatValue, Date lastUpdatedDate,
+                     String lastUpdatedBy, Date createdDate, String createdBy) {
+        this.description = description;
+        this.vatValue = vatValue;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
     }
 
-    public Long getProjectStatusId() {
-        return projectStatusId;
+    public Long getVatId() {
+        return vatId;
     }
 
-    public void setProjectStatusId(Long projectStatusId) {
-        this.projectStatusId = projectStatusId;
+    public void setVatId(Long vatId) {
+        this.vatId = vatId;
     }
 
-    public String getProjectStatusName() {
-        return projectStatusName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProjectStatusName(String projectStatusName) {
-        this.projectStatusName = projectStatusName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Projects getProjects() {
-        return projects;
+    public BigDecimal getVatValue() {
+        return vatValue;
     }
 
-    public void setProjects(Projects projects) {
-        this.projects = projects;
+    public void setVatValue(BigDecimal vatValue) {
+        this.vatValue = vatValue;
+    }
+
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
     }
 
     public Date getLastUpdatedDate() {
@@ -102,10 +115,11 @@ public class ProjectStatus {
 
     @Override
     public String toString() {
-        return "ProjectStatus{" +
-                "projectStatusId=" + projectStatusId +
-                ", projectStatusName='" + projectStatusName + '\'' +
-                ", projects=" + projects +
+        return "VATValues{" +
+                "vatId=" + vatId +
+                ", description='" + description + '\'' +
+                ", vatValue=" + vatValue +
+                ", items=" + items +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
