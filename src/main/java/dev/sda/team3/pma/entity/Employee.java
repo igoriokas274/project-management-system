@@ -1,16 +1,11 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "EMPLOYEE")
 public class Employee {
 
@@ -66,13 +61,9 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(Contacts contacts, Date dateOfEmployment, EmployeeDepartments employeeDepartments,
-                    Set<Projects> projects, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
+    public Employee(Date dateOfEmployment, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
                     String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
-        this.contacts = contacts;
         this.dateOfEmployment = dateOfEmployment;
-        this.employeeDepartments = employeeDepartments;
-        this.projects = projects;
         this.bankCode = bankCode;
         this.bankName = bankName;
         this.bankAccount = bankAccount;
@@ -81,6 +72,110 @@ public class Employee {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Contacts getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Contacts contacts) {
+        this.contacts = contacts;
+    }
+
+    public Date getDateOfEmployment() {
+        return dateOfEmployment;
+    }
+
+    public void setDateOfEmployment(Date dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
+    }
+
+    public EmployeeDepartments getEmployeeDepartments() {
+        return employeeDepartments;
+    }
+
+    public void setEmployeeDepartments(EmployeeDepartments employeeDepartments) {
+        this.employeeDepartments = employeeDepartments;
+    }
+
+    public Set<Projects> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Projects> projects) {
+        this.projects = projects;
+    }
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     @Override

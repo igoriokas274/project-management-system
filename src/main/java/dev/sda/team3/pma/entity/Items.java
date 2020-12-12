@@ -1,15 +1,10 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "ITEMS")
 public class Items {
 
@@ -65,17 +60,12 @@ public class Items {
 
     public Items() {}
 
-    public Items(String itemName, String itemDescription, ItemType itemType, StockTypes stockTypes, Suppliers suppliers,
-                 Integer minStockLevel, BigDecimal salesPrice, VATValues vatValues, Date lastUpdatedDate,
+    public Items(String itemName, String itemDescription, Integer minStockLevel, BigDecimal salesPrice, Date lastUpdatedDate,
                  String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
-        this.itemType = itemType;
-        this.stockTypes = stockTypes;
-        this.suppliers = suppliers;
         this.minStockLevel = minStockLevel;
         this.salesPrice = salesPrice;
-        this.vatValues = vatValues;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;

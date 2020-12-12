@@ -1,15 +1,10 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "COUNTRIES")
 public class Countries {
 
@@ -48,19 +43,94 @@ public class Countries {
 
     public Countries() {}
 
-    public Countries(String countryId, Set<Contacts> contacts, Set<Customers> customers, Set<Suppliers> suppliers,
-                     Set<StockTypes> stockTypes, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+    public Countries(String countryId, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
                      String createdBy, boolean isClosed) {
         this.countryId = countryId;
-        this.contacts = contacts;
-        this.customers = customers;
-        this.suppliers = suppliers;
-        this.stockTypes = stockTypes;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+    }
+
+    public String getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(String countryId) {
+        this.countryId = countryId;
+    }
+
+    public Set<Contacts> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contacts> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
+    }
+
+    public Set<Suppliers> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(Set<Suppliers> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    public Set<StockTypes> getStockTypes() {
+        return stockTypes;
+    }
+
+    public void setStockTypes(Set<StockTypes> stockTypes) {
+        this.stockTypes = stockTypes;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     @Override

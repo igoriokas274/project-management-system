@@ -1,16 +1,11 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "VAT_VALUES")
 public class VATValues {
 
@@ -44,14 +39,77 @@ public class VATValues {
 
     public VATValues() {}
 
-    public VATValues(String description, BigDecimal vatValue, Set<Items> items, Date lastUpdatedDate,
+    public VATValues(String description, BigDecimal vatValue, Date lastUpdatedDate,
                      String lastUpdatedBy, Date createdDate, String createdBy) {
         this.description = description;
         this.vatValue = vatValue;
-        this.items = items;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
+        this.createdBy = createdBy;
+    }
+
+    public Long getVatId() {
+        return vatId;
+    }
+
+    public void setVatId(Long vatId) {
+        this.vatId = vatId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getVatValue() {
+        return vatValue;
+    }
+
+    public void setVatValue(BigDecimal vatValue) {
+        this.vatValue = vatValue;
+    }
+
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 

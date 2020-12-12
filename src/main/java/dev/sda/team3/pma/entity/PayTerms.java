@@ -1,16 +1,11 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "PAY_TERMS")
 public class PayTerms {
 
@@ -40,14 +35,67 @@ public class PayTerms {
 
     public PayTerms() {}
 
-    public PayTerms(BigDecimal term, Set<Customers> customers, Set<Suppliers> suppliers, Date lastUpdatedDate,
-                    String lastUpdatedBy, Date createdDate, String createdBy) {
+    public PayTerms(BigDecimal term, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy) {
         this.term = term;
-        this.customers = customers;
-        this.suppliers = suppliers;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
+        this.createdBy = createdBy;
+    }
+
+    public BigDecimal getTerm() {
+        return term;
+    }
+
+    public void setTerm(BigDecimal term) {
+        this.term = term;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
+    }
+
+    public Set<Suppliers> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(Set<Suppliers> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 

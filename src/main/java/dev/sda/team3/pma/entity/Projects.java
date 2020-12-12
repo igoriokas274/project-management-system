@@ -1,16 +1,11 @@
 package dev.sda.team3.pma.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "PROJECTS")
 public class Projects {
 
@@ -67,14 +62,9 @@ public class Projects {
 
    public Projects() {}
 
-    public Projects(Set<ProjectStatus> projectStatuses, Set<ProjectType> projectTypes, Set<Employee> employees,
-                    Set<Customers> customers, String projectName, Date projectStartDate, Date projectEndDate,
+    public Projects(String projectName, Date projectStartDate, Date projectEndDate,
                     String projectMemo1, String projectMemo2, Date lastUpdatedDate, String lastUpdatedBy,
                     Date createdDate, String createdBy, boolean isClosed) {
-        this.projectStatuses = projectStatuses;
-        this.projectTypes = projectTypes;
-        this.employees = employees;
-        this.customers = customers;
         this.projectName = projectName;
         this.projectStartDate = projectStartDate;
         ProjectEndDate = projectEndDate;
@@ -85,6 +75,126 @@ public class Projects {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public Set<ProjectStatus> getProjectStatuses() {
+        return projectStatuses;
+    }
+
+    public void setProjectStatuses(Set<ProjectStatus> projectStatuses) {
+        this.projectStatuses = projectStatuses;
+    }
+
+    public Set<ProjectType> getProjectTypes() {
+        return projectTypes;
+    }
+
+    public void setProjectTypes(Set<ProjectType> projectTypes) {
+        this.projectTypes = projectTypes;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public Set<Customers> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customers> customers) {
+        this.customers = customers;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Date getProjectStartDate() {
+        return projectStartDate;
+    }
+
+    public void setProjectStartDate(Date projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    public Date getProjectEndDate() {
+        return ProjectEndDate;
+    }
+
+    public void setProjectEndDate(Date projectEndDate) {
+        ProjectEndDate = projectEndDate;
+    }
+
+    public String getProjectMemo1() {
+        return projectMemo1;
+    }
+
+    public void setProjectMemo1(String projectMemo1) {
+        this.projectMemo1 = projectMemo1;
+    }
+
+    public String getProjectMemo2() {
+        return projectMemo2;
+    }
+
+    public void setProjectMemo2(String projectMemo2) {
+        this.projectMemo2 = projectMemo2;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     @Override
