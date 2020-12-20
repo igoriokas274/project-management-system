@@ -1,23 +1,20 @@
 package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "PAY_TERMS")
-public class PayTerms {
+@Table(name = "quotation_status")
+public class QuotationStatus {
 
     @Id
-    @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
-    private BigDecimal term;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "quotationStatusId", nullable = false, unique = true)
+    private Long quotationStatusId;
 
-    @OneToMany(mappedBy = "payTerms")
-    private Set<Customers> customers;
-
-    @OneToMany(mappedBy = "payTerms")
-    private Set<Suppliers> suppliers;
+    @Column(name = "quotationStatusName")
+    private String quotationStatusName;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -33,38 +30,36 @@ public class PayTerms {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public PayTerms() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "quotationStatus", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Quotation> quotations;
 
-    public PayTerms(BigDecimal term, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy) {
-        this.term = term;
+    public QuotationStatus() {
+    }
+
+    public QuotationStatus(String quotationStatusName, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+                           String createdBy, List<Quotation> quotations) {
+        this.quotationStatusName = quotationStatusName;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
+        this.quotations = quotations;
     }
 
-    public BigDecimal getTerm() {
-        return term;
+    public Long getQuotationStatusId() {
+        return quotationStatusId;
     }
 
-    public void setTerm(BigDecimal term) {
-        this.term = term;
+    public void setQuotationStatusId(Long quotationStatusId) {
+        this.quotationStatusId = quotationStatusId;
     }
 
-    public Set<Customers> getCustomers() {
-        return customers;
+    public String getQuotationStatusName() {
+        return quotationStatusName;
     }
 
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
-        this.suppliers = suppliers;
+    public void setQuotationStatusName(String quotationStatusName) {
+        this.quotationStatusName = quotationStatusName;
     }
 
     public Date getLastUpdatedDate() {
@@ -99,16 +94,24 @@ public class PayTerms {
         this.createdBy = createdBy;
     }
 
+    public List<Quotation> getQuotations() {
+        return quotations;
+    }
+
+    public void setQuotations(List<Quotation> quotations) {
+        this.quotations = quotations;
+    }
+
     @Override
     public String toString() {
-        return "PayTerms{" +
-                "term=" + term +
-                ", customers=" + customers +
-                ", suppliers=" + suppliers +
+        return "QuotationStatus{" +
+                "quotationStatusId=" + quotationStatusId +
+                ", quotationStatusName='" + quotationStatusName + '\'' +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
+                ", quotations=" + quotations +
                 '}';
     }
 }

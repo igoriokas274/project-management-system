@@ -5,16 +5,16 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "project_status")
-public class ProjectStatus {
+@Table(name = "department")
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "projectStatusId", nullable = false, unique = true)
-    private Long projectStatusId;
+    @Column(name = "departmentId", nullable = false, unique = true)
+    private Long departmentId;
 
-    @Column(name = "projectStatusName")
-    private String projectStatusName;
+    @Column(name = "departmentName")
+    private String departmentName;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -30,36 +30,40 @@ public class ProjectStatus {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "projectStatus", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<Project> projects;
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    private boolean isClosed;
 
-    public ProjectStatus() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Employee> employees;
+
+    public Department() {
     }
 
-    public ProjectStatus(String projectStatusName, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
-                         String createdBy, List<Project> projects) {
-        this.projectStatusName = projectStatusName;
+    public Department(String departmentName, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+                      String createdBy, boolean isClosed, List<Employee> employees) {
+        this.departmentName = departmentName;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
-        this.projects = projects;
+        this.isClosed = isClosed;
+        this.employees = employees;
     }
 
-    public Long getProjectStatusId() {
-        return projectStatusId;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setProjectStatusId(Long projectStatusId) {
-        this.projectStatusId = projectStatusId;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getProjectStatusName() {
-        return projectStatusName;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setProjectStatusName(String projectStatusName) {
-        this.projectStatusName = projectStatusName;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public Date getLastUpdatedDate() {
@@ -94,24 +98,33 @@ public class ProjectStatus {
         this.createdBy = createdBy;
     }
 
-    public List<Project> getProjects() {
-        return projects;
+    public boolean isClosed() {
+        return isClosed;
     }
 
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
+    public void setClosed(boolean closed) {
+        isClosed = closed;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
     public String toString() {
-        return "ProjectStatus{" +
-                "projectStatusId=" + projectStatusId +
-                ", projectStatusName='" + projectStatusName + '\'' +
+        return "Department{" +
+                "departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
-                ", projects=" + projects +
+                ", isClosed=" + isClosed +
+                ", employees=" + employees +
                 '}';
     }
 }

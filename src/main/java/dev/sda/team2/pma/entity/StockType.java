@@ -2,11 +2,11 @@ package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "STOCK_TYPES")
-public class StockTypes {
+@Table(name = "stock_type")
+public class StockType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,6 @@ public class StockTypes {
 
     @Column(name = "stockName", nullable = false)
     private String stockName;
-
-    @OneToMany(mappedBy = "stockTypes")
-    private Set<Items> items;
 
     @Column(name = "addressLine1")
     private String addressLine1;
@@ -30,10 +27,6 @@ public class StockTypes {
 
     @Column(name = "zipCode")
     private String zipCode;
-
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -49,14 +42,22 @@ public class StockTypes {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public StockTypes() {}
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "countryId")
+    private Country country;
 
-    public StockTypes(String stockName, String addressLine1, String addressLine2, String city,
-                      String zipCode, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
-                      String createdBy, boolean isClosed) {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stockType", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Item> items;
+
+    public StockType() {
+    }
+
+    public StockType(String stockName, String addressLine1, String addressLine2, String city, String zipCode,
+                     Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed,
+                     Country country, List<Item> items) {
         this.stockName = stockName;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
@@ -67,6 +68,8 @@ public class StockTypes {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.country = country;
+        this.items = items;
     }
 
     public Long getStockId() {
@@ -83,14 +86,6 @@ public class StockTypes {
 
     public void setStockName(String stockName) {
         this.stockName = stockName;
-    }
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Items> items) {
-        this.items = items;
     }
 
     public String getAddressLine1() {
@@ -123,14 +118,6 @@ public class StockTypes {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public Countries getCountries() {
-        return countries;
-    }
-
-    public void setCountries(Countries countries) {
-        this.countries = countries;
     }
 
     public Date getLastUpdatedDate() {
@@ -173,22 +160,38 @@ public class StockTypes {
         isClosed = closed;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
-        return "StockTypes{" +
+        return "StockType{" +
                 "stockId=" + stockId +
                 ", stockName='" + stockName + '\'' +
-                ", items=" + items +
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", addressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", countries=" + countries +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", country=" + country +
+                ", items=" + items +
                 '}';
     }
 }

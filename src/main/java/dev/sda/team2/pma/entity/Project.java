@@ -3,28 +3,17 @@ package dev.sda.team2.pma.entity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "PROJECTS")
-public class Projects {
+@Table(name = "project")
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projectId")
     private Long projectId;
-
-    @OneToMany(mappedBy = "projects")
-    private Set<ProjectStatus> projectStatuses = new HashSet<ProjectStatus>();
-
-    @OneToMany(mappedBy = "projects")
-    private Set<ProjectType> projectTypes = new HashSet<ProjectType>();
-
-    @ManyToMany(mappedBy = "projects")
-    private Set<Employee> employees = new HashSet<Employee>();
-
-    @ManyToMany(mappedBy = "projects")
-    private Set<Customers> customers = new HashSet<Customers>();
 
     @Column(name = "projectName")
     private String projectName;
@@ -34,8 +23,8 @@ public class Projects {
     private Date projectStartDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "ProjectEndDate")
-    private Date ProjectEndDate;
+    @Column(name = "projectEndDate")
+    private Date projectEndDate;
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")
     private String projectMemo1;
@@ -57,17 +46,41 @@ public class Projects {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-   public Projects() {}
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "projectStatusId")
+    private ProjectStatus projectStatus;
 
-    public Projects(String projectName, Date projectStartDate, Date projectEndDate,
-                    String projectMemo1, String projectMemo2, Date lastUpdatedDate, String lastUpdatedBy,
-                    Date createdDate, String createdBy, boolean isClosed) {
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "projectTypeId")
+    private ProjectType projectType;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "customerId")
+    private Customer customer;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<Employee> employees = new HashSet<>();
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "term")
+    private PayTerm payTerm;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Quotation> quotations;
+
+    public Project() {
+    }
+
+    public Project(String projectName, Date projectStartDate, Date projectEndDate, String projectMemo1,
+                   String projectMemo2, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy,
+                   boolean isClosed, ProjectStatus projectStatus, ProjectType projectType, Customer customer,
+                   Set<Employee> employees, PayTerm payTerm, List<Quotation> quotations) {
         this.projectName = projectName;
         this.projectStartDate = projectStartDate;
-        ProjectEndDate = projectEndDate;
+        this.projectEndDate = projectEndDate;
         this.projectMemo1 = projectMemo1;
         this.projectMemo2 = projectMemo2;
         this.lastUpdatedDate = lastUpdatedDate;
@@ -75,6 +88,12 @@ public class Projects {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.projectStatus = projectStatus;
+        this.projectType = projectType;
+        this.customer = customer;
+        this.employees = employees;
+        this.payTerm = payTerm;
+        this.quotations = quotations;
     }
 
     public Long getProjectId() {
@@ -83,38 +102,6 @@ public class Projects {
 
     public void setProjectId(Long projectId) {
         this.projectId = projectId;
-    }
-
-    public Set<ProjectStatus> getProjectStatuses() {
-        return projectStatuses;
-    }
-
-    public void setProjectStatuses(Set<ProjectStatus> projectStatuses) {
-        this.projectStatuses = projectStatuses;
-    }
-
-    public Set<ProjectType> getProjectTypes() {
-        return projectTypes;
-    }
-
-    public void setProjectTypes(Set<ProjectType> projectTypes) {
-        this.projectTypes = projectTypes;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
     }
 
     public String getProjectName() {
@@ -134,11 +121,11 @@ public class Projects {
     }
 
     public Date getProjectEndDate() {
-        return ProjectEndDate;
+        return projectEndDate;
     }
 
     public void setProjectEndDate(Date projectEndDate) {
-        ProjectEndDate = projectEndDate;
+        this.projectEndDate = projectEndDate;
     }
 
     public String getProjectMemo1() {
@@ -197,17 +184,61 @@ public class Projects {
         isClosed = closed;
     }
 
+    public ProjectStatus getProjectStatus() {
+        return projectStatus;
+    }
+
+    public void setProjectStatus(ProjectStatus projectStatus) {
+        this.projectStatus = projectStatus;
+    }
+
+    public ProjectType getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public PayTerm getPayTerm() {
+        return payTerm;
+    }
+
+    public void setPayTerm(PayTerm payTerm) {
+        this.payTerm = payTerm;
+    }
+
+    public List<Quotation> getQuotations() {
+        return quotations;
+    }
+
+    public void setQuotations(List<Quotation> quotations) {
+        this.quotations = quotations;
+    }
+
     @Override
     public String toString() {
-        return "Projects{" +
+        return "Project{" +
                 "projectId=" + projectId +
-                ", projectStatuses=" + projectStatuses +
-                ", projectTypes=" + projectTypes +
-                ", employees=" + employees +
-                ", customers=" + customers +
                 ", projectName='" + projectName + '\'' +
                 ", projectStartDate=" + projectStartDate +
-                ", ProjectEndDate=" + ProjectEndDate +
+                ", projectEndDate=" + projectEndDate +
                 ", projectMemo1='" + projectMemo1 + '\'' +
                 ", projectMemo2='" + projectMemo2 + '\'' +
                 ", lastUpdatedDate=" + lastUpdatedDate +
@@ -215,6 +246,12 @@ public class Projects {
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", projectStatus=" + projectStatus +
+                ", projectType=" + projectType +
+                ", customer=" + customer +
+                ", employees=" + employees +
+                ", payTerm=" + payTerm +
+                ", quotations=" + quotations +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package dev.sda.team2.pma.entity;
+package dev.sda.team2.pma.enums;
 
 public enum Gender {
     M,

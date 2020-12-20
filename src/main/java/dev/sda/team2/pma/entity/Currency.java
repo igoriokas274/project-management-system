@@ -2,21 +2,15 @@ package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "CURRENCIES")
-public class Currencies {
+@Table(name = "currency")
+public class Currency {
 
     @Id
     @Column(name = "currencyId", nullable = false, unique = true, length = 2)
     private String currencyId;
-
-    @OneToMany(mappedBy = "currencies")
-    private Set<Suppliers> suppliers;
-
-    @OneToMany(mappedBy = "currencies")
-    private Set<Customers> customers;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -32,19 +26,27 @@ public class Currencies {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Currencies() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "currency", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Customer> customers;
 
-    public Currencies(String currencyId, Date lastUpdatedDate,
-                      String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
-        this.currencyId = currencyId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "currency", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Supplier> suppliers;
+
+    public Currency() {
+    }
+
+    public Currency(Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed,
+                    List<Customer> customers, List<Supplier> suppliers) {
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.customers = customers;
+        this.suppliers = suppliers;
     }
 
     public String getCurrencyId() {
@@ -53,22 +55,6 @@ public class Currencies {
 
     public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
     }
 
     public Date getLastUpdatedDate() {
@@ -111,17 +97,33 @@ public class Currencies {
         isClosed = closed;
     }
 
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+
     @Override
     public String toString() {
-        return "Currencies{" +
+        return "Currency{" +
                 "currencyId='" + currencyId + '\'' +
-                ", suppliers=" + suppliers +
-                ", customers=" + customers +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", customers=" + customers +
+                ", suppliers=" + suppliers +
                 '}';
     }
 }

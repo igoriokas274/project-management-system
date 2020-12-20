@@ -1,50 +1,25 @@
 package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-@Table(name = "CUSTOMERS")
-public class Customers {
+@Table(name = "supplier")
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId", nullable = false, unique = true)
-    private Long customerId;
+    @Column(name = "supplierId", nullable = false, unique = true)
+    private Long supplierId;
 
-    @OneToMany(mappedBy = "customers")
-    private Set<Contacts> contacts;
+    @Column(name = "supplierName", nullable = false)
+    private String supplierName;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "CUSTOMER_PROJECTS",
-            joinColumns = {@JoinColumn(name = "customerId")},
-            inverseJoinColumns = {@JoinColumn(name = "projectId")}
-    )
-    private Set<Projects> projects = new HashSet<Projects>();
+    @Column(name = "supplierRegistrationNumber", nullable = false)
+    private String supplierRegistrationNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "term")
-    private PayTerms payTerms;
-
-    @ManyToOne
-    @JoinColumn(name = "currencyId")
-    private Currencies currencies;
-
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
-
-    @Column(name = "customerName", nullable = false)
-    private String customerName;
-
-    @Column(name = "customerRegistrationNumber", nullable = false)
-    private String customerRegistrationNumber;
-
-    @Column(name = "customerVATNumber", nullable = false)
-    private String customerVATNumber;
+    @Column(name = "supplierVATNumber", nullable = false)
+    private String supplierVATNumber;
 
     @Column(name = "addressLine1")
     private String addressLine1;
@@ -58,10 +33,10 @@ public class Customers {
     @Column(name = "zipCode")
     private String zipCode;
 
-    @Column(name = "customerPhone")
+    @Column(name = "supplierPhone")
     private String contactPhone;
 
-    @Column(name = "customerEmail")
+    @Column(name = "supplierEmail")
     private String contactEmail;
 
     @Column(name = "SWIFT")
@@ -90,19 +65,38 @@ public class Customers {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Customers() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Contact> contacts;
 
-    public Customers(String customerName, String customerRegistrationNumber,
-                     String customerVATNumber, String addressLine1, String addressLine2, String city, String zipCode,
-                     String contactPhone, String contactEmail, String swift, String bankCode, String bankName,
-                     String bankAccount, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy,
-                     boolean isClosed) {
-        this.customerName = customerName;
-        this.customerRegistrationNumber = customerRegistrationNumber;
-        this.customerVATNumber = customerVATNumber;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "countryId")
+    private Country country;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "term")
+    private PayTerm payTerm;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "currencyId")
+    private Currency currency;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Item> items;
+
+    public Supplier() {
+    }
+
+    public Supplier(String supplierName, String supplierRegistrationNumber, String supplierVATNumber, String addressLine1,
+                    String addressLine2, String city, String zipCode, String contactPhone, String contactEmail,
+                    String swift, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
+                    String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed, List<Contact> contacts,
+                    Country country, PayTerm payTerm, Currency currency, List<Item> items) {
+        this.supplierName = supplierName;
+        this.supplierRegistrationNumber = supplierRegistrationNumber;
+        this.supplierVATNumber = supplierVATNumber;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
@@ -118,78 +112,43 @@ public class Customers {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    public Set<Contacts> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Set<Contacts> contacts) {
         this.contacts = contacts;
+        this.country = country;
+        this.payTerm = payTerm;
+        this.currency = currency;
+        this.items = items;
     }
 
-    public Set<Projects> getProjects() {
-        return projects;
+    public Long getSupplierId() {
+        return supplierId;
     }
 
-    public void setProjects(Set<Projects> projects) {
-        this.projects = projects;
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public PayTerms getPayTerms() {
-        return payTerms;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setPayTerms(PayTerms payTerms) {
-        this.payTerms = payTerms;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
-    public Currencies getCurrencies() {
-        return currencies;
+    public String getSupplierRegistrationNumber() {
+        return supplierRegistrationNumber;
     }
 
-    public void setCurrencies(Currencies currencies) {
-        this.currencies = currencies;
+    public void setSupplierRegistrationNumber(String supplierRegistrationNumber) {
+        this.supplierRegistrationNumber = supplierRegistrationNumber;
     }
 
-    public Countries getCountries() {
-        return countries;
+    public String getSupplierVATNumber() {
+        return supplierVATNumber;
     }
 
-    public void setCountries(Countries countries) {
-        this.countries = countries;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerRegistrationNumber() {
-        return customerRegistrationNumber;
-    }
-
-    public void setCustomerRegistrationNumber(String customerRegistrationNumber) {
-        this.customerRegistrationNumber = customerRegistrationNumber;
-    }
-
-    public String getCustomerVATNumber() {
-        return customerVATNumber;
-    }
-
-    public void setCustomerVATNumber(String customerVATNumber) {
-        this.customerVATNumber = customerVATNumber;
+    public void setSupplierVATNumber(String supplierVATNumber) {
+        this.supplierVATNumber = supplierVATNumber;
     }
 
     public String getAddressLine1() {
@@ -312,18 +271,53 @@ public class Customers {
         isClosed = closed;
     }
 
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public PayTerm getPayTerm() {
+        return payTerm;
+    }
+
+    public void setPayTerm(PayTerm payTerm) {
+        this.payTerm = payTerm;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
-        return "Customers{" +
-                "customerId=" + customerId +
-                ", contacts=" + contacts +
-                ", projects=" + projects +
-                ", payTerms=" + payTerms +
-                ", currencies=" + currencies +
-                ", countries=" + countries +
-                ", customerName='" + customerName + '\'' +
-                ", customerRegistrationNumber='" + customerRegistrationNumber + '\'' +
-                ", customerVATNumber='" + customerVATNumber + '\'' +
+        return "Supplier{" +
+                "supplierId=" + supplierId +
+                ", supplierName='" + supplierName + '\'' +
+                ", supplierRegistrationNumber='" + supplierRegistrationNumber + '\'' +
+                ", supplierVATNumber='" + supplierVATNumber + '\'' +
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", addressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
@@ -339,6 +333,11 @@ public class Customers {
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", contacts=" + contacts +
+                ", country=" + country +
+                ", payTerm=" + payTerm +
+                ", currency=" + currency +
+                ", items=" + items +
                 '}';
     }
 }
