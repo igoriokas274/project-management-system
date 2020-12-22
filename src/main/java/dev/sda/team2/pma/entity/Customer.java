@@ -1,28 +1,26 @@
 package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "SUPPLIERS")
-public class Suppliers {
+@Table(name = "customer")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "supplierId", nullable = false, unique = true)
-    private Long supplierId;
+    @Column(name = "customerId", nullable = false, unique = true)
+    private Long customerId;
 
-    @OneToMany(mappedBy = "suppliers")
-    private Set<Contacts> contacts;
+    @Column(name = "customerName", nullable = false)
+    private String customerName;
 
-    @Column(name = "supplierName", nullable = false)
-    private String supplierName;
+    @Column(name = "customerRegistrationNumber", nullable = false)
+    private String customerRegistrationNumber;
 
-    @Column(name = "supplierRegistrationNumber", nullable = false)
-    private String supplierRegistrationNumber;
-
-    @Column(name = "supplierVATNumber", nullable = false)
-    private String supplierVATNumber;
+    @Column(name = "customerVATNumber", nullable = false)
+    private String customerVATNumber;
 
     @Column(name = "addressLine1")
     private String addressLine1;
@@ -36,14 +34,10 @@ public class Suppliers {
     @Column(name = "zipCode")
     private String zipCode;
 
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
-
-    @Column(name = "supplierPhone")
+    @Column(name = "customerPhone")
     private String contactPhone;
 
-    @Column(name = "supplierEmail")
+    @Column(name = "customerEmail")
     private String contactEmail;
 
     @Column(name = "SWIFT")
@@ -57,17 +51,6 @@ public class Suppliers {
 
     @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
-
-    @ManyToOne
-    @JoinColumn(name = "term")
-    private PayTerms payTerms;
-
-    @ManyToOne
-    @JoinColumn(name = "currencyId")
-    private Currencies currencies;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "suppliers")
-    private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -83,19 +66,34 @@ public class Suppliers {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Suppliers() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Project> projects;
 
-    public Suppliers(String supplierName, String supplierRegistrationNumber, String supplierVATNumber,
-                     String addressLine1, String addressLine2, String city, String zipCode,
-                     String contactPhone, String contactEmail, String swift, String bankCode,
-                     String bankName, String bankAccount,
-                     Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
-        this.supplierName = supplierName;
-        this.supplierRegistrationNumber = supplierRegistrationNumber;
-        this.supplierVATNumber = supplierVATNumber;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Contact> contacts;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "countryId")
+    private Country country;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "currencyId")
+    private Currency currency;
+
+    public Customer() {
+    }
+
+    public Customer(String customerName, String customerRegistrationNumber, String customerVATNumber, String addressLine1,
+                    String addressLine2, String city, String zipCode, String contactPhone, String contactEmail,
+                    String swift, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
+                    String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed, List<Project> projects,
+                    List<Contact> contacts, Country country, Currency currency) {
+        this.customerName = customerName;
+        this.customerRegistrationNumber = customerRegistrationNumber;
+        this.customerVATNumber = customerVATNumber;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
@@ -111,46 +109,42 @@ public class Suppliers {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
-    }
-
-    public Long getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public Set<Contacts> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Set<Contacts> contacts) {
+        this.projects = projects;
         this.contacts = contacts;
+        this.country = country;
+        this.currency = currency;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public String getSupplierRegistrationNumber() {
-        return supplierRegistrationNumber;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setSupplierRegistrationNumber(String supplierRegistrationNumber) {
-        this.supplierRegistrationNumber = supplierRegistrationNumber;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getSupplierVATNumber() {
-        return supplierVATNumber;
+    public String getCustomerRegistrationNumber() {
+        return customerRegistrationNumber;
     }
 
-    public void setSupplierVATNumber(String supplierVATNumber) {
-        this.supplierVATNumber = supplierVATNumber;
+    public void setCustomerRegistrationNumber(String customerRegistrationNumber) {
+        this.customerRegistrationNumber = customerRegistrationNumber;
+    }
+
+    public String getCustomerVATNumber() {
+        return customerVATNumber;
+    }
+
+    public void setCustomerVATNumber(String customerVATNumber) {
+        this.customerVATNumber = customerVATNumber;
     }
 
     public String getAddressLine1() {
@@ -183,14 +177,6 @@ public class Suppliers {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public Countries getCountries() {
-        return countries;
-    }
-
-    public void setCountries(Countries countries) {
-        this.countries = countries;
     }
 
     public String getContactPhone() {
@@ -241,30 +227,6 @@ public class Suppliers {
         this.bankAccount = bankAccount;
     }
 
-    public PayTerms getPayTerms() {
-        return payTerms;
-    }
-
-    public void setPayTerms(PayTerms payTerms) {
-        this.payTerms = payTerms;
-    }
-
-    public Currencies getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(Currencies currencies) {
-        this.currencies = currencies;
-    }
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Items> items) {
-        this.items = items;
-    }
-
     public Date getLastUpdatedDate() {
         return lastUpdatedDate;
     }
@@ -305,33 +267,64 @@ public class Suppliers {
         isClosed = closed;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     @Override
     public String toString() {
-        return "Suppliers{" +
-                "supplierId=" + supplierId +
-                ", contacts=" + contacts +
-                ", supplierName='" + supplierName + '\'' +
-                ", supplierRegistrationNumber='" + supplierRegistrationNumber + '\'' +
-                ", supplierVATNumber='" + supplierVATNumber + '\'' +
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerRegistrationNumber='" + customerRegistrationNumber + '\'' +
+                ", customerVATNumber='" + customerVATNumber + '\'' +
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", addressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", countries=" + countries +
                 ", contactPhone='" + contactPhone + '\'' +
                 ", contactEmail='" + contactEmail + '\'' +
                 ", swift='" + swift + '\'' +
                 ", bankCode='" + bankCode + '\'' +
                 ", bankName='" + bankName + '\'' +
                 ", bankAccount='" + bankAccount + '\'' +
-                ", payTerms=" + payTerms +
-                ", currencies=" + currencies +
-                ", items=" + items +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", projects=" + projects +
+                ", contacts=" + contacts +
+                ", country=" + country +
+                ", currency=" + currency +
                 '}';
     }
 }

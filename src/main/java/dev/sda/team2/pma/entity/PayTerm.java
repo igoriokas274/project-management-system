@@ -1,23 +1,17 @@
 package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "EMPLOYEE_DEPARTMENTS")
-public class EmployeeDepartments {
+@Table(name = "pay_term")
+public class PayTerm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "departmentId", nullable = false, unique = true)
-    private Long departmentId;
-
-    @Column(name = "departmentName")
-    private String departmentName;
-
-    @OneToMany(mappedBy = "employeeDepartments")
-    private Set<Employee> employees;
+    @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
+    private BigDecimal term;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -33,39 +27,31 @@ public class EmployeeDepartments {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public EmployeeDepartments() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "payTerm", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Project> projects;
 
-    public EmployeeDepartments(String departmentName, Date lastUpdatedDate,
-                               String lastUpdatedBy, Date createdDate, String createdBy) {
-        this.departmentName = departmentName;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "payTerm", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Supplier> suppliers;
+
+    public PayTerm() {
+    }
+
+    public PayTerm(Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy, List<Project> projects,
+                   List<Supplier> suppliers) {
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
+        this.projects = projects;
+        this.suppliers = suppliers;
     }
 
-    public Long getDepartmentId() {
-        return departmentId;
+    public BigDecimal getTerm() {
+        return term;
     }
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+    public void setTerm(BigDecimal term) {
+        this.term = term;
     }
 
     public Date getLastUpdatedDate() {
@@ -100,16 +86,32 @@ public class EmployeeDepartments {
         this.createdBy = createdBy;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+
     @Override
     public String toString() {
-        return "EmployeeDepartments{" +
-                "departmentId=" + departmentId +
-                ", departmentName='" + departmentName + '\'' +
-                ", employees=" + employees +
+        return "PayTerm{" +
+                "term=" + term +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
+                ", projects=" + projects +
+                ", suppliers=" + suppliers +
                 '}';
     }
 }

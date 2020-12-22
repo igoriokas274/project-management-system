@@ -2,27 +2,15 @@ package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "COUNTRIES")
-public class Countries {
+@Table(name = "country")
+public class Country {
 
     @Id
     @Column(name = "countryId", nullable = false, unique = true, length = 3)
     private String countryId;
-
-    @OneToMany(mappedBy = "countries")
-    private Set<Contacts> contacts;
-
-    @OneToMany(mappedBy = "countries")
-    private Set<Customers> customers;
-
-    @OneToMany(mappedBy = "countries")
-    private Set<Suppliers> suppliers;
-
-    @OneToMany(mappedBy = "countries")
-    private Set<StockTypes> stockTypes;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -38,19 +26,35 @@ public class Countries {
     @Column(name = "createdBy", nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Countries() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Contact> contacts;
 
-    public Countries(String countryId, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
-                     String createdBy, boolean isClosed) {
-        this.countryId = countryId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Customer> customers;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Supplier> suppliers;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<StockType> stockTypes;
+
+    public Country() {
+    }
+
+    public Country(Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed,
+                   List<Contact> contacts, List<Customer> customers, List<Supplier> suppliers, List<StockType> stockTypes) {
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.contacts = contacts;
+        this.customers = customers;
+        this.suppliers = suppliers;
+        this.stockTypes = stockTypes;
     }
 
     public String getCountryId() {
@@ -59,38 +63,6 @@ public class Countries {
 
     public void setCountryId(String countryId) {
         this.countryId = countryId;
-    }
-
-    public Set<Contacts> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Set<Contacts> contacts) {
-        this.contacts = contacts;
-    }
-
-    public Set<Customers> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customers> customers) {
-        this.customers = customers;
-    }
-
-    public Set<Suppliers> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Suppliers> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Set<StockTypes> getStockTypes() {
-        return stockTypes;
-    }
-
-    public void setStockTypes(Set<StockTypes> stockTypes) {
-        this.stockTypes = stockTypes;
     }
 
     public Date getLastUpdatedDate() {
@@ -133,19 +105,51 @@ public class Countries {
         isClosed = closed;
     }
 
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    public List<StockType> getStockTypes() {
+        return stockTypes;
+    }
+
+    public void setStockTypes(List<StockType> stockTypes) {
+        this.stockTypes = stockTypes;
+    }
+
     @Override
     public String toString() {
-        return "Countries{" +
+        return "Country{" +
                 "countryId='" + countryId + '\'' +
-                ", contacts=" + contacts +
-                ", customers=" + customers +
-                ", suppliers=" + suppliers +
-                ", stockTypes=" + stockTypes +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", contacts=" + contacts +
+                ", customers=" + customers +
+                ", suppliers=" + suppliers +
+                ", stockTypes=" + stockTypes +
                 '}';
     }
 }

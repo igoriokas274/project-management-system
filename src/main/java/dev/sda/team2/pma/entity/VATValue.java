@@ -3,11 +3,11 @@ package dev.sda.team2.pma.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "VAT_VALUES")
-public class VATValues {
+@Table(name = "vat_value")
+public class VATValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,6 @@ public class VATValues {
 
     @Column(name = "vatValue", nullable = false, precision = 3, scale = 2)
     private BigDecimal vatValue;
-
-    @OneToMany(mappedBy = "vatValues")
-    private Set<Items> items;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -37,16 +34,25 @@ public class VATValues {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public VATValues() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vatValue", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Item> items;
 
-    public VATValues(String description, BigDecimal vatValue, Date lastUpdatedDate,
-                     String lastUpdatedBy, Date createdDate, String createdBy) {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vatValue", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<ItemToQuotation> itemToQuotations;
+
+    public VATValue() {
+    }
+
+    public VATValue(String description, BigDecimal vatValue, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+                    String createdBy, List<Item> items, List<ItemToQuotation> itemToQuotations) {
         this.description = description;
         this.vatValue = vatValue;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
+        this.items = items;
+        this.itemToQuotations = itemToQuotations;
     }
 
     public Long getVatId() {
@@ -71,14 +77,6 @@ public class VATValues {
 
     public void setVatValue(BigDecimal vatValue) {
         this.vatValue = vatValue;
-    }
-
-    public Set<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Items> items) {
-        this.items = items;
     }
 
     public Date getLastUpdatedDate() {
@@ -113,17 +111,34 @@ public class VATValues {
         this.createdBy = createdBy;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<ItemToQuotation> getItemToQuotations() {
+        return itemToQuotations;
+    }
+
+    public void setItemToQuotations(List<ItemToQuotation> itemToQuotations) {
+        this.itemToQuotations = itemToQuotations;
+    }
+
     @Override
     public String toString() {
-        return "VATValues{" +
+        return "VATValue{" +
                 "vatId=" + vatId +
                 ", description='" + description + '\'' +
                 ", vatValue=" + vatValue +
-                ", items=" + items +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
+                ", items=" + items +
+                ", itemToQuotations=" + itemToQuotations +
                 '}';
     }
 }

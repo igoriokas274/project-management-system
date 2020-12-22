@@ -1,24 +1,29 @@
 package dev.sda.team2.pma.entity;
 
+import dev.sda.team2.pma.enums.Gender;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "CONTACTS")
-public class Contacts {
+@Table(name = "contact")
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contactId", nullable = false, unique = true)
     private Long contactId;
 
-    @Column(name = "fullName", nullable = false)
-    private String contactFullName;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "middleName")
+    private String middleName;
+
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "title")
     private String title;
-
-    @Column(name = "department")
-    private String contactDepartment;
 
     @Column(name = "addressLine1")
     private String addressLine1;
@@ -46,21 +51,6 @@ public class Contacts {
     @Column(name = "birthdate")
     private Date contactBirthdate;
 
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Countries countries;
-
-    @OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL)
-    private Employee employee;
-
-    @ManyToOne
-    @JoinColumn(name = "supplierId")
-    private Suppliers suppliers;
-
-    @ManyToOne
-    @JoinColumn(name = "customerId")
-    private Customers customers;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
     private Date lastUpdatedDate;
@@ -78,15 +68,33 @@ public class Contacts {
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Contacts() {}
+    @OneToOne(mappedBy = "contact", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Employee employee;
 
-    public Contacts(String contactFullName, String title, String contactDepartment, String addressLine1,
-                    String addressLine2, String city, String zipCode, String contactPhone, String contactEmail,
-                    Gender gender, Date contactBirthdate, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate, String createdBy,
-                    boolean isClosed) {
-        this.contactFullName = contactFullName;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "customerId")
+    private Customer customer;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "countryId")
+    private Country country;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
+
+    public Contact() {
+
+    }
+
+    public Contact(String firstName, String middleName, String lastName, String title, String addressLine1,
+                   String addressLine2, String city, String zipCode, String contactPhone, String contactEmail,
+                   Gender gender, Date contactBirthdate, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+                   String createdBy, boolean isClosed, Employee employee, Customer customer, Country country, Supplier supplier) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
         this.title = title;
-        this.contactDepartment = contactDepartment;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
@@ -100,6 +108,10 @@ public class Contacts {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.employee = employee;
+        this.customer = customer;
+        this.country = country;
+        this.supplier = supplier;
     }
 
     public Long getContactId() {
@@ -110,12 +122,28 @@ public class Contacts {
         this.contactId = contactId;
     }
 
-    public String getContactFullName() {
-        return contactFullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setContactFullName(String contactFullName) {
-        this.contactFullName = contactFullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getTitle() {
@@ -124,14 +152,6 @@ public class Contacts {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContactDepartment() {
-        return contactDepartment;
-    }
-
-    public void setContactDepartment(String contactDepartment) {
-        this.contactDepartment = contactDepartment;
     }
 
     public String getAddressLine1() {
@@ -198,38 +218,6 @@ public class Contacts {
         this.contactBirthdate = contactBirthdate;
     }
 
-    public Countries getCountries() {
-        return countries;
-    }
-
-    public void setCountries(Countries countries) {
-        this.countries = countries;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Suppliers getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Suppliers suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Customers getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
-    }
-
     public Date getLastUpdatedDate() {
         return lastUpdatedDate;
     }
@@ -270,13 +258,46 @@ public class Contacts {
         isClosed = closed;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
     @Override
     public String toString() {
-        return "Contacts{" +
+        return "Contact{" +
                 "contactId=" + contactId +
-                ", contactFullName='" + contactFullName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", title='" + title + '\'' +
-                ", contactDepartment='" + contactDepartment + '\'' +
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", addressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
@@ -285,15 +306,15 @@ public class Contacts {
                 ", contactEmail='" + contactEmail + '\'' +
                 ", gender=" + gender +
                 ", contactBirthdate=" + contactBirthdate +
-                ", countries=" + countries +
-                ", employee=" + employee +
-                ", suppliers=" + suppliers +
-                ", customers=" + customers +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", employee=" + employee +
+                ", customer=" + customer +
+                ", country=" + country +
+                ", supplier=" + supplier +
                 '}';
     }
 }

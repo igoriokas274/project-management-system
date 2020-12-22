@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "employee")
 public class Employee {
 
     @Id
@@ -14,24 +14,9 @@ public class Employee {
     @Column(name = "employeeId", nullable = false, unique = true)
     private Long employeeId;
 
-    @OneToOne(targetEntity = Contacts.class)
-    private Contacts contacts;
-
     @Temporal(TemporalType.DATE)
     @Column(name = "dateOfEmployment", nullable = false)
     private Date dateOfEmployment;
-
-    @ManyToOne
-    @JoinColumn(name = "departmentId")
-    private EmployeeDepartments employeeDepartments;
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "EMPLOYEE_PROJECTS",
-            joinColumns = {@JoinColumn(name = "employeeId")},
-            inverseJoinColumns = {@JoinColumn(name = "projectId")}
-    )
-    private Set<Projects> projects = new HashSet<Projects>();
 
     @Column(name = "bankCode", nullable = false)
     private String bankCode;
@@ -56,13 +41,35 @@ public class Employee {
     @Column(name = "createdBy", nullable = false, updatable = false)
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
-    public Employee() {}
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "employee_project",
+            joinColumns = {@JoinColumn(name = "employeeId")},
+            inverseJoinColumns = {@JoinColumn(name = "projectId")}
+    )
+    private Set<Project> projects = new HashSet<>();
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "departmentId")
+    private Department department;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contactId")
+    private Contact contact;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private UserAccount userAccount;
+
+    public Employee() {
+    }
 
     public Employee(Date dateOfEmployment, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
-                    String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed) {
+                    String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed, Set<Project> projects,
+                    Department department, Contact contact, UserAccount userAccount) {
         this.dateOfEmployment = dateOfEmployment;
         this.bankCode = bankCode;
         this.bankName = bankName;
@@ -72,6 +79,10 @@ public class Employee {
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.isClosed = isClosed;
+        this.projects = projects;
+        this.department = department;
+        this.contact = contact;
+        this.userAccount = userAccount;
     }
 
     public Long getEmployeeId() {
@@ -82,36 +93,12 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public Contacts getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Contacts contacts) {
-        this.contacts = contacts;
-    }
-
     public Date getDateOfEmployment() {
         return dateOfEmployment;
     }
 
     public void setDateOfEmployment(Date dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
-    }
-
-    public EmployeeDepartments getEmployeeDepartments() {
-        return employeeDepartments;
-    }
-
-    public void setEmployeeDepartments(EmployeeDepartments employeeDepartments) {
-        this.employeeDepartments = employeeDepartments;
-    }
-
-    public Set<Projects> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Projects> projects) {
-        this.projects = projects;
     }
 
     public String getBankCode() {
@@ -178,14 +165,43 @@ public class Employee {
         isClosed = closed;
     }
 
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "employeeId=" + employeeId +
-                ", contacts=" + contacts +
                 ", dateOfEmployment=" + dateOfEmployment +
-                ", employeeDepartments=" + employeeDepartments +
-                ", projects=" + projects +
                 ", bankCode='" + bankCode + '\'' +
                 ", bankName='" + bankName + '\'' +
                 ", bankAccount='" + bankAccount + '\'' +
@@ -194,6 +210,10 @@ public class Employee {
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", isClosed=" + isClosed +
+                ", projects=" + projects +
+                ", department=" + department +
+                ", contact=" + contact +
+                ", userAccount=" + userAccount +
                 '}';
     }
 }

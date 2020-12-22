@@ -2,9 +2,10 @@ package dev.sda.team2.pma.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "PROJECT_TYPE")
+@Table(name = "project_type")
 public class ProjectType {
 
     @Id
@@ -14,10 +15,6 @@ public class ProjectType {
 
     @Column(name = "projectTypeName")
     private String projectTypeName;
-
-    @ManyToOne
-    @JoinColumn(name = "projectId")
-    private Projects projects;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastUpdatedDate", nullable = false)
@@ -33,15 +30,20 @@ public class ProjectType {
     @Column(name = "createdBy",nullable = false, updatable = false)
     private String createdBy;
 
-    public ProjectType() {}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "projectType", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Project> projects;
 
-    public ProjectType(String projectTypeName, Date lastUpdatedDate, String lastUpdatedBy,
-                       Date createdDate, String createdBy) {
+    public ProjectType() {
+    }
+
+    public ProjectType(String projectTypeName, Date lastUpdatedDate, String lastUpdatedBy, Date createdDate,
+                       String createdBy, List<Project> projects) {
         this.projectTypeName = projectTypeName;
         this.lastUpdatedDate = lastUpdatedDate;
         this.lastUpdatedBy = lastUpdatedBy;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
+        this.projects = projects;
     }
 
     public Long getProjectTypeId() {
@@ -58,14 +60,6 @@ public class ProjectType {
 
     public void setProjectTypeName(String projectTypeName) {
         this.projectTypeName = projectTypeName;
-    }
-
-    public Projects getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Projects projects) {
-        this.projects = projects;
     }
 
     public Date getLastUpdatedDate() {
@@ -100,16 +94,24 @@ public class ProjectType {
         this.createdBy = createdBy;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "ProjectType{" +
                 "projectTypeId=" + projectTypeId +
                 ", projectTypeName='" + projectTypeName + '\'' +
-                ", projects=" + projects +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", lastUpdatedBy='" + lastUpdatedBy + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +
+                ", projects=" + projects +
                 '}';
     }
 }
