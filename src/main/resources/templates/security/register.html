@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <title>User Registration Form</title>
+</head>
+<body>
+<div>
+
+    <div class="container">
+        <form class="form-signin"  method="post" th:action="@{/register/save}" th:object="${userAccount}">
+            <h2 class="form-signin-heading">Registration Form</h2>
+            <p>
+                <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control" />
+            </p>
+            <p>
+                <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+            </p>
+            <p>
+                <input type="text" th:field="*{role}" placeholder="Role" class="form-control" />
+            </p>
+            <p>
+                <input class="form-check-input" type="checkbox" th:field="*{enabled}" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Enabled
+                </label>
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Create New User</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

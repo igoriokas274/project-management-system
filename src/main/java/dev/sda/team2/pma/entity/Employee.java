@@ -60,12 +60,16 @@ public class Employee {
     @JoinColumn(name = "contactId")
     private Contact contact;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private UserAccount userAccount;
+
     public Employee() {
     }
 
     public Employee(Date dateOfEmployment, String bankCode, String bankName, String bankAccount, Date lastUpdatedDate,
                     String lastUpdatedBy, Date createdDate, String createdBy, boolean isClosed, Set<Project> projects,
-                    Department department, Contact contact) {
+                    Department department, Contact contact, UserAccount userAccount) {
         this.dateOfEmployment = dateOfEmployment;
         this.bankCode = bankCode;
         this.bankName = bankName;
@@ -78,6 +82,7 @@ public class Employee {
         this.projects = projects;
         this.department = department;
         this.contact = contact;
+        this.userAccount = userAccount;
     }
 
     public Long getEmployeeId() {
@@ -184,6 +189,14 @@ public class Employee {
         this.contact = contact;
     }
 
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -200,6 +213,7 @@ public class Employee {
                 ", projects=" + projects +
                 ", department=" + department +
                 ", contact=" + contact +
+                ", userAccount=" + userAccount +
                 '}';
     }
 }
