@@ -31,11 +31,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/adminpanel").hasRole("ADMIN") // @TODO Create ADMIN Panel Layer for managing USERS
+                .antMatchers("/adminpanel").hasAuthority("ADMIN") // @TODO Create ADMIN Panel Layer for managing USERS
                 .antMatchers("/", "/**").authenticated() // Dashboard must by accessible for ALL users
                 .and()
                 .formLogin()
                 .and()
-                .logout(); // .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+                .logout().permitAll() // .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
     }
 }

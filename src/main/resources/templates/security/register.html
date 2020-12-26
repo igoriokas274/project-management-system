@@ -15,7 +15,7 @@
 <div>
 
     <div class="container">
-        <form class="form-signin"  method="post" th:action="@{/register/save}" th:object="${userAccount}">
+        <form class="form-signin"  method="post" th:action="@{/adminpanel/register/save}" th:object="${userAccount}">
             <h2 class="form-signin-heading">Registration Form</h2>
             <p>
                 <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control" />
@@ -24,14 +24,26 @@
                 <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
             </p>
             <p>
-                <input type="text" th:field="*{role}" placeholder="Role" class="form-control" />
+                <div class="container px-0">
+                    <div class="row gx-3 align-items-center">
+                        <div class="col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" th:field="*{enabled}" value="" id="inlineFormCheck">
+                                <label class="form-check-label" for="inlineFormCheck">
+                                    Enabled
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" name="role" th:field="*{role}">
+                                <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
+                                        th:value="${roles}" th:text="${roles}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </p>
-            <p>
-                <input class="form-check-input" type="checkbox" th:field="*{enabled}" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Enabled
-                </label>
-            </p>
+
             <button class="btn btn-lg btn-primary btn-block" type="submit" >Create New User</button>
         </form>
     </div>

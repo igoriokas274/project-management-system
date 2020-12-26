@@ -1,0 +1,43 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.vertical-nav {
+    min-width: 5rem;
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.page-content {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+    transition: all 0.4s;
+}
+
+.separator {
+    margin: 3rem 0;
+    border-bottom: 1px dashed #fff;
+}
+
+.bottom {
+    position:absolute;
+    /*align-items: center;*/
+    bottom:0;
+    left:0;
+}
+
+.material-icons-outlined.md-18 { font-size: 18px; opacity: 0.54; color: black;}
+.material-icons-outlined.md-24 { font-size: 24px; opacity: 0.54; color: black;}
+.material-icons-outlined.md-36 { font-size: 36px; opacity: 0.54; color: black;}
+.material-icons-outlined.md-48 { font-size: 48px; opacity: 0.87;}
+.material-icons-outlined.md-36:hover { opacity: 0.87; color: blue;}
+.material-icons-outlined:disabled { opacity: 0.38; }
