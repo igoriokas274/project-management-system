@@ -13,8 +13,4 @@ public class DashboardController {
         return "main/dashboard";
     }
 
-    @GetMapping("/access-denied")
-    public String showAccessDenied() {
-        return "errors/access-denied";
-    }
 }

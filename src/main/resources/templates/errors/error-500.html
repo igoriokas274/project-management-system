@@ -6,17 +6,18 @@
 
 <head th:replace="layout :: head">
 </head>
-<title>Access Denied</title>
+<title>Server Error</title>
 <body>
     <div th:replace="layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <div class="container-fluid">
 
-            <h3 style="color: red"><span class="material-icons-outlined">error</span> 403 | Access Denied</h3>
+            <h3 style="color: red"><span class="material-icons-outlined">storage</span> 500 | Internal Server Error</h3>
             <hr>
             <p>
-                You don't have permission to access this page <span sec:authentication="principal.username">User</span>
+                Oops, Something went wrong. The server encountered an internal error or misconfiguration and
+                was unable to complete your request.
             </p>
             <hr>
 

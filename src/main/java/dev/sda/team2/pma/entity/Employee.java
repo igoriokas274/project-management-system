@@ -60,8 +60,7 @@ public class Employee {
     @JoinColumn(name = "contactId")
     private Contact contact;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
+    @OneToOne(mappedBy = "employee", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private UserAccount userAccount;
 
     public Employee() {

@@ -6,26 +6,17 @@
 
 <head th:replace="layout :: head">
 </head>
-<title>Admin Panel</title>
+<title>Access Denied</title>
 <body>
     <div th:replace="layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <h3><span class="material-icons-outlined">admin_panel_settings</span> Admin Panel</h3>
-                </div>
-                <div class="col d-flex justify-content-end">
-                    <a th:href="@{/adminpanel/users/list}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List Users">
-                        <i class="material-icons-outlined md-36">list</i>
-                    </a>
-                </div>
-            </div>
 
+            <h3 style="color: red"><span class="material-icons-outlined">privacy_tip</span> 403 | Access Denied</h3>
             <hr>
             <p>
-                Welcome Back <span sec:authentication="principal.username"> Admin </span>!
+                You don't have permission to access this page <span sec:authentication="principal.username">User</span>
             </p>
             <hr>
 
