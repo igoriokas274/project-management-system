@@ -1,7 +1,9 @@
 package dev.sda.team2.pma.entity;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,13 +15,13 @@ public class UserAccount {
     @Column(name = "userId", nullable = false)
     private long userId;
 
+    @NotBlank
     @Column(name = "username", nullable = false, unique=true)
-    @NotEmpty
     private String userName;
 
+    @NotBlank
+    @Size(min = 8)
     @Column(name = "password", nullable = false)
-    @NotEmpty
-    @Size(min = 4)
     private String password;
 
     @Column(name = "role", nullable = false)
@@ -28,10 +30,28 @@ public class UserAccount {
     @Column(name = "enabled", nullable = false, columnDefinition = "int default 1")
     private boolean enabled;
 
-    @OneToOne(mappedBy = "userAccount", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "employeeId")
     private Employee employee;
 
     public UserAccount() {
+    }
+
+    public UserAccount(String userName, String password, String role, boolean enabled, Employee employee) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
+        this.employee = employee;
+    }
+
+    public UserAccount(long userId, String userName, String password, String role, boolean enabled, Employee employee) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
+        this.employee = employee;
     }
 
     public long getUserId() {

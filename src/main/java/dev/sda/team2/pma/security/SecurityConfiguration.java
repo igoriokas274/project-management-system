@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -31,13 +32,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/adminpanel").hasAuthority("ADMIN") // @TODO Create ADMIN Panel Layer for managing USERS
+                .antMatchers("/adminpanel", "/adminpanel/**").hasAuthority("ADMIN") // @TODO Create ADMIN Panel Layer for managing USERS
                 .antMatchers("/", "/**").authenticated() // Dashboard must by accessible for ALL users
                 .and()
                 .formLogin()
                 .and()
-                .logout().permitAll() // .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login");
+
     }
 }
