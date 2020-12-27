@@ -52,20 +52,20 @@ public class Contact {
     private Date contactBirthdate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "lastUpdatedDate", nullable = false)
+    @Column(name = "lastUpdatedDate")
     private Date lastUpdatedDate;
 
-    @Column(name = "lastUpdatedBy", nullable = false)
+    @Column(name = "lastUpdatedBy")
     private String lastUpdatedBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdDate",nullable = false, updatable = false)
+    @Column(name = "createdDate")
     private Date createdDate;
 
-    @Column(name = "createdBy",nullable = false, updatable = false)
+    @Column(name = "createdBy")
     private String createdBy;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @OneToOne(mappedBy = "contact", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

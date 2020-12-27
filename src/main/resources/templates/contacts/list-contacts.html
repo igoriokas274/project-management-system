@@ -6,7 +6,7 @@
 
 <head th:replace="layout :: head">
 </head>
-<title>Admin Panel</title>
+<title>Contacts</title>
 <body>
 <div th:replace="layout :: vertical_navbar"></div>
 
@@ -14,12 +14,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h3><span class="material-icons-outlined">admin_panel_settings</span> Admin Panel / List of Users</h3>
+                <h3><span class="material-icons-outlined">people</span> Contacts</h3>
             </div>
             <div class="col d-flex justify-content-end">
-                <a th:href="@{/adminpanel/users/addUser}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Add New User">
+                <a th:href="@{/contacts/addContact}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Add New Contact">
                     <i class="material-icons-outlined md-36">person_add</i></a>
-                <a th:href="@{/adminpanel/users/list}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List Users">
+                <a th:href="@{/contacts/list}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List Contacts">
                     <i class="material-icons-outlined md-36">list</i>
                 </a>
             </div>
@@ -30,33 +30,31 @@
         </p>
         <hr>
         <table class="table table-striped table-hover">
-            <caption>List of users</caption>
+            <caption>List of Contacts</caption>
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Hashed Password</th>
-                <th scope="col">Role</th>
-                <th scope="col">Enabled</th>
-                <th scope="col">Assigned to...</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="tempUserAccount : ${usersAccounts}">
-                <th th:text="${tempUserAccount.userId}" scope="row"></th>
-                <td th:text="${tempUserAccount.userName}"></td>
-                <td th:text="${tempUserAccount.password}"></td>
-                <td th:text="${tempUserAccount.role}"></td>
-                <td th:text="${tempUserAccount.enabled}"></td>
-                <td th:text="${tempUserAccount.employee}"></td>
+            <tr th:each="tempContacts : ${contacts}">
+                <th th:text="${tempContacts.contactId}" scope="row"></th>
+                <td th:text="${tempContacts.firstName + ' ' + tempContacts.middleName + ' ' + tempContacts.lastName}"></td>
+                <td th:text="${tempContacts.addressLine1 + ', ' + tempContacts.addressLine2 + ', ' + tempContacts.city}"></td>
+                <td th:text="${tempContacts.contactPhone}"></td>
+                <td th:text="${tempContacts.contactEmail}"></td>
                 <td>
-                    <a th:href="@{/adminpanel/users/update(id=${tempUserAccount.userId})}" class="btn btn-link"
+                    <a th:href="@{/employees/update(id=${tempContacts.contactId})}" class="btn btn-link"
                        data-bs-toggle="tooltip" data-bs-placement="top" title="Update User">
                         <i class="material-icons-outlined">edit</i></a>
-                    <a th:href="@{/adminpanel/users/delete(id=${tempUserAccount.userId})}" class="btn btn-link"
+                    <a th:href="@{/employees/delete(id=${tempContacts.contactId})}" class="btn btn-link"
                        style="color: red" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete User"
-                       onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">
+                       onclick="if (!(confirm('Are you sure you want to delete this Contact?'))) return false">
                         <i class="material-icons-outlined">delete</i>
                     </a>
                 </td>
