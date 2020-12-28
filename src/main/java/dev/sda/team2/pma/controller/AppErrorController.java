@@ -25,7 +25,7 @@ public class AppErrorController implements ErrorController {
             }
         }
 
-        return "errors/error";
+        return "errors/error-???";
     }
 
     @Override

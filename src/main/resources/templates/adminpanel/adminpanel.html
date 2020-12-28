@@ -4,14 +4,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="layout :: head">
-</head>
+<head th:replace="layout :: head"></head>
 <title>Admin Panel</title>
 <body>
     <div th:replace="layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
-        <div class="container-fluid">
+        <div class="">
             <div class="row">
                 <div class="col">
                     <h3><span class="material-icons-outlined">admin_panel_settings</span> Admin Panel</h3>
@@ -25,7 +24,7 @@
 
             <hr>
             <p>
-                Welcome Back <span sec:authentication="principal.username"> Admin </span>!
+                Welcome Back <span sec:authentication="principal.username"></span>!
             </p>
             <hr>
 
