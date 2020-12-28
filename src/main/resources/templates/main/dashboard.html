@@ -11,12 +11,12 @@
     <div th:replace="layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
-        <div class="container-fluid">
+        <div class="">
 
             <h3><span class="material-icons-outlined">dashboard</span> Dashboard</h3>
             <hr>
             <p>
-                Welcome Back <span sec:authentication="principal.username">User</span>!
+                Welcome Back <span sec:authentication="principal.username"></span>!
             </p>
             <hr>
 
