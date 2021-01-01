@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.controller;
 
+import dev.sda.team2.pma.dao.UserAccountRepository;
 import dev.sda.team2.pma.entity.UserAccount;
 import dev.sda.team2.pma.service.IUserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/adminpanel/users")
 public class UserAccountController {
 
     private IUserAccountService userAccountService;
+
+    @Autowired
+    private UserAccountRepository userAccountRepository;
 
     @Autowired
     BCryptPasswordEncoder bCryptEncoder;
@@ -26,28 +31,22 @@ public class UserAccountController {
     @GetMapping( "/list")
     public String listUserAccounts(Model theModel) {
 
+        // list users
         List<UserAccount> theUserAccounts = userAccountService.findAll();
         theModel.addAttribute("usersAccounts", theUserAccounts);
+
+        // add new user
+        UserAccount userAccount = new UserAccount();
+        theModel.addAttribute("userAccount", userAccount);
 
         return "adminpanel/list-users";
     }
 
-    @GetMapping("/addUser")
-    public String addNewUser(Model theModel) {
-
-        UserAccount userAccount = new UserAccount();
-        theModel.addAttribute("userAccount", userAccount);
-
-        return "adminpanel/user-form";
-    }
-
     @GetMapping("/update")
-    public String updateUser(@RequestParam("id") long theId, Model theModel) {
+    @ResponseBody
+    public Optional<UserAccount> updateUser(@RequestParam("id") long theId) {
 
-        UserAccount theUserAccount = userAccountService.findById(theId);
-        theModel.addAttribute("userAccount", theUserAccount);
-
-        return "adminpanel/user-form";
+        return userAccountRepository.findById(theId);
     }
 
     @PostMapping("/save")

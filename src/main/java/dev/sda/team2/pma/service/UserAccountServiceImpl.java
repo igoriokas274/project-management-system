@@ -23,7 +23,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
         return userAccountRepository.findAll();
     }
 
-    @Override
+/*    @Override
     public UserAccount findById(long theId) {
         Optional<UserAccount> result = userAccountRepository.findById(theId);
         UserAccount theUserAccount = null;
@@ -34,7 +34,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
         }
 
         return theUserAccount;
-    }
+    }*/
 
     @Override
     public void save(UserAccount theUserAccount) {

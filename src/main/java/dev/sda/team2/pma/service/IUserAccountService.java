@@ -7,7 +7,7 @@ import java.util.List;
 public interface IUserAccountService {
 
     public List<UserAccount> findAll();
-    public UserAccount findById(long theId);
+/*    public UserAccount findById(long theId);*/
     public void save(UserAccount theUserAccount);
     public void deleteById(long theId);
 
