@@ -9,10 +9,10 @@ build:
   script:
     - mvn $MAVEN_CLI_OPTS compile
 
-test:
-  stage: test
-  script:
-    - mvn $MAVEN_CLI_OPTS test
+#test:
+#  stage: test
+#  script:
+#:    - mvn $MAVEN_CLI_OPTS test
 
 before_script:
     - which java
