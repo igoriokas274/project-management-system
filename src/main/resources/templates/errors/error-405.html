@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout :: head"></head>
-<title>Access Denied</title>
+<title>Not Found</title>
 <body>
 
     <div th:replace="layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
-        <h3 style="color: red"><span class="material-icons-outlined">privacy_tip</span> 403 | Access Denied</h3>
+        <h3 style="color: red"><span class="material-icons-outlined">search_off</span> 404 | Method Not Allowed</h3>
         <hr>
         <p>
-            You don't have permission to access this page <span sec:authentication="principal.username" style="font-weight: bold"></span>
+            ...
         </p>
         <hr>
     </div>

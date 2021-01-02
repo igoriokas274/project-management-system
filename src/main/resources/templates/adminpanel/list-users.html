@@ -28,7 +28,7 @@
         </div>
         <hr>
         <p>
-            Welcome Back <span sec:authentication="principal.username"></span>!
+            Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
         </p>
         <hr>
         <div th:if="${usersAccounts != null and not #lists.isEmpty(usersAccounts)}">
@@ -98,12 +98,15 @@
                                     <input type="hidden" class="form-control" id="userId" name="userId" value="" />
                                 </div>
                                 <div class="form-group">
+                                    <label for="userName">Username</label>
                                     <input type="text" class="form-control" id="userName" name="userName" value="" placeholder="Username" />
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" />
                                 </div>
                                 <div class="form-group">
+                                    <label for="role">Role</label>
                                     <select class="custom-select" id="role" name="role" >
                                         <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
                                                 th:value="${roles}" th:text="${roles}"></option>
@@ -113,7 +116,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" type="checkbox" id="enabled" name="enabled" >
+                                    <label for="enabled">Active / Inactive</label>
+                                    <select class="custom-select" id="enabled" name="enabled" >
                                         <option value="true">Active</option>
                                         <option value="false">Inactive</option>
                                     </select>
@@ -123,7 +127,9 @@
                                 <button class="btn btn-link float-right" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Save">
                                     <i class="material-icons-outlined md-36">save_alt</i>
                                 </button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal"><i class="material-icons-outlined md-36">close</i></button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Close">
+                                    <i class="material-icons-outlined md-36">close</i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -134,7 +140,7 @@
         <!--#Modal for user create-->
         <div class="userFormCreate">
             <form class="form-signin" th:action="@{save}"  method="post">
-                <div class="modal fade" data-bs-backdrop="static" id="userModalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabelCreate" aria-hidden="true">
+                <div class="modal fade" data-backdrop="static" id="userModalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabelCreate" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -148,13 +154,17 @@
                                     Input data to the fields
                                 </p>
                                 <div class="form-group">
+                                    <label for="userName">Username</label>
                                     <input type="text" class="form-control"  id="userName" name="userName" value="" placeholder="Username" required/>
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" required />
                                 </div>
                                 <div class="form-group">
+                                    <label for="role">Role</label>
                                     <select class="custom-select" id="role" name="role" required>
+                                        <option selected disabled value="">Choose Role...</option>
                                         <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
                                                 th:value="${roles}" th:text="${roles}"></option>
                                     </select>
@@ -163,7 +173,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" type="checkbox" name="enabled" id="enabled">
+                                    <label for="enabled">Active / Inactive</label>
+                                    <select class="custom-select" name="enabled" id="enabled">
+                                        <option selected disabled value="">Choose Activity...</option>
                                         <option value="true">Active</option>
                                         <option value="false">Inactive</option>
                                     </select>
@@ -173,7 +185,9 @@
                                 <button class="btn btn-link float-right" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Save">
                                     <i class="material-icons-outlined md-36">save_alt</i>
                                 </button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal"><i class="material-icons-outlined md-36">close</i></button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Close">
+                                    <i class="material-icons-outlined md-36">close</i>
+                                </button>
                             </div>
                         </div>
                     </div>
