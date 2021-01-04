@@ -56,8 +56,6 @@ $(document).ready( function () {
             type: 'GET',
             url: 'update?id=' + id,
             success: function () {
-                /*alert("Row id " + id + " deleted");*/
-                /*dataTable.row('.selected').remove().draw( false );*/
                 $.get(this.url, function (employees, status) {
                     $('.employeeFormUpdate #employeeId').val(employees.employeeId);
                     $('.employeeFormUpdate #firstName').val(employees.firstName);

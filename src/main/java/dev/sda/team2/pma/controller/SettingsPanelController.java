@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
-public class DashboardController {
+@RequestMapping("/settings")
+public class SettingsPanelController {
 
-    @RequestMapping()
-    public String displayDashboard() {
-        return "main/dashboard";
+    @RequestMapping
+    public String displayPanel() {
+        return "settings/settingspanel";
     }
 
 }
