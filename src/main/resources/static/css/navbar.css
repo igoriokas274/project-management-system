@@ -17,9 +17,27 @@
     transition: all 0.4s;
 }
 
+.vertical-toolbar {
+    min-width: 20rem;
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 5rem;
+    background-color: lightgray;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
 .page-content {
     width: calc(100% - 5rem);
     margin-left: 5rem;
+    transition: all 0.4s;
+}
+
+.toolbar-page-content {
+    width: calc(100% - 25rem);
+    margin-left: 25rem;
     transition: all 0.4s;
 }
 

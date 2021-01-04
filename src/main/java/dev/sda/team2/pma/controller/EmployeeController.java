@@ -47,12 +47,9 @@ public class EmployeeController {
 
     @GetMapping("/update")
     @ResponseBody
-    public Optional<Employee> editEmployee(@RequestParam("id") long theId) { // , Model theModel
+    public Optional<Employee> editEmployee(@RequestParam("id") long theId) {
 
         return employeeRepository.findById(theId);
-        /*Employee theEmployee = employeeService.findById(theId);*/
-        /*theModel.addAttribute("employee", theEmployee);*/
-        /*return "team/employee-form";*/
     }
 
     @GetMapping("/delete")

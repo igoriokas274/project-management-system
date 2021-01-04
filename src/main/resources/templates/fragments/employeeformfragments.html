@@ -122,7 +122,7 @@
                                             <select class="custom-select" id="gender" name="gender" >
                                                 <option selected disabled value="">Choose Gender...</option>
                                                 <option th:each="genders : ${T(dev.sda.team2.pma.enums.Gender).values()}"
-                                                        th:value="${genders}" th:text="${genders}"></option>
+                                                        th:value="${genders}" th:text="${genders.displayGender}"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@
                                             <select class="custom-select" id="gender" name="gender" >
                                                 <option selected disabled value="">Choose Gender...</option>
                                                 <option th:each="genders : ${T(dev.sda.team2.pma.enums.Gender).values()}"
-                                                        th:value="${genders}" th:text="${genders}"></option>
+                                                        th:value="${genders}" th:text="${genders.displayGender}"></option>
                                             </select>
                                         </div>
                                     </div>

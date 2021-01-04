@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserAccountServiceImpl implements IUserAccountService {
@@ -22,19 +21,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
     public List<UserAccount> findAll() {
         return userAccountRepository.findAll();
     }
-
-/*    @Override
-    public UserAccount findById(long theId) {
-        Optional<UserAccount> result = userAccountRepository.findById(theId);
-        UserAccount theUserAccount = null;
-        if(result.isPresent()) {
-            theUserAccount = result.get();
-        } else {
-            throw new RuntimeException("Did not find User Account id " + theId);
-        }
-
-        return theUserAccount;
-    }*/
 
     @Override
     public void save(UserAccount theUserAccount) {

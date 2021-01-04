@@ -30,7 +30,7 @@
 
 <!-- Vertical navbar -->
 <div th:fragment="vertical_navbar" class="vertical-nav bg-white">
-    <div class="py-4 px-3 mb-4 bg-light">
+    <div class="py-3 px-3 mb-4 bg-light">
         <div class="media d-flex align-items-center">
             <span style="color: green" class="material-icons-outlined md-48">eco</span>
         </div>
@@ -61,7 +61,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="tooltip" data-placement="right" title="Settings">
+            <a th:href="@{/settings}" href="#" class="nav-link" data-toggle="tooltip" data-placement="right" title="Settings">
                 <i class="material-icons-outlined md-36">settings</i>
             </a>
         </li>

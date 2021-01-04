@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IContactService {
 
-    public List<Contact> findAll();
-    public Contact findById(long theId);
-    public void save(Contact theContact);
-    public void deleteById(long theId);
+    List<Contact> findAll();
+    Contact findById(long theId);
+    void save(Contact theContact);
+    void deleteById(long theId);
 
 }
