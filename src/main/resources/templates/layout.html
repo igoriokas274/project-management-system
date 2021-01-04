@@ -16,12 +16,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
 
-    <!-- DataTables -->
-    <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+
     <script type ="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
-    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
+    <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script type ="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
 </head>
 
 <!-- Vertical navbar -->
@@ -39,7 +43,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a th:href="@{/contacts/list}" class="nav-link" data-toggle="tooltip" data-placement="right" title="Contacts">
+            <a th:href="@{/team}" class="nav-link" data-toggle="tooltip" data-placement="right" title="Team Panel">
                 <i class="material-icons-outlined md-36">people</i>
             </a>
         </li>

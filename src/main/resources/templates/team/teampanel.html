@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="layout :: head"></head>
+<title>Team Panel</title>
+<body>
+
+    <div th:replace="layout :: vertical_navbar"></div>
+
+    <div class="page-content p-5">
+        <div class="row">
+            <h3><span class="material-icons-outlined">people</span> Team Panel</h3>
+            <div class="col d-flex justify-content-end">
+                <a th:href="@{/team/employee/list}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="List Employee">
+                    <i class="material-icons-outlined md-36">list</i>
+                </a>
+            </div>
+        </div>
+
+        <hr>
+        <p>
+            Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
+        </p>
+        <hr>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</html>
