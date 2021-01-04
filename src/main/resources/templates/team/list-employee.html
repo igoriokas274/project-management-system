@@ -14,13 +14,15 @@
         <div class="row">
             <h3><span class="material-icons-outlined align-baseline">people</span> Team Panel / List of Employees</h3>
             <div class="col d-flex justify-content-end">
-
-                <a th:href="@{/team/employee/addEmployee}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Add New Employee">
+                <!-- Modal to Create New Employee -->
+                <a class="btn btn-link newBtn" data-toggle="tooltip" data-placement="top" title="Add New Employee">
                     <i class="material-icons-outlined md-36">person_add</i>
                 </a>
-                <a class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit Employee">
+                <!-- Modal to Edit Employee -->
+                <a class="btn btn-link editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Employee">
                     <i class="material-icons-outlined md-36">edit</i>
                 </a>
+                <!-- Call JQuery to Delete Employee -->
                 <a type="button" class="btn btn-link" id="deleteBtn" data-toggle="tooltip" data-placement="top"
                    title="Delete Selected Employee" onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
                     <i class="material-icons-outlined md-36">delete</i>
@@ -54,8 +56,12 @@
                     <th scope="col">Closed</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr th:each="tempEmployees : ${employees}">
+                </tr>
             </tbody>
         </table>
+        <div th:replace="fragments/employeeformfragments :: employeeform_modals"></div>
     </div>
 
     <script type ="text/javascript" th:src="@{/js/employeesdatatable.js}" src="../../static/js/employeesdatatable.js"></script>

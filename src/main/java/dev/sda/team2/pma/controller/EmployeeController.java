@@ -21,17 +21,15 @@ public class EmployeeController {
     @GetMapping("/list")
     public String listUserEmployees(Model theModel) {
 
+        // list employee
         List<Employee> theEmployees = employeeService.findAll();
         theModel.addAttribute("employees", theEmployees);
-        return "team/list-employee";
-    }
 
-    @GetMapping("/addEmployee")
-    public String addEmployee(Model theModel) {
-
+        // add new employee
         Employee theEmployee = new Employee();
         theModel.addAttribute("employee", theEmployee);
-        return "team/employee-form";
+
+        return "team/list-employee";
     }
 
     @PostMapping("/save")
