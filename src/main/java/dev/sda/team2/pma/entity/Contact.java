@@ -4,6 +4,7 @@ import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.Gender;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -57,14 +58,12 @@ public class Contact extends Auditable {
     private Gender gender;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birthdate")
     private Date contactBirthdate;
 
     @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
-
-    @OneToOne(mappedBy = "contact", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Employee employee;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "customerId")

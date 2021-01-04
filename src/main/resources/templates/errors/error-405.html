@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/layout :: head"></head>
-<title>Dashboard</title>
+<title>Not Found</title>
 <body>
 
     <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
-        <div class="">
-
-            <h3><span class="material-icons-outlined">dashboard</span> Dashboard</h3>
-            <hr>
-            <p>
-                Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
-            </p>
-            <hr>
-
-        </div>
+        <h3 style="color: red"><span class="material-icons-outlined">search_off</span> 404 | Method Not Allowed</h3>
+        <hr>
+        <p>
+            ...
+        </p>
+        <hr>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-</body>
 </html>

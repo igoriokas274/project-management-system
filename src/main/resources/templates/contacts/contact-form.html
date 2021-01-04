@@ -4,23 +4,23 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="layout :: head"></head>
+<head th:replace="fragments/layout :: head"></head>
 <title>Contacts</title>
 <body>
 
-    <div th:replace="layout :: vertical_navbar"></div>
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <div class="row">
             <h3><span class="material-icons-outlined">people</span> List of Users / Create Contact</h3>
             <div class="col d-flex justify-content-end">
-                <a th:href="@{/contacts/list}" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List Users">
+                <a th:href="@{/contacts/list}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="List Users">
                     <i class="material-icons-outlined md-36">list</i></a>
             </div>
         </div>
         <hr>
         <p>
-            Welcome Back <span sec:authentication="principal.username"></span>!
+            Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
         </p>
         <hr>
         <div>
@@ -101,9 +101,9 @@
                 </div>
 
                 <div class="col-auto">
-                    <a type="button" class="btn btn-link float-right" th:href="@{/contacts/list-contacts}" data-bs-toggle="tooltip" data-bs-placement="top" title="Close">
+                    <a type="button" class="btn btn-link float-right" th:href="@{/contacts/list-contacts}" data-toggle="tooltip" data-placement="top" title="Close">
                         <i class="material-icons-outlined md-36">close</i></a>
-                    <button class="btn btn-link float-right" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Save">
+                    <button class="btn btn-link float-right" type="submit" data-toggle="tooltip" data-placement="top" title="Save">
                         <i class="material-icons-outlined md-36">save_alt</i></button>
                 </div>
             </form>

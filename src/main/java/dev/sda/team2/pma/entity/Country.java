@@ -35,4 +35,7 @@ public class Country extends Auditable {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<StockType> stockTypes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Employee> employees;
 }

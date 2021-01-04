@@ -36,7 +36,7 @@ public class UserAccount extends Auditable {
     private String role;
 
     @Column(name = "enabled", nullable = false, columnDefinition = "int default 1")
-    private boolean enabled;
+    private boolean enabled = true;
 
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "employeeId")

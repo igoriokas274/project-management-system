@@ -31,7 +31,7 @@ public class ContactServiceImpl implements IContactService {
         if(result.isPresent()) {
             theContact = result.get();
         } else {
-            throw new RuntimeException("Did not find Employee id " + theId);
+            throw new RuntimeException("Did not find Contact id " + theId);
         }
 
         return theContact;
