@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         return employeeRepository.findAll();
     }
 
-    @Override
+/*    @Override
     public Employee findById(long theId) {
 
         Optional<Employee> result = employeeRepository.findById(theId);
@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
             throw new RuntimeException("Did not find Employee id " + theId);
         }
         return theEmployee;
-    }
+    }*/
 
     @Override
     public void save(Employee theEmployee) {
