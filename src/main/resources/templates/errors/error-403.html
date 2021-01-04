@@ -4,11 +4,11 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="layout :: head"></head>
+<head th:replace="fragments/layout :: head"></head>
 <title>Access Denied</title>
 <body>
 
-    <div th:replace="layout :: vertical_navbar"></div>
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <h3 style="color: red"><span class="material-icons-outlined">privacy_tip</span> 403 | Access Denied</h3>

@@ -4,11 +4,11 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="layout :: head"></head>
+<head th:replace="fragments/layout :: head"></head>
 <title>Team Panel</title>
 <body>
 
-    <div th:replace="layout :: vertical_navbar"></div>
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <div class="row">
@@ -17,6 +17,13 @@
 
                 <a th:href="@{/team/employee/addEmployee}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Add New Employee">
                     <i class="material-icons-outlined md-36">person_add</i>
+                </a>
+                <a class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit Employee">
+                    <i class="material-icons-outlined md-36">edit</i>
+                </a>
+                <a type="button" class="btn btn-link" id="deleteBtn" data-toggle="tooltip" data-placement="top"
+                   title="Delete Selected Employee" onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                    <i class="material-icons-outlined md-36">delete</i>
                 </a>
                 <!-- Refresh User List -->
                 <a th:href="@{/team/employee/list}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="List Employees">
@@ -29,16 +36,11 @@
             Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
         </p>
         <hr>
-        <a type="button" class="btn btn-link" id="deleteBtn" style="color: red" data-toggle="tooltip" data-placement="top"
-           title="Delete Selected Employee"> <!-- onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false" -->
-            <i class="material-icons-outlined">delete</i>
-        </a>
         <table class="table table-sm table-striped table-hover" id="employeesTable" style="width:100%">
             <caption>List of Employees</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <!--<th scope="col">Full Name</th>-->
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Title</th>
@@ -50,33 +52,8 @@
                     <th scope="col">Update Date</th>
                     <th scope="col">Updated By</th>
                     <th scope="col">Closed</th>
-                    <!--<th scope="col">Action</th>-->
                 </tr>
             </thead>
-            <tbody>
-            <!--<tr th:each="tempEmployees : ${employees}">
-                <th th:text="${tempEmployees.employeeId}" scope="row"></th>
-                <td th:text="${tempEmployees.firstName + ' ' + tempEmployees.lastName}"></td>
-                <td th:text="${tempEmployees.title}"></td>
-                <td th:text="${tempEmployees.department}"></td>
-                <td th:text="${tempEmployees.mobilePhone}"></td>
-                <td th:text="${tempEmployees.workEmail}"></td>
-                <td th:text="${tempEmployees.createdDate}"></td>
-                <td th:text="${tempEmployees.createdBy}"></td>
-                <td th:text="${tempEmployees.lastModifiedDate}"></td>
-                <td th:text="${tempEmployees.lastModifiedBy}"></td>
-                <td th:text="${tempEmployees.closed}"></td>
-                <td>
-                    <a th:href="@{/team/employee/update(id=${tempEmployees.employeeId})}" class="btn btn-link"
-                       data-toggle="tooltip"
-                       data-placement="top" title="Update Employee"><i class="material-icons-outlined">edit</i></a>
-                    <a th:href="@{/team/employee/delete(id=${tempEmployees.employeeId})}" class="btn btn-link"
-                       style="color: red" data-toggle="tooltip" data-placement="top" title="Delete Employee"
-                       onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
-                        <i class="material-icons-outlined">delete</i>
-                    </a>
-                </td>
-            </tr>-->
             </tbody>
         </table>
     </div>

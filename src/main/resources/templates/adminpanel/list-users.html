@@ -4,11 +4,11 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="layout :: head"></head>
+<head th:replace="fragments/layout :: head"></head>
 <title>Admin Panel</title>
 <body>
 
-    <div th:replace="layout :: vertical_navbar"></div>
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="page-content p-5">
         <div class="row">
@@ -78,124 +78,7 @@
                 </tr>
             </tbody>
         </table>
-        <!--#Modal form for user update-->
-        <div class="userFormUpdate">
-            <form class="form-signin" th:action="@{save}" method="post">
-                <div class="modal fade" data-backdrop="static" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="updateModalLabel">Update User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="alert alert-info">
-                                    Input data to the fields
-                                </p>
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" id="userId" name="userId" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="userName">Username</label>
-                                    <input type="text" class="form-control" id="userName" name="userName" value="" placeholder="Username" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <select class="custom-select" id="role" name="role" >
-                                        <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
-                                                th:value="${roles}" th:text="${roles}"></option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid Role
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="enabled">Active / Inactive</label>
-                                    <select class="custom-select" id="enabled" name="enabled" >
-                                        <option value="true">Active</option>
-                                        <option value="false">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-link float-right" type="submit" data-toggle="tooltip" data-placement="top" title="Save">
-                                    <i class="material-icons-outlined md-36">save_alt</i>
-                                </button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal" data-toggle="tooltip" data-placement="top" title="Close">
-                                    <i class="material-icons-outlined md-36">close</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--End update form-->
-        <!--#Modal for user create-->
-        <div class="userFormCreate">
-            <form class="form-signin" th:action="@{save}"  method="post">
-                <div class="modal fade" data-backdrop="static" id="userModalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabelCreate" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabelCreate">Create user</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="alert alert-info">
-                                    Input data to the fields
-                                </p>
-                                <div class="form-group">
-                                    <label for="userName">Username</label>
-                                    <input type="text" class="form-control"  id="userName" name="userName" value="" placeholder="Username" required/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <select class="custom-select" id="role" name="role" required>
-                                        <option selected disabled value="">Choose Role...</option>
-                                        <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
-                                                th:value="${roles}" th:text="${roles}"></option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid Role
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="enabled">Active / Inactive</label>
-                                    <select class="custom-select" name="enabled" id="enabled">
-                                        <option selected disabled value="">Choose Activity...</option>
-                                        <option value="true">Active</option>
-                                        <option value="false">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-link float-right" type="submit" data-toggle="tooltip" data-placement="top" title="Save">
-                                    <i class="material-icons-outlined md-36">save_alt</i>
-                                </button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal" data-toggle="tooltip" data-placement="top" title="Close">
-                                    <i class="material-icons-outlined md-36">close</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--End form-->
-
+        <div th:replace="fragments/userformfragments :: userform_modals"></div>
     </div>
     <script type ="text/javascript" th:src="@{/js/userAccountsModals.js}" src="../../static/js/userAccountsModals.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

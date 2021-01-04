@@ -5,7 +5,7 @@ $(document).ready( function () {
             style: 'single'
         },
         "processing": true,
-        "serverSide": true,
+        /*"serverSide": true,*/
         "ajax": "/api/employee/list",
         "sAjaxDataProp": "",
         rowId: 'employeeId',
@@ -44,10 +44,9 @@ $(document).ready( function () {
                 dataTable.row('.selected').remove().draw( false );
             },
             error: function (errorMsg) {
-                alert("ERROR: " + errorMsg);
+                alert("Error: Please select a row firs!");
                 console.log("ERROR: " + errorMsg);
             }
         });
-
     });
 });
