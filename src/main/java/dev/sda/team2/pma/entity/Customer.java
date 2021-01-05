@@ -25,10 +25,10 @@ public class Customer extends Auditable {
     @Column(name = "customerName", nullable = false)
     private String customerName;
 
-    @Column(name = "customerRegistrationNumber", nullable = false)
+    @Column(name = "customerRegistrationNumber") // , nullable = false
     private String customerRegistrationNumber;
 
-    @Column(name = "customerVATNumber", nullable = false)
+    @Column(name = "customerVATNumber") // , nullable = false
     private String customerVATNumber;
 
     @Column(name = "addressLine1")
@@ -52,13 +52,13 @@ public class Customer extends Auditable {
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode", nullable = false)
+    @Column(name = "bankCode") // , nullable = false
     private String bankCode;
 
-    @Column(name = "bankName", nullable = false)
+    @Column(name = "bankName") // , nullable = false
     private String bankName;
 
-    @Column(name = "bankAccount", nullable = false)
+    @Column(name = "bankAccount") // , nullable = false
     private String bankAccount;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")

@@ -1,46 +1,43 @@
 $(document).ready( function () {
-    const projectTable = $('#projectTable').DataTable({
+    const quotationTable = $('#quotationTable').DataTable({
         "pagingType": "full_numbers",
         select: {
             style: 'single'
         },
         "processing": true,
         /*"serverSide": true,*/
-        "ajax": "/api/projects/list",
+        "ajax": "/api/quotations/list",
         "sAjaxDataProp": "",
-        rowId: 'projectId',
+        rowId: 'quotationId',
         "order": [[ 0, "asc" ]],
         "columns": [
-            { "data": "projectId" },
-            { "data": "projectName" },
-            { "data": "employees" },
-            { "data": "projectStartDate" },
-            { "data": "projectEndDate" },
-            { "data": "projectStatus" },
-            /*{ "data": "createdBy" },
+            { "data": "quotationId" },
+            { "data": "quotationDate" },
+            { "data": "quotationTitle" },
+            { "data": "confirmed" },
+            { "data": "createdBy" },
             { "data": "createdDate" },
             { "data": "lastModifiedBy" },
-            { "data": "lastModifiedDate" },*/
-            { "data": "closed" }
+            { "data": "lastModifiedDate" },
         ]
     });
-    $('#projectTable tbody').on( 'click', 'tr', function () {
+    $('#quotationTable tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
         else {
-            projectTable.$('tr.selected').removeClass('selected');
+            quotationTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
     $('#deleteBtn').click( function () {
-        var id = projectTable.row( '.selected' ).id();
+        var id = quotationTable.row( '.selected' ).id();
         $.ajax({
             type: 'GET',
             url: 'delete?id=' + id,
             success: function () {
                 alert("Row id " + id + " deleted");
-                projectTable.row('.selected').remove().draw( false );
+                quotationTable.row('.selected').remove().draw( false );
             },
             error: function (errorMsg) {
                 alert("Error: Please select a row first!");
@@ -48,9 +45,9 @@ $(document).ready( function () {
             }
         });
     });
-    $('.editBtn').on('click', function(event) {
+    /*$('.editBtn').on('click', function(event) {
         event.preventDefault();
-        var id = projectTable.row( '.selected' ).id();
+        var id = quotationTable.row( '.selected' ).id();
         $.ajax({
             type: 'GET',
             url: 'update?id=' + id,
@@ -90,5 +87,5 @@ $(document).ready( function () {
         $('.projectFormCreate #projectStartDate').val('');
         $('.projectFormCreate #projectEndDate').val('');
         $('.projectFormCreate #projectModalCreate').modal();
-    });
+    });*/
 });
