@@ -9,8 +9,9 @@ $(document).ready(function(){
             $.get(href, function (users, status) {
                 $('.userFormUpdate #userId').val(users.userId);
                 $('.userFormUpdate #userName').val(users.userName);
-                $('.userFormUpdate #password').val(users.password);
+                $('.userFormUpdate #password').val('');
                 $('.userFormUpdate #role').val(users.role);
+                $('.userFormUpdate #employee').val(users.employee);
                 $('.userFormUpdate #enabled').val(users.enabled);
             });
             $('.userFormUpdate #updateModal').modal();
@@ -19,6 +20,7 @@ $(document).ready(function(){
             $('.userFormCreate #userName').val('');
             $('.userFormCreate #password').val('');
             $('.userFormCreate #role').val('');
+            $('.userFormCreate #employee').val('');
             $('.userFormCreate #enabled').val('');
             $('.userFormCreate #userModalCreate').modal();
         }

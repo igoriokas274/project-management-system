@@ -10,27 +10,29 @@
 
     <div th:replace="fragments/layout :: vertical_navbar"></div>
 
-    <div class="page-content p-5">
-        <div class="row">
-            <h3><span class="material-icons-outlined align-baseline">admin_panel_settings</span> Admin Panel / List of Users</h3>
-            <div class="col d-flex justify-content-end">
-
-                <!-- Modal to Create New User -->
-                <a  class="btn btn-link newBtn" data-toggle="tooltip" data-placement="top" title="Add New User">
-                    <i class="material-icons-outlined md-36">person_add</i>
-                </a>
-
-                <!-- Refresh User List -->
-                <a th:href="@{/adminpanel/users/list}" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="List Users">
-                    <i class="material-icons-outlined md-36">list</i>
-                </a>
-            </div>
+    <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
+        <div class="container py-4 px-3 mb-1">
+            <h3><span class="material-icons-outlined">admin_panel_settings</span> Admin Panel</h3>
+            <hr>
+            <p>
+                Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
+            </p>
+            <hr>
         </div>
-        <hr>
-        <p>
-            Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
-        </p>
-        <hr>
+        <div class="container py-0 px-3 mb-1">
+            <h5>View</h5>
+            <div><a th:href="@{/adminpanel/users/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Users">List of Users</a></div>
+            <p></p>
+            <h5>Edit</h5>
+            <div><a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New User">Add New User</a></div>
+        </div>
+    </div>
+
+    <div class="toolbar-page-content p-5">
+        <div class="row">
+
+        </div>
+
         <div th:if="${usersAccounts != null and not #lists.isEmpty(usersAccounts)}">
             <span th:text="${#lists.size(usersAccounts)}"></span> Users were found
         </div>
