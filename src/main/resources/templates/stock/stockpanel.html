@@ -5,14 +5,14 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="fragments/layout :: head"></head>
-<title>Projects Panel</title>
+<title>Team Panel</title>
 <body>
 
     <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
         <div class="container py-4 px-3 mb-1">
-            <h3><span class="material-icons-outlined">assessment</span> Project Panel</h3>
+            <h3><span class="material-icons-outlined">inventory_2</span> Stock Panel</h3>
             <hr>
             <p>
                 Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
@@ -21,9 +21,8 @@
         </div>
         <div class="container py-0 px-3 mb-1">
             <h5>View</h5>
-            <div><a th:href="@{/projectpanel/projects/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Projects">Projects</a></div>
-            <div><a th:href="@{/projectpanel/quotations/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Quotations">Quotations</a></div>
-            <div><a th:href="@{/projectpanel/customers/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Customers">Customers</a></div>
+            <div><a th:href="@{/stockpanel/items/list}"  class="btn" data-toggle="tooltip" data-placement="top" title="List of Items">Items</a></div>
+            <div><a th:href="@{/stockpanel/suppliers/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Suppliers">Suppliers</a></div>
         </div>
     </div>
 

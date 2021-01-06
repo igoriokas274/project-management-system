@@ -6,6 +6,8 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -37,7 +39,9 @@ public class Item extends Auditable {
     @Column(name = "minStockLevel")
     private Integer minStockLevel;
 
-    @Column(name = "salesPrice", precision = 10, scale = 2)
+    @Column(name = "salesPrice") // , precision = 10, scale = 2
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer=3, fraction=2)
     private BigDecimal salesPrice;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
