@@ -44,7 +44,7 @@ $(document).ready( function () {
                 dataTable.row('.selected').remove().draw( false );
             },
             error: function (errorMsg) {
-                alert("Error: Please select a row firs!");
+                alert("Error: Please select a row first!");
                 console.log("ERROR: " + errorMsg);
             }
         });
@@ -84,7 +84,7 @@ $(document).ready( function () {
                 $('.employeeFormUpdate #updateModal').modal();
             },
             error: function (errorMsg) {
-                alert("Error: Please select a row firs!");
+                alert("Error: Please select a row first!");
                 console.log("ERROR: " + errorMsg);
             }
         });

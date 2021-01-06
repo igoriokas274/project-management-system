@@ -5,14 +5,14 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="fragments/layout :: head"></head>
-<title>Team Panel</title>
+<title>Projects Panel</title>
 <body>
 
     <div th:replace="fragments/layout :: vertical_navbar"></div>
 
     <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
         <div class="container py-4 px-3 mb-1">
-            <h3><span class="material-icons-outlined">people</span> Team Panel</h3>
+            <h3><span class="material-icons-outlined">assessment</span> Project Panel</h3>
             <hr>
             <p>
                 Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
@@ -21,7 +21,9 @@
         </div>
         <div class="container py-0 px-3 mb-1">
             <h5>View</h5>
-            <div><a th:href="@{/team/employee/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Employee">List of Employees</a></div>
+            <div><a th:href="@{/projectpanel/projects/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Projects">List of Projects</a></div>
+            <div><a th:href="@{/projectpanel/quotations/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Quotations">List of Quotations</a></div>
+            <div><a th:href="@{/projectpanel/customers/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Customers">List of Customers</a></div>
         </div>
     </div>
 

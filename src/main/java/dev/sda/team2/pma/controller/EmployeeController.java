@@ -25,7 +25,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public String listUserEmployees(Model theModel) {
+    public String listEmployees(Model theModel) {
 
         // list employee
         List<Employee> theEmployees = employeeService.findAll();

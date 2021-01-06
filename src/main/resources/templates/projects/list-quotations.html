@@ -12,7 +12,7 @@
 
     <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
         <div class="container py-4 px-3 mb-1">
-            <h3><span class="material-icons-outlined">people</span> Team Panel</h3>
+            <h3><span class="material-icons-outlined">assessment</span> Project Panel</h3>
             <hr>
             <p>
                 Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
@@ -21,12 +21,14 @@
         </div>
         <div class="container py-0 px-3 mb-1">
             <h5>View</h5>
-            <div><a th:href="@{/team/employee/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Employee">List of Employees</a></div>
+            <div><a th:href="@{/projectpanel/projects/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Projects">List of Projects</a></div>
+            <div><a th:href="@{/projectpanel/quotations/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Quotations">List of Quotations</a></div>
+            <div><a th:href="@{/projectpanel/customers/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List Customers">List of Customers</a></div>
             <p></p>
             <h5>Edit</h5>
-            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Employee">Add New Employee</a>
-            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Employee">Edit Selected Employee</a>
-            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Employee">Delete Selected Employee</a>
+            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Quotation">Add New Quotation</a>
+            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Quotation">Edit Selected Quotation</a>
+            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Quotation">Delete Selected Quotation</a>
         </div>
     </div>
 
@@ -34,33 +36,29 @@
         <div class="row">
 
         </div>
-        <table class="table table-sm table-striped table-hover" id="employeesTable" style="width:100%">
-            <caption>List of Employees</caption>
+        <table class="table table-sm table-striped table-hover" id="quotationTable" style="width:100%">
+            <caption>List of Quotations</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Mobile Phone</th>
-                    <th scope="col">Work Email</th>
+                    <th scope="col">Confirmed</th>
                     <th scope="col">Created By</th>
                     <th scope="col">Create Date</th>
                     <th scope="col">Updated By</th>
                     <th scope="col">Update Date</th>
-                    <th scope="col">Closed</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="tempEmployees : ${employees}">
+                <tr th:each="tempQuotations : ${quotations}">
                 </tr>
             </tbody>
         </table>
-        <div th:replace="fragments/employeeformfragments :: employeeform_modals"></div>
+        <!--<div th:replace="fragments/projectformfragments :: projectform_modals"></div>-->
     </div>
 
-    <script type ="text/javascript" th:src="@{/js/employeesdatatable.js}" src="../../static/js/employeesdatatable.js"></script>
+    <script type ="text/javascript" th:src="@{/js/quotationdatatable.js}" src="../../static/js/quotationdatatable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>

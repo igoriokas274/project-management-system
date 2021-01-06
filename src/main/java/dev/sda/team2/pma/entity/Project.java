@@ -3,6 +3,7 @@ package dev.sda.team2.pma.entity;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,17 +23,19 @@ public class Project extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "projectId")
+    @Column(name = "projectId", nullable = false, unique = true)
     private Long projectId;
 
-    @Column(name = "projectName")
+    @Column(name = "projectName", nullable = false)
     private String projectName;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "projectStartDate")
     private Date projectStartDate;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "projectEndDate")
     private Date projectEndDate;
 
