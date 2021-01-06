@@ -24,30 +24,14 @@ public class ContactServiceImpl implements IContactService {
     }
 
     @Override
-    public Contact findById(long theId) {
-
-        Optional<Contact> result = contactRepository.findById(theId);
-        Contact theContact = null;
-        if(result.isPresent()) {
-            theContact = result.get();
-        } else {
-            throw new RuntimeException("Did not find Contact id " + theId);
-        }
-
-        return theContact;
-    }
-
-    @Override
     public void save(Contact theContact) {
 
         contactRepository.save(theContact);
-
     }
 
     @Override
     public void deleteById(long theId) {
 
         contactRepository.deleteById(theId);
-
     }
 }
