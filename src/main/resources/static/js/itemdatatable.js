@@ -15,6 +15,7 @@ $(document).ready( function () {
             { "data": "itemName" },
             { "data": "itemType" },
             { "data": "salesPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '€ ' ) },
+            { "data": "purchasePrice", render: $.fn.dataTable.render.number( ',', '.', 2, '€ ' ) },
             { "data": "supplier" },
             { "data": "closed" }
         ]
@@ -58,8 +59,10 @@ $(document).ready( function () {
                     $('.itemFormUpdate #itemType').val(items.itemType);
                     $('.itemFormUpdate #stockId').val(items.stockId);
                     $('.itemFormUpdate #salesPrice').val(items.salesPrice);
+                    $('.itemFormUpdate #purchasePrice').val(items.purchasePrice);
                     $('.itemFormUpdate #vatId').val(items.vatId);
                     $('.itemFormUpdate #minStockLevel').val(items.minStockLevel);
+                    $('.itemFormUpdate #unit').val(items.unit);
                     $('.itemFormUpdate #closed').val(items.closed);
                 });
                 $('.itemFormUpdate #updateModal').modal();
@@ -80,8 +83,10 @@ $(document).ready( function () {
         $('.itemFormCreate #itemType').val('');
         $('.itemFormCreate #stockId').val('');
         $('.itemFormCreate #salesPrice').val('');
+        $('.itemFormCreate #purchasePrice').val('');
         $('.itemFormCreate #vatId').val('');
         $('.itemFormCreate #minStockLevel').val('');
+        $('.itemFormCreate #unit').val('');
         $('.itemFormCreate #itemModalCreate').modal();
     });
 });

@@ -36,6 +36,9 @@ public class Item extends Auditable {
     @Column(name = "itemType", length = 20)
     private ItemType itemType;
 
+    @Column(name = "unit")
+    private String unit;
+
     @Column(name = "minStockLevel")
     private Integer minStockLevel;
 
@@ -43,6 +46,11 @@ public class Item extends Auditable {
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=3, fraction=2)
     private BigDecimal salesPrice;
+
+    @Column(name = "purchasePrice") // , precision = 10, scale = 2
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer=3, fraction=2)
+    private BigDecimal purchasePrice;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
