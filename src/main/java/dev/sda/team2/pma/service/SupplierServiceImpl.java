@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.service;
 
+import dev.sda.team2.pma.dao.SupplierRepository;
 import dev.sda.team2.pma.entity.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,25 +10,25 @@ import java.util.List;
 @Service
 public class SupplierServiceImpl implements ISupplierService {
 
-    private ISupplierService iSupplierService;
+    private SupplierRepository supplierRepository;
 
     @Autowired
-    public SupplierServiceImpl(ISupplierService theISupplierService) {
-        iSupplierService = theISupplierService;
+    public SupplierServiceImpl(SupplierRepository theSupplierRepository) {
+        supplierRepository = theSupplierRepository;
     }
 
     @Override
     public List<Supplier> findAll() {
-        return iSupplierService.findAll();
+        return supplierRepository.findAll();
     }
 
     @Override
     public void save(Supplier theSupplier) {
-        iSupplierService.save(theSupplier);
+        supplierRepository.save(theSupplier);
     }
 
     @Override
     public void deleteById(long theId) {
-        iSupplierService.deleteById(theId);
+        supplierRepository.deleteById(theId);
     }
 }
