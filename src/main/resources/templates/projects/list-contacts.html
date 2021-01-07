@@ -27,9 +27,9 @@
             <div><a th:href="@{/projectpanel/contacts/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Contacts">Contacts</a></div>
             <p></p>
             <h5>Edit</h5>
-            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Project">Add New Project</a>
-            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Project">Edit Selected Project</a>
-            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Project">Delete Selected Project</a>
+            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Contact">Add New Contact</a>
+            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Contact">Edit Selected Contact</a>
+            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Contact">Delete Selected Contact</a>
         </div>
     </div>
 
@@ -37,32 +37,29 @@
         <div class="row">
 
         </div>
-        <table class="table table-sm table-striped table-hover" id="projectTable" style="width:100%">
-            <caption>List of Projects</caption>
+        <table class="table table-sm table-striped table-hover" id="contactTable" style="width:100%">
+            <caption>List of Contacts</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Project Name</th>
-                    <th scope="col">Manager</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Project Status</th>
-                    <!--<th scope="col">Created By</th>
-                    <th scope="col">Create Date</th>
-                    <th scope="col">Updated By</th>
-                    <th scope="col">Update Date</th>-->
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Contact Phone</th>
+                    <th scope="col">Contact Email</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Supplier</th>
                     <th scope="col">Closed</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="tempProjects : ${projects}">
+                <tr th:each="tempContacts : ${contacts}">
                 </tr>
             </tbody>
         </table>
-        <div th:replace="fragments/projectformfragments :: projectform_modals"></div>
+        <div th:replace="fragments/contactformfragments :: contactform_modals"></div>
     </div>
 
-    <script type ="text/javascript" th:src="@{/js/projectdatatable.js}" src="../../static/js/projectdatatable.js"></script>
+    <script type ="text/javascript" th:src="@{/js/contactsdatatable.js}" src="../../static/js/contactsdatatable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>
