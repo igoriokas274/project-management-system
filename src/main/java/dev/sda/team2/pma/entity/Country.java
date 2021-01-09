@@ -18,8 +18,15 @@ import java.util.List;
 public class Country extends Auditable {
 
     @Id
-    @Column(name = "countryId", nullable = false, unique = true, length = 3)
-    private String countryId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "countryId", nullable = false)
+    private long countryId;
+
+    @Column(name = "countryCode", nullable = false, unique = true, length = 3)
+    private String countryCode;
+
+    @Column(name = "countryName", nullable = false)
+    private String countryName;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
