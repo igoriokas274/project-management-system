@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;
 
-public interface PayTermRepository extends JpaRepository<PayTerm, BigDecimal> {
+public interface PayTermRepository extends JpaRepository<PayTerm, Long> {
 
 }

@@ -30,15 +30,15 @@ public class PayTermRestController {
     }
 
     @GetMapping("/{id}")
-    public Optional<PayTerm> showPayTermId(@PathVariable("id") BigDecimal theId) {
+    public Optional<PayTerm> showPayTermId(@PathVariable("id") Long theId) {
 
         return payTermRepository.findById(theId);
     }
 
     @DeleteMapping("/remove/{id}")
-    public void deletePayTermById(@PathVariable("id") BigDecimal theId) {
+    public void deletePayTermById(@PathVariable("id") Long theId) {
 
-      payTermService.deleteBy(theId);
+      payTermService.deleteById(theId);
     }
 
 }

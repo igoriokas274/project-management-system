@@ -20,7 +20,7 @@ public class Country extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "countryId", nullable = false)
-    private long countryId;
+    private Long countryId;
 
     @Column(name = "countryCode", nullable = false, unique = true, length = 3)
     private String countryCode;
