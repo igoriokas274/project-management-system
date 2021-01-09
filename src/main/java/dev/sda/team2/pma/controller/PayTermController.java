@@ -22,7 +22,7 @@ public class PayTermController {
     @Autowired
     private PayTermRepository payTermRepository;
 
-
+    @Autowired
     public PayTermController(IPayTermService thePayTermService){payTermService = thePayTermService;}
 
     @GetMapping("/list")
@@ -46,7 +46,7 @@ public class PayTermController {
 
     @GetMapping("/update")
     @ResponseBody
-    public Optional<PayTerm> editPayTerm(@RequestParam("id") BigDecimal theId) { //<--sios vietos nemoku padaryti
+    public Optional<PayTerm> editPayTerm(@RequestParam("id") BigDecimal theId) {
 
         return payTermRepository.findById(theId);
     }

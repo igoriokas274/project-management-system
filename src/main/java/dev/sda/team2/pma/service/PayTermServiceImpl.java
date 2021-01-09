@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public abstract class PayTermServiceImpl implements IPayTermService {
+public class PayTermServiceImpl implements IPayTermService {
 
     private PayTermRepository payTermRepository;
 
@@ -29,7 +29,7 @@ public abstract class PayTermServiceImpl implements IPayTermService {
         payTermRepository.save(thePayTerm);
     }
 
-    @Override  //Delete method?
+    @Override
     public void deleteBy(BigDecimal theId) {
         payTermRepository.deleteById(theId);
     }
