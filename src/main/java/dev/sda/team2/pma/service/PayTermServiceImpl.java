@@ -30,7 +30,7 @@ public class PayTermServiceImpl implements IPayTermService {
     }
 
     @Override
-    public void deleteBy(BigDecimal theId) {
+    public void deleteById(Long theId) {
         payTermRepository.deleteById(theId);
     }
 

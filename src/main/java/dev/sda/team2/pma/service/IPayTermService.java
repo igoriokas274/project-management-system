@@ -9,5 +9,5 @@ public interface IPayTermService {
 
     List<PayTerm> findAll();
     void save(PayTerm thePayTerm);
-    void deleteBy(BigDecimal theId);
+    void deleteById(Long theId);
 }

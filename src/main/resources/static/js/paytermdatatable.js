@@ -1,39 +1,36 @@
 $(document).ready( function () {
-    const countryTable = $('#countryTable').DataTable({
+    const paytermTable = $('#paytermTable').DataTable({
         "pagingType": "full_numbers",
         select: {
             style: 'single'
         },
         "processing": true,
         /*"serverSide": true,*/
-        "ajax": "/api/countries/list",
+        "ajax": "/api/payterms/list",
         "sAjaxDataProp": "",
-        rowId: 'countryId',
+        rowId: 'term',
         "order": [[ 0, "asc" ]],
         "columns": [
-            { "data": "countryId" },
-            { "data": "countryCode" },
-            { "data": "countryName" },
-            { "data": "closed" }
+            { "data": "term" }
         ]
     });
-    $('#countryTable tbody').on( 'click', 'tr', function () {
+    $('#paytermTable tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
         else {
-            countryTable.$('tr.selected').removeClass('selected');
+            paytermTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
     $('#deleteBtn').click( function () {
-        var id = countryTable.row( '.selected' ).id();
+        var id = paytermTable.row( '.selected' ).id();
         $.ajax({
             type: 'GET',
             url: 'delete?id=' + id,
             success: function () {
                 alert("Row id " + id + " deleted");
-                countryTable.row('.selected').remove().draw( false );
+                paytermTable.row('.selected').remove().draw( false );
             },
             error: function (errorMsg) {
                 alert("Error: Please select a row first!");
@@ -43,18 +40,15 @@ $(document).ready( function () {
     });
     $('.editBtn').on('click', function(event) {
         event.preventDefault();
-        var id = countryTable.row( '.selected' ).id();
+        var id = paytermTable.row( '.selected' ).id();
         $.ajax({
             type: 'GET',
             url: 'update?id=' + id,
             success: function () {
-                $.get(this.url, function (countries, status) {
-                    $('.countryFormUpdate #countryId').val(countries.countryId);
-                    $('.countryFormUpdate #countryCode').val(countries.countryCode);
-                    $('.countryFormUpdate #countryName').val(countries.countryName);
-                    $('.countryFormUpdate #closed').val(countries.closed);
+                $.get(this.url, function (payterms, status) {
+                    $('.paytermFormUpdate #term').val(payterms.term);
                 });
-                $('.countryFormUpdate #updateModal').modal();
+                $('.paytermFormUpdate #updateModal').modal();
             },
             error: function (errorMsg) {
                 alert("Error: Please select a row first!");
@@ -65,10 +59,7 @@ $(document).ready( function () {
     });
     $('.newBtn').on('click', function(event) {
         event.preventDefault();
-        $('.countryFormCreate #countryId').val('');
-        $('.countryFormCreate #countryCode').val('');
-        $('.countryFormCreate #countryName').val('');
-        $('.countryFormCreate #closed').val('');
-        $('.countryFormCreate #countryModalCreate').modal();
+        $('.paytermFormCreate #term').val('');
+        $('.paytermFormCreate #paytermModalCreate').modal();
     });
 });

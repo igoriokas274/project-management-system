@@ -19,8 +19,8 @@ import java.util.List;
 public class PayTerm extends Auditable {
 
     @Id
-    @Column(name = "term", nullable = false, unique = true, precision = 3, scale = 2)
-    private BigDecimal term;
+    @Column(name = "term", nullable = false, unique = true)
+    private Long term;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "payTerm", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Project> projects;
