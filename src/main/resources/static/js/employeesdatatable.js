@@ -12,8 +12,13 @@ $(document).ready( function () {
         "order": [[ 0, "asc" ]],
         "columns": [
             { "data": "employeeId" },
-            { "data": "firstName" },
-            { "data": "lastName" },
+            { "data": null,
+                "string": "fullName",
+                render: function ( data, type, row ) {
+                    return data.firstName +' '+ data.lastName;
+                }},
+            /*{ "data": "firstName" },
+            { "data": "lastName" },*/
             { "data": "title" },
             { "data": "department" },
             { "data": "mobilePhone" },

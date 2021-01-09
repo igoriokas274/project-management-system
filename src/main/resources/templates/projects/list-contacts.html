@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fragments/layout :: head"></head>
+<title>Team Panel</title>
+<body>
+
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
+
+    <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
+        <div class="container py-4 px-3 mb-1">
+            <h3><span class="material-icons-outlined">assessment</span> Project Panel</h3>
+            <hr>
+            <p>
+                Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
+            </p>
+            <hr>
+        </div>
+        <div class="container py-0 px-3 mb-1">
+            <h5>View</h5>
+            <div><a th:href="@{/projectpanel/projects/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Projects">Projects</a></div>
+            <div><a th:href="@{/projectpanel/quotations/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Quotations">Quotations</a></div>
+            <div><a th:href="@{/projectpanel/customers/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Customers">Customers</a></div>
+            <div><a th:href="@{/projectpanel/contacts/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Contacts">Contacts</a></div>
+            <p></p>
+            <h5>Edit</h5>
+            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Contact">Add New Contact</a>
+            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Contact">Edit Selected Contact</a>
+            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Contact">Delete Selected Contact</a>
+        </div>
+    </div>
+
+    <div class="toolbar-page-content p-5">
+        <div class="row">
+
+        </div>
+        <table class="table table-sm table-striped table-hover" id="contactTable" style="width:100%">
+            <caption>List of Contacts</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Contact Phone</th>
+                    <th scope="col">Contact Email</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Closed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tempContacts : ${contacts}">
+                </tr>
+            </tbody>
+        </table>
+        <div th:replace="fragments/contactformfragments :: contactform_modals"></div>
+    </div>
+
+    <script type ="text/javascript" th:src="@{/js/contactsdatatable.js}" src="../../static/js/contactsdatatable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
