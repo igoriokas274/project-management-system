@@ -7,7 +7,6 @@ import java.util.List;
 public interface IContactService {
 
     List<Contact> findAll();
-    Contact findById(long theId);
     void save(Contact theContact);
     void deleteById(long theId);
 

@@ -35,18 +35,6 @@ public class Contact extends Auditable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "addressLine1")
-    private String addressLine1;
-
-    @Column(name = "addressLine2")
-    private String addressLine2;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "zipCode")
-    private String zipCode;
-
     @Column(name = "contactPhone")
     private String contactPhone;
 
@@ -57,21 +45,12 @@ public class Contact extends Auditable {
     @Column(name = "gender", length = 1)
     private Gender gender;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "birthdate")
-    private Date contactBirthdate;
-
     @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "customerId")
     private Customer customer;
-
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "countryId")
-    private Country country;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "supplierId")

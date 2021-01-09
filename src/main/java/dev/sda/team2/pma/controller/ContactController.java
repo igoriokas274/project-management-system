@@ -1,20 +1,24 @@
 package dev.sda.team2.pma.controller;
 
+import dev.sda.team2.pma.dao.ContactRepository;
 import dev.sda.team2.pma.entity.Contact;
 import dev.sda.team2.pma.service.IContactService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping("/contacts")
+@RequestMapping("/projectpanel/contacts")
 public class ContactController {
 
     private IContactService contactService;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     public ContactController(IContactService theContactService) {
         contactService = theContactService;
@@ -23,28 +27,36 @@ public class ContactController {
     @GetMapping("/list")
     public String listContacts(Model theModel) {
 
+        // List contacts
         List<Contact> theContacts = contactService.findAll();
         theModel.addAttribute("contacts", theContacts);
 
-        return "contacts/list-contacts";
-
-    }
-
-    @GetMapping("/addContact")
-    public String addNewUser(Model theModel) {
-
+        // add new contact
         Contact theContact = new Contact();
         theModel.addAttribute("contact", theContact);
-        return "contacts/contact-form";
 
+        return "projects/list-contacts";
     }
 
     @PostMapping("/save")
     public String saveContact(Contact contact) {
 
         contactService.save(contact);
-        return "redirect:/contacts/list";
+        return "redirect:/projectpanel/contacts/list";
+    }
 
+    @GetMapping("/update")
+    @ResponseBody
+    public Optional<Contact> editContact(@RequestParam("id") long theId) {
+
+        return contactRepository.findById(theId);
+    }
+
+    @GetMapping("/delete")
+    public String deleteContact(@RequestParam("id") long theId) {
+
+        contactService.deleteById(theId);
+        return "redirect:/projectpanel/contacts/list";
     }
 
 }
