@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+          rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+
+    <!-- DataTables -->
+    <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
+    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type ="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
+</head>
+
+<!-- Vertical navbar -->
+<div th:fragment="vertical_navbar" class="vertical-nav bg-white">
+    <div class="py-4 px-3 mb-4 bg-light">
+        <div class="media d-flex align-items-center">
+            <span style="color: green" class="material-icons-outlined md-48">eco</span>
+        </div>
+    </div>
+
+    <ul class="nav flex-column bg-white mb-0 align-items-center">
+        <li class="nav-item">
+            <a th:href="@{/}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+                <i class="material-icons-outlined md-36">dashboard</i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/contacts/list}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Contacts">
+                <i class="material-icons-outlined md-36">people</i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="nav flex-column bg-white mb-0 bottom align-items-center">
+        <li class="nav-item">
+            <a href="#" class="nav-link disabled" data-bs-toggle="tooltip" data-bs-placement="right" title="Get help">
+                <i class="material-icons-outlined md-36">help_outline</i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/adminpanel}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Admin Panel">
+                <i class="material-icons-outlined md-36">admin_panel_settings</i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Settings">
+                <i class="material-icons-outlined md-36">settings</i>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="DropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="material-icons-outlined md-36">account_circle</i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="DropdownMenuLink">
+                <li><a class="dropdown-item" href="#">View Profile</a></li>
+                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- End vertical navbar -->
+
+</html>
