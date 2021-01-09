@@ -48,7 +48,7 @@ $(document).ready( function () {
             url: 'update?id=' + id,
             success: function () {
                 $.get(this.url, function (departments, status) {
-                    $('.departmentFormUpdate #departmentId').val(departments.departmentId):
+                    $('.departmentFormUpdate #departmentId').val(departments.departmentId);
                     $('.departmentFormUpdate #departmentName').val(departments.departmentName);
                     $('.departmentFormUpdate #closed').val(departments.closed);
                 });
