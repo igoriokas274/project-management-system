@@ -29,8 +29,8 @@ public class CurrencyController {
         List<Currency> theCurrencies = currencyService.findAll();
         theModel.addAttribute("currencies", theCurrencies);
 
-        Object currency = new Currency();
-        theModel.addAttribute("currencies", theCurrencies);
+        Object theCurrency = new Currency();
+        theModel.addAttribute("currency", theCurrency);
 
         return "settings/list-currencies";
     }
