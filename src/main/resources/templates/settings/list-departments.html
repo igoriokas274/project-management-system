@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fragments/layout :: head"></head>
+<title>Settings</title>
+<body>
+
+    <div th:replace="fragments/layout :: vertical_navbar"></div>
+
+    <div class="container border-right" style="width: 20rem; height: 100vh; left: 5rem; position: fixed;">
+        <div class="container py-4 px-3 mb-1">
+            <h3><span class="material-icons-outlined">settings</span> Settings</h3>
+            <hr>
+            <p>
+                Welcome Back <span sec:authentication="principal.username" style="font-weight: bold"></span>!
+            </p>
+            <hr>
+        </div>
+        <div class="container py-0 px-3 mb-1">
+            <h5>View</h5>
+            <div><a th:href="@{/settings/countries/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Countries">Countries</a></div>
+            <div><a th:href="@{/settings/currencies/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Currencies">Currencies</a></div>
+            <div><a th:href="@{/settings/departments/list}" class="btn" data-toggle="tooltip" data-placement="top" title="List of Departments">Departments</a></div>
+            <div><a th:href="@{/settings/payterms/list}" class="btn" data-toggle="tooltip" data-placement="top" title="Payment Terms List">Payment Terms</a></div>
+            <div><a th:href="@{/settings/projectstatuses/list}" class="btn" data-toggle="tooltip" data-placement="top" title="Project Statuses">Project Statuses</a></div>
+            <div><a th:href="@{/settings/projecttypes/list}" class="btn" data-toggle="tooltip" data-placement="top" title="Project Types">Project Types</a></div>
+            <div><a th:href="@{/settings/quotationstatuses/list}" class="btn" data-toggle="tooltip" data-placement="top" title="Quotation Statuses">Quotation Statuses</a></div>
+            <div><a th:href="@{/settings/stocktypes/list}" class="btn" data-toggle="tooltip" data-placement="top" title="Stock Types">Stock Types</a></div>
+            <div><a th:href="@{/settings/vatvalues/list}" class="btn" data-toggle="tooltip" data-placement="top" title="VAT Values">VAT Values</a></div>
+            <p></p>
+            <h5>Edit</h5>
+            <a class="btn newBtn" data-toggle="tooltip" data-placement="top" title="Add New Department">Add New Department</a>
+            <a class="btn editBtn" data-toggle="tooltip" data-placement="top" title="Edit Selected Department">Edit Selected Department</a>
+            <a type="button" class="btn" id="deleteBtn" data-toggle="tooltip" data-placement="top" title="Delete Selected Department">Delete Selected Department</a>
+        </div>
+    </div>
+
+    <div class="toolbar-page-content p-5">
+        <div class="row">
+
+        </div>
+        <table class="table table-sm table-striped table-hover" id="departmentTable" style="width:100%">
+            <caption>List of Departments</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Department Name</th>
+                    <th scope="col">Closed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tempDepartments : ${departments}">
+                </tr>
+            </tbody>
+        </table>
+        <div th:replace="fragments/departmentformfragments :: departmentform_modals"></div>
+    </div>
+
+    <script type ="text/javascript" th:src="@{/js/departmentdatatable.js}" src="../../static/js/departmentdatatable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
