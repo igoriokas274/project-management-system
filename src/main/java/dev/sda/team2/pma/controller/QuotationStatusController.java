@@ -27,19 +27,19 @@ public class QuotationStatusController {
     public String listQuotationStatuses(Model theModel) {
 
         List<QuotationStatus> theQuotationStatuses = quotationStatusService.findAll();
-        theModel.addAttribute("quotation statuses", theQuotationStatuses);
+        theModel.addAttribute("quotationStatuses", theQuotationStatuses);
 
-        Object department = new QuotationStatus();
-        theModel.addAttribute("quotation status", theQuotationStatuses);
+        Object theQuotationStatus = new QuotationStatus();
+        theModel.addAttribute("quotationStatus", theQuotationStatus);
 
-        return "settings/list-departments";
+        return "settings/list-quotationstatuses";
     }
 
     @PostMapping("/save")
     public String saveQuotationStatus (QuotationStatus theQuotationStatus) {
 
         quotationStatusService.save(theQuotationStatus);
-        return "redirect:/settings/qoutationstatuses/list";
+        return "redirect:/settings/quotationstatuses/list";
     }
 
     @GetMapping("/update")

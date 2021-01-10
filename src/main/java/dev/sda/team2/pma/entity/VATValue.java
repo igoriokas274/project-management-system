@@ -26,8 +26,8 @@ public class VATValue extends Auditable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "vatValue", nullable = false, precision = 3, scale = 2)
-    private BigDecimal vatValue;
+    @Column(name = "vatValue", nullable = false)
+    private Long vatValue;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "vatValue", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Item> items;
