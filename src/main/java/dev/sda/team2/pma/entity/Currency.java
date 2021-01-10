@@ -22,7 +22,7 @@ public class Currency extends Auditable {
     @Column(name = "currencyId", nullable = false)
     private Long currencyId;
 
-    @Column(name = "currencyCode", nullable = false, unique = true, length =3)
+    @Column(name = "currencyCode", nullable = false, unique = true, length =3) // ISO 4217 code format
     private String currencyCode;
 
     @Column(name = "currencyName", nullable = false)

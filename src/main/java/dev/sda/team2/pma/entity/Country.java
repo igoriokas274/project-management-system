@@ -22,7 +22,7 @@ public class Country extends Auditable {
     @Column(name = "countryId", nullable = false)
     private Long countryId;
 
-    @Column(name = "countryCode", nullable = false, unique = true, length = 3)
+    @Column(name = "countryCode", nullable = false, unique = true, length = 2) // ISO 3166 ALPHA-2 code format
     private String countryCode;
 
     @Column(name = "countryName", nullable = false)

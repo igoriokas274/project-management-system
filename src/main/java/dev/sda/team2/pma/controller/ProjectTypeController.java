@@ -28,10 +28,10 @@ public class ProjectTypeController {
     public String listProjectTypes(Model theModel) {
 
         List<ProjectType> theProjectTypes = projectTypeService.findAll();
-        theModel.addAttribute("project types", theProjectTypes);
+        theModel.addAttribute("projectTypes", theProjectTypes);
 
-        Object projectType = new ProjectType();
-        theModel.addAttribute("project type", theProjectTypes);
+        Object theProjectType = new ProjectType();
+        theModel.addAttribute("projectType", theProjectType);
 
         return "settings/list-projecttypes";
     }
@@ -40,7 +40,7 @@ public class ProjectTypeController {
     public String saveProjectType(ProjectType theProjectType) {
 
         projectTypeService.save(theProjectType);
-        return "redirect:/settings/projectstatuses/list";
+        return "redirect:/settings/projecttypes/list";
     }
 
     @GetMapping("/update")
@@ -54,6 +54,6 @@ public class ProjectTypeController {
     public String deleteProjectType(@RequestParam("id") long theId) {
 
         projectTypeService.deleteById(theId);
-        return "redirect:/settings/projectstatuses/list";
+        return "redirect:/settings/projecttypes/list";
     }
 }
