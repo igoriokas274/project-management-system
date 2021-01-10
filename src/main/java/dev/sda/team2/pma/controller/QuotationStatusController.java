@@ -32,7 +32,7 @@ public class QuotationStatusController {
         Object department = new QuotationStatus();
         theModel.addAttribute("quotation status", theQuotationStatuses);
 
-        return "settings/list-departments";
+        return "settings/list-qoutationstatuses";
     }
 
     @PostMapping("/save")
