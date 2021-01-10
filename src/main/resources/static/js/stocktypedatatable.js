@@ -12,11 +12,11 @@ $(document).ready( function () {
         "order": [[ 0, "asc" ]],
         "columns": [
             { "data": "stockId" },
-            { "data": "stockTypeName" },
+            { "data": "stockName" },
             { "data": "closed" }
         ]
     });
-    $('#stockTypeTable tbody').on( 'click', 'tr', function () {
+    $('#stockTypeTable body').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -47,9 +47,9 @@ $(document).ready( function () {
             type: 'GET',
             url: 'update?id=' + id,
             success: function () {
-                $.get(this.url, function (suppliers, status) {
+                $.get(this.url, function (stocktypes, status) {
                     $('.stockTypeFormUpdate #stockId').val(stocktypes.stockId);
-                    $('.stockTypeFormUpdate #supplierName').val(stocktypes.stockTypeName);
+                    $('.stockTypeFormUpdate #stockName').val(stocktypes.stockName);
                     $('.stockTypeFormUpdate #closed').val(stocktypes.closed);
                     $('.stockTypeFormUpdate #addressLine1').val(stocktypes.addressLine1);
                     $('.stockTypeFormUpdate #addressLine2').val(stocktypes.addressLine2);
@@ -68,7 +68,7 @@ $(document).ready( function () {
     });
     $('.newBtn').on('click', function(event) {
         event.preventDefault();
-        $('.stockTypeFormCreate #stockTypeName').val('');
+        $('.stockTypeFormCreate #stockName').val('');
         $('.stockTypeFormCreate #closed').val('');
         $('.stockTypeFormCreate #addressLine1').val('');
         $('.stockTypeFormCreate #addressLine2').val('');
