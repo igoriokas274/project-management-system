@@ -27,10 +27,10 @@ public class ProjectStatusController {
     public String listProjectStatuses(Model theModel) {
 
         List<ProjectStatus> theProjectStatuses = projectStatusService.findAll();
-        theModel.addAttribute("project statuses", theProjectStatuses);
+        theModel.addAttribute("projectStatuses", theProjectStatuses);
 
-        Object projectStatus = new ProjectStatus();
-        theModel.addAttribute("project status", theProjectStatuses);
+        Object theProjectStatus = new ProjectStatus();
+        theModel.addAttribute("projectStatus", theProjectStatus);
 
         return "settings/list-projectstatuses";
     }
