@@ -28,10 +28,10 @@ public class VATValueController {
     public String listVATValues (Model theModel) {
 
         List<VATValue> theVATValues = vatValueService.findAll();
-        theModel.addAttribute("VAT values", theVATValues);
+        theModel.addAttribute("vatValues", theVATValues);
 
         VATValue theVATValue = new VATValue();
-        theModel.addAttribute("VAT value", theVATValue);
+        theModel.addAttribute("vatValue", theVATValue);
 
         return "settings/list-vatvalues";
     }
