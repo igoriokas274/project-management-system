@@ -46,7 +46,7 @@ $(document).ready( function () {
             type: 'GET',
             url: 'update?id=' + id,
             success: function () {
-                $.get(this.url, function (departments, status) {
+                $.get(this.url, function (projectstatuses, status) {
                     $('.projectStatusFormUpdate #projectStatusId').val(projectstatuses.projectStatusId);
                     $('.projectStatusFormUpdate #projectStatusName').val(projectstatuses.projectStatusName);
                 });
