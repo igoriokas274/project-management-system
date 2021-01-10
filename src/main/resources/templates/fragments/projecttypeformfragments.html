@@ -6,15 +6,15 @@
 <head >
 </head>
 <body>
-    <div th:fragment="currencyform_modals">
+    <div th:fragment="projecttypeform_modals">
         <!--#Modal form for user update-->
-        <div class="currencyFormUpdate">
+        <div class="projectTypeFormUpdate">
             <form class="form-signin" th:action="@{save}" method="post">
                 <div class="modal fade" data-backdrop="static" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="updateModalLabel">Update Currency</h5>
+                                <h5 class="modal-title" id="updateModalLabel">Update Project Type</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -22,25 +22,14 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <h6 style="font-weight: bold">Main Information</h6>
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" id="projectTypeId" name="projectTypeId" value="" />
+                                    </div>
                                     <div class="form-row">
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" id="currencyId" name="currencyId" value="" />
-                                        </div>
-                                        <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="currencyCode" name="currencyCode" placeholder="Currency Code">
-                                        </div>
-                                        <div class="col-md-8 mb-3">
-                                            <input type="text" class="form-control" id="currencyName" name="currencyName" placeholder="Currency Name">
-                                        </div>
-                                        <div class="col-md-2 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed">
-                                                <option selected disabled value="">Is Closed...</option>
-                                                <option value="true">Closed</option>
-                                                <option value="false">Active</option>
-                                            </select>
+                                        <div class="col-md-12 mb-3">
+                                            <input type="text" class="form-control" id="projectTypeName" name="projectTypeName" placeholder="Project type">
                                         </div>
                                     </div>
-                                    <a href="https://www.iban.com/currency-codes"><small id="emailHelp" class="form-text text-muted">ISO 4217 code format</small></a>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -58,13 +47,13 @@
         </div>
         <!--End update form-->
         <!--#Modal for user create-->
-        <div class="currencyFormCreate">
+        <div class="projectTypeFormCreate">
             <form class="form-signin" th:action="@{save}"  method="post">
-                <div class="modal fade" data-backdrop="static" id="currencyModalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabelCreate" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                <div class="modal fade" data-backdrop="static" id="projectTypeModalCreate" tabindex="-1" role="dialog" aria-labelledby="modalLabelCreate" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabelCreate">Create Currency</h5>
+                                <h5 class="modal-title" id="modalLabelCreate">Create Project Type</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -73,21 +62,10 @@
                                 <div class="container-fluid">
                                     <h6 style="font-weight: bold">Main Information</h6>
                                     <div class="form-row">
-                                        <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="currencyCode" name="currencyCode" placeholder="Currency Code">
-                                        </div>
-                                        <div class="col-md-8 mb-3">
-                                            <input type="text" class="form-control" id="currencyName" name="currencyName" placeholder="Currency Name">
-                                        </div>
-                                        <div class="col-md-2 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed">
-                                                <option selected disabled value="">Is Closed...</option>
-                                                <option value="true">Closed</option>
-                                                <option value="false">Active</option>
-                                            </select>
+                                        <div class="col-md-12 mb-3">
+                                            <input type="text" class="form-control" id="projectTypeName" name="projectTypeName" placeholder="Project type">
                                         </div>
                                     </div>
-                                    <a href="https://www.iban.com/currency-codes"><small id="emailHelp" class="form-text text-muted">ISO 4217 code format</small></a>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -106,6 +84,6 @@
         <!--End form-->
     </div>
 </body>
-<script type ="text/javascript" th:src="@{/js/currencydatatable.js}" src="../../static/js/currencydatatable.js"></script>
+<script type ="text/javascript" th:src="@{/js/projecttypedatatable.js}" src="../../static/js/projecttypedatatable.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </html>
