@@ -28,10 +28,10 @@ public class StockTypeController {
     public String listStockTypes(Model theModel) {
 
         List<StockType> theStockTypes = stockTypeService.findAll();
-        theModel.addAttribute("stock types", theStockTypes);
+        theModel.addAttribute("stockTypes", theStockTypes);
 
         StockType theStockType = new StockType();
-        theModel.addAttribute("stock types", theStockType);
+        theModel.addAttribute("stockType", theStockType);
 
         return "settings/list-stocktypes";
     }
