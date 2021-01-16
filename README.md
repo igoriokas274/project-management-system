@@ -19,7 +19,7 @@
 5. Any IDE (IntelliJ, Eclipse or Netbeans)
 
 ## Getting started
-#### Updated 2021-01-11
+#### Updated 2021-01-17
 1. Clone the source code of this project to your system via terminal or via your IDE
 2. Startup earlier preinstalled MySQL Workbench tool:
    1. Create new connection with new credentials (if it is necessary)
@@ -39,3 +39,11 @@
     1. Enter _localhost:8080_ in address bar. You will see login page
     2. Enter default initialized credentials - Username: _admin_ / password: _admin_ or Username: _user_ / password: _user_
 5. That's it! You are at "Home"! :))) Now you can create new Users directly from the Admin Panel inside your launched application.
+
+#### JavaMelody Framework enabled
+1. Default port: 8081
+2. default path: /actuator/monitoring
+   
+Note:
+- for ADMIN role only
+- User Guide: https://github.com/javamelody/javamelody/wiki/UserGuide
