@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.StockTypeRepository;
 import dev.sda.team2.pma.entity.StockType;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +38,13 @@ public class StockTypeImpl implements IStockTypeService {
     }
 
     @Override
+    @Audit(action = "Stock type saved")
     public void save(StockType theStockType) {
         stockTypeRepository.save(theStockType);
     }
 
     @Override
+    @Audit(action = "Stock type deleted")
     public void deleteById(long theId) {
         stockTypeRepository.deleteById(theId);
     }

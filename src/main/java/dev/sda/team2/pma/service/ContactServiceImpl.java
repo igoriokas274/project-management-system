@@ -2,6 +2,8 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.ContactRepository;
 import dev.sda.team2.pma.entity.Contact;
+import org.audit4j.core.annotation.Audit;
+import org.audit4j.core.annotation.AuditField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +26,12 @@ public class ContactServiceImpl implements IContactService {
     }
 
     @Override
-    public void save(Contact theContact) {
-
-        contactRepository.save(theContact);
+    @Audit (action = "Contact saved")
+    public void save(Contact theContact) { contactRepository.save(theContact);
     }
 
     @Override
-    public void deleteById(long theId) {
-
-        contactRepository.deleteById(theId);
+    @Audit(action = "Contact deleted")
+    public void deleteById(long theId) { contactRepository.deleteById(theId);
     }
 }
