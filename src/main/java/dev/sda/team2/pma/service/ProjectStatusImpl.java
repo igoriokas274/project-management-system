@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.ProjectStatusRepository;
 import dev.sda.team2.pma.entity.ProjectStatus;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,13 @@ public class ProjectStatusImpl implements IProjectStatusService {
     }
 
     @Override
+    @Audit(action = "Project status saved")
     public void save(ProjectStatus theProjectStatus){
         projectStatusRepository.save(theProjectStatus);
     }
 
     @Override
+    @Audit(action = "Project status deleted")
     public void deleteById(long theId) {
         projectStatusRepository.deleteById(theId);
     }
