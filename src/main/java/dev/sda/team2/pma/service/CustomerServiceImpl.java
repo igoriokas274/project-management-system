@@ -24,13 +24,13 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    @Audit(action = "Costumer saved")
+    @Audit(action = "Customer saved")
     public void save(Customer theCustomer) {
         customerRepository.save(theCustomer);
     }
 
     @Override
-    @Audit(action = "Costumer deleted")
+    @Audit(action = "Customer deleted")
     public void deleteById(long theId) {
         customerRepository.deleteById(theId);
     }

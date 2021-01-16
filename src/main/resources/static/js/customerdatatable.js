@@ -13,10 +13,10 @@ $(document).ready( function () {
         "columns": [
             { "data": "customerId" },
             { "data": "customerName" },
-            { "data": "createdBy" },
+            /*{ "data": "createdBy" },
             { "data": "createdDate" },
             { "data": "lastModifiedBy" },
-            { "data": "lastModifiedDate" },
+            { "data": "lastModifiedDate" },*/
             { "data": "closed" }
         ]
     });
