@@ -13,10 +13,10 @@ $(document).ready( function () {
         "columns": [
             { "data": "supplierId" },
             { "data": "supplierName" },
-            { "data": "createdBy" },
+            /*{ "data": "createdBy" },
             { "data": "createdDate" },
             { "data": "lastModifiedBy" },
-            { "data": "lastModifiedDate" },
+            { "data": "lastModifiedDate" },*/
             { "data": "closed" }
         ]
     });

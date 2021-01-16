@@ -21,8 +21,8 @@
 		<mysqldump.exec>/usr/bin/mysqldump</mysqldump.exec>
 		<mysqldump.workdir>db-snapshots</mysqldump.workdir>
 		<mysqldump.db>managerpro</mysqldump.db>
-		<mysqldump.user>root</mysqldump.user> <!-- add your own username -->
-		<mysqldump.password>Ernestina1!</mysqldump.password> <!-- add your own password for DB -->
+		<mysqldump.user>manager</mysqldump.user> <!-- add your own username -->
+		<mysqldump.password>manager</mysqldump.password> <!-- add your own password for DB -->
 		<mysqldump.host>localhost</mysqldump.host>
 		<mysqldump.output>db-snapshot-${project.version}</mysqldump.output>
 		<audit4j.version>2.5.0</audit4j.version>
