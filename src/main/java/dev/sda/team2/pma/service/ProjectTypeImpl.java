@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.ProjectTypeRepository;
 import dev.sda.team2.pma.entity.ProjectType;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,13 @@ public class ProjectTypeImpl implements IProjectTypeService {
     }
 
     @Override
+    @Audit(action = "Project type saved")
     public void save(ProjectType theProjectType){
         projectTypeRepository.save(theProjectType);
     }
 
     @Override
+    @Audit(action = "Project type deleted")
     public void deleteById(long theId) {
         projectTypeRepository.deleteById(theId);
     }

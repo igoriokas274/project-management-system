@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.QuotationRepository;
 import dev.sda.team2.pma.entity.Quotation;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,14 @@ public class QuotationServiceImpl implements IQuotationService{
     }
 
     @Override
+    @Audit(action = "Quotation saved")
     public void save(Quotation theQuotation) {
 
         quotationRepository.save(theQuotation);
     }
 
     @Override
+    @Audit(action = "Quotation deleted")
     public void deleteById(long theId) {
 
         quotationRepository.deleteById(theId);

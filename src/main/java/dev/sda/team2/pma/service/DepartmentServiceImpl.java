@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.DepartmentRepository;
 import dev.sda.team2.pma.entity.Department;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +35,14 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
+    @Audit(action = "Department saved")
     public void save(Department theDepartment) {
         departmentRepository.save(theDepartment);
 
     }
 
     @Override
+    @Audit(action = "Department deleted")
     public void deleteById(long theId) {
 
     }

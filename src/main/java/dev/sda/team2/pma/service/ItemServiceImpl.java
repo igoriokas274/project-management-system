@@ -2,6 +2,7 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.ItemRepository;
 import dev.sda.team2.pma.entity.Item;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,13 @@ public class ItemServiceImpl implements IItemService{
     }
 
     @Override
+    @Audit(action = "Item saved")
     public void save(Item theItem) {
         itemRepository.save(theItem);
     }
 
     @Override
+    @Audit(action = "Item deleted")
     public void deleteById(long theId) {
         itemRepository.deleteById(theId);
     }
