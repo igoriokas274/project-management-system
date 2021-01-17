@@ -241,7 +241,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'admin','2021-01-10 16:18:08','admin','2021-01-10 16:18:08','','','','','','','1977-11-15','2018-02-01','John','M','',0,'Doe','Fidgerld','','','','CEO','j.f.doe@mail.com','',NULL,NULL),(2,'admin','2021-01-10 16:19:03','admin','2021-01-10 16:19:03','','','','','','','1983-08-31','2020-05-04','Henry','M','',0,'Ford','','','','','Manager','h.ford@mail.com','',NULL,NULL),(3,'admin','2021-01-10 16:20:29','admin','2021-01-10 16:20:29','','','','','','','1980-04-16','2019-02-06','Paul','M','',0,'Collins','','','','','Accountant','p.collins@mail.com','',NULL,NULL),(4,'admin','2021-01-10 16:21:33','admin','2021-01-10 16:23:01','','','','','','','1996-01-31','2019-03-01','Helen','F','',0,'Doe','','','','','Administrator','helen.doe@mail.com','',NULL,NULL),(5,'admin','2021-01-10 16:22:50','admin','2021-01-10 16:23:13','','','','','','','1994-02-15','2020-09-09','Eve','F','',0,'Brown','','','','','Manager','eve.brown@mail.com','',NULL,NULL),(6,'admin','2021-01-10 16:24:42','admin','2021-01-10 16:24:42','','','','','','','1998-10-26','2020-12-07','Felix','M','',0,'Fox','','','','','HR','f.fox@mail.com','',NULL,NULL);
+INSERT INTO `employee` VALUES (1,'admin','2021-01-10 16:18:08','admin','2021-01-10 16:18:08','','','','','','','1977-11-15','2018-02-01','John','M','',0,'Doe','Fitzgerald','','','','CEO','j.f.doe@mail.com','',NULL,NULL),(2,'admin','2021-01-10 16:19:03','admin','2021-01-10 16:19:03','','','','','','','1983-08-31','2020-05-04','Henry','M','',0,'Ford','','','','','Manager','h.ford@mail.com','',NULL,NULL),(3,'admin','2021-01-10 16:20:29','admin','2021-01-10 16:20:29','','','','','','','1980-04-16','2019-02-06','Paul','M','',0,'Collins','','','','','Accountant','p.collins@mail.com','',NULL,NULL),(4,'admin','2021-01-10 16:21:33','admin','2021-01-10 16:23:01','','','','','','','1996-01-31','2019-03-01','Helen','F','',0,'Doe','','','','','Administrator','helen.doe@mail.com','',NULL,NULL),(5,'admin','2021-01-10 16:22:50','admin','2021-01-10 16:23:13','','','','','','','1994-02-15','2020-09-09','Eve','F','',0,'Brown','','','','','Manager','eve.brown@mail.com','',NULL,NULL),(6,'admin','2021-01-10 16:24:42','admin','2021-01-10 16:24:42','','','','','','','1998-10-26','2020-12-07','Felix','M','',0,'Fox','','','','','HR','f.fox@mail.com','',NULL,NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,7 +651,7 @@ CREATE TABLE `user_accounts` (
   UNIQUE KEY `UK_lxwlgwuy2yrbye2vgs9w9x7mr` (`username`),
   KEY `FKsalhmu557mx3otyqhkqc7rcsp` (`employee_id`),
   CONSTRAINT `FKsalhmu557mx3otyqhkqc7rcsp` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,7 +660,7 @@ CREATE TABLE `user_accounts` (
 
 LOCK TABLES `user_accounts` WRITE;
 /*!40000 ALTER TABLE `user_accounts` DISABLE KEYS */;
-INSERT INTO `user_accounts` VALUES (4,'admin','2021-01-11 15:29:39','admin','2021-01-11 15:29:39',1,'$2a$10$EtBZb0Meft2cp9odhnMRPuYR9B4uv9RBrCfm.4luztYnuKkhnXMMa','ADMIN','admin',NULL),(5,'admin','2021-01-11 15:29:55','admin','2021-01-11 15:29:55',1,'$2a$10$pkX6ahfN8ezMCDTtTPP94uzRjHX7g5qiZQQNucwGmNuEBPDcud.dG','MANAGER','user',NULL);
+INSERT INTO `user_accounts` VALUES (1,'admin','2021-01-11 15:29:39','admin','2021-01-11 15:29:39',1,'$2a$10$EtBZb0Meft2cp9odhnMRPuYR9B4uv9RBrCfm.4luztYnuKkhnXMMa','ADMIN','admin',NULL),(2,'admin','2021-01-11 15:29:55','admin','2021-01-11 15:29:55',1,'$2a$10$pkX6ahfN8ezMCDTtTPP94uzRjHX7g5qiZQQNucwGmNuEBPDcud.dG','MANAGER','user',NULL);
 /*!40000 ALTER TABLE `user_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -702,4 +702,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-17 13:26:55
+-- Dump completed on 2021-01-17 20:19:16
