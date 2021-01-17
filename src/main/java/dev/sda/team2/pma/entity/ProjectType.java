@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +26,7 @@ public class ProjectType extends Auditable {
     @Column(name = "projectTypeName")
     private String projectTypeName;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "projectType", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Project> projects;
 

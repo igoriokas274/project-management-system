@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,9 +32,11 @@ public class Currency extends Auditable {
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
     private boolean isClosed;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "currency", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Customer> customers;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "currency", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Supplier> suppliers;
 

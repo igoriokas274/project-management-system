@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.ItemType;
 import lombok.*;
@@ -67,6 +68,7 @@ public class Item extends Auditable {
     @JoinColumn(name = "vatId")
     private VATValue vatValue;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ItemToQuotation> itemToQuotations;
 

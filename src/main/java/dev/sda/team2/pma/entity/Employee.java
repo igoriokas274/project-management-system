@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.Gender;
 import lombok.*;
@@ -103,6 +104,7 @@ public class Employee extends Auditable {
     @JoinColumn(name = "departmentId")
     private Department department;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "employee", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private UserAccount userAccount;
 

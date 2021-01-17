@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.Gender;
 import lombok.*;
@@ -48,10 +49,12 @@ public class Contact extends Auditable {
     @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "customerId")
     private Customer customer;
 
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "supplierId")
     private Supplier supplier;

@@ -5,6 +5,7 @@ import dev.sda.team2.pma.entity.Department;
 import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
+    @Transactional
     @Audit(action = "Department saved")
     public void save(Department theDepartment) {
         departmentRepository.save(theDepartment);
@@ -42,6 +44,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
     }
 
     @Override
+    @Transactional
     @Audit(action = "Department deleted")
     public void deleteById(long theId) {
 

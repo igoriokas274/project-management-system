@@ -5,6 +5,7 @@ import dev.sda.team2.pma.entity.Currency;
 import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,12 +38,14 @@ public class CurrencyServiceImpl implements ICurrencyService{
     }
 
     @Override
+    @Transactional
     @Audit(action = "Currency saved")
     public void save(Currency theCurrency) {
         currencyRepository.save(theCurrency);
     }
 
     @Override
+    @Transactional
     @Audit(action = "Currency deleted")
     public void deleteById(long theId) {
         currencyRepository.deleteById(theId);
