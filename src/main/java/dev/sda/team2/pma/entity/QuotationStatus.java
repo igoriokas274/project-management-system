@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +26,7 @@ public class QuotationStatus extends Auditable {
     @Column(name = "quotationStatusName")
     private String quotationStatusName;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "quotationStatus", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Quotation> quotations;
 

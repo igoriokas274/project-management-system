@@ -5,6 +5,7 @@ import dev.sda.team2.pma.entity.Supplier;
 import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,12 +25,14 @@ public class SupplierServiceImpl implements ISupplierService {
     }
 
     @Override
+    @Transactional
     @Audit(action = "Supplier saved")
     public void save(Supplier theSupplier) {
         supplierRepository.save(theSupplier);
     }
 
     @Override
+    @Transactional
     @Audit(action = "Supplier deleted")
     public void deleteById(long theId) {
         supplierRepository.deleteById(theId);
