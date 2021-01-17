@@ -34,12 +34,15 @@ public class Audit4JConfiguration {
     @Bean
     public Layout layout() {
 
-        CustomizableLayout layout = new CustomizableLayout();
+        // Custom event message layout
+        // Example of message:
         // layout.setTemplate("${eventDate}|${uuid}|actor=${actor}|${action}|origin=${origin} => ${foreach fields field}${field.name} ${field.type}:${field.value}, ${end}");
-        layout.setTemplate("${eventDate}|${uuid}|${actor}|${action}|${origin} => ${foreach fields field}${field.name} ${field.type}:${field.value}, ${end}");
+        CustomizableLayout layout = new CustomizableLayout();
+        layout.setTemplate("${eventDate}|${uuid}|${actor}|${action}|${origin} => ${foreach fields field}| ${field.name} ${field.type}:${field.value} ${end}");
         return layout;
 
-/*        return new SimpleLayout();*/
+        // default event message layout
+        // return new SimpleLayout();
     }
 
     @Bean
