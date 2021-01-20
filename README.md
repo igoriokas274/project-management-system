@@ -19,7 +19,7 @@
 5. Any IDE (IntelliJ, Eclipse or Netbeans)
 
 ## Getting started
-#### Updated 2021-01-17
+#### Updated 2021-01-20
 1. Clone the source code of this project to your system via terminal or via your IDE
 2. Startup earlier preinstalled MySQL Workbench tool:
    1. Create new connection with new credentials (if it is necessary)
@@ -36,14 +36,21 @@
     9. App initialize SQL Data after every restart. If you want to prevent this, open _src/main/resources/application.properties_ file again and change _spring.jpa.hibernate.ddl-auto = create_ to _update_ and _spring.datasource.initialization-mode=always_ to _never_
     10. Run the app again.
 4. Go to your browser:
-    1. Enter _localhost:8080_ in address bar. You will see login page
+    1. Enter _https://localhost:8443_ in address bar. You will see login page
     2. Enter default initialized credentials - Username: _admin_ / password: _admin_ or Username: _user_ / password: _user_
 5. That's it! You are at "Home"! :))) Now you can create new Users directly from the Admin Panel inside your launched application.
 
-#### JavaMelody Framework enabled
-1. Default port: 8081
-2. default path: /actuator/monitoring
+### HTTPS using Self-Signed Certificate enabled
+- PKCS12 keystore certificate generated and added to _src/main/resources/keystore_ folder;
+- The SSL related properties enabled in _application.properties_;
+- Default port for secure connection: _8443_.
+
+### JavaMelody Framework enabled
+1. Default port: _8445_;
+2. Default path: _/actuator/monitoring_.
    
-Note:
-- for ADMIN role only
+**Note:**
+- JavaMelody interface works for users with ADMIN role only;
+- Uses secure connection via HTTPS;
 - User Guide: https://github.com/javamelody/javamelody/wiki/UserGuide
+

@@ -27,7 +27,7 @@ public class Audit4JConfiguration {
 
     private Map<String, String> getProperties() {
         Map<String, String> props = new HashMap<>();
-        props.put("log.file.location", ".");
+        props.put("log.file.location", "logs");
         return props;
     }
 
