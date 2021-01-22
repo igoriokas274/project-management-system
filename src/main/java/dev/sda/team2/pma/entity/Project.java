@@ -32,12 +32,12 @@ public class Project extends Auditable {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "projectStartDate")
+    @Column(name = "projectStartDate", nullable = false)
     private Date projectStartDate;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "projectEndDate")
+    @Column(name = "projectEndDate", nullable = false)
     private Date projectEndDate;
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")

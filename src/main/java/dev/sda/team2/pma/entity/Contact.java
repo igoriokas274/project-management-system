@@ -21,22 +21,23 @@ public class Contact extends Auditable {
     @Column(name = "contactId", nullable = false, unique = true)
     private Long contactId;
 
+
     @Column(name = "firstName", nullable = false)
     private String firstName;
 
     @Column(name = "middleName")
     private String middleName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "contactPhone")
+    @Column(name = "contactPhone", nullable = false)
     private String contactPhone;
 
-    @Column(name = "contactEmail")
+    @Column(name = "contactEmail", nullable = false)
     private String contactEmail;
 
     @Enumerated(EnumType.STRING)

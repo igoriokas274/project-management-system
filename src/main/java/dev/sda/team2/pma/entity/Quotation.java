@@ -25,7 +25,7 @@ public class Quotation extends Auditable {
     @Column(name = "quotationId", nullable = false, unique = true)
     private Long quotationId;
 
-    @Column(name = "quotationTitle")
+    @Column(name = "quotationTitle", nullable = false)
     private String quotationTitle;
 
     @Column(name = "confirmed", nullable = false, columnDefinition = "int default 0")

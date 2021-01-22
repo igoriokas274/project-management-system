@@ -23,7 +23,7 @@ public class ProjectStatus extends Auditable {
     @Column(name = "projectStatusId", nullable = false, unique = true)
     private Long projectStatusId;
 
-    @Column(name = "projectStatusName")
+    @Column(name = "projectStatusName", nullable = false)
     private String projectStatusName;
 
     @JsonIgnore
