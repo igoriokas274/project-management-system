@@ -33,34 +33,34 @@ public class Employee extends Auditable {
     @Column(name = "middleName")
     private String middleName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "addressLine1")
+    @Column(name = "addressLine1", nullable = false)
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "zipCode")
+    @Column(name = "zipCode", nullable = false)
     private String zipCode;
 
-    @Column(name = "officePhone")
+    @Column(name = "officePhone", nullable = false)
     private String officePhone;
 
-    @Column(name = "mobilePhone")
+    @Column(name = "mobilePhone", nullable = false)
     private String mobilePhone;
 
     @Column(name = "homePhone")
     private String homePhone;
 
-    @Column(name = "workEmail")
+    @Column(name = "workEmail", nullable = false)
     private String workEmail;
 
     @Column(name = "personalEmail")
@@ -72,21 +72,21 @@ public class Employee extends Auditable {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "dateOfBirth")
+    @Column(name = "dateOfBirth", nullable = false)
     private Date dateOfBirth;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "dateOfEmployment") // nullable = false
+    @Column(name = "dateOfEmployment", nullable = false)
     private Date dateOfEmployment;
 
-    @Column(name = "bankCode") // , nullable = false
+    @Column(name = "bankCode", nullable = false)
     private String bankCode;
 
-    @Column(name = "bankName") // , nullable = false
+    @Column(name = "bankName", nullable = false)
     private String bankName;
 
-    @Column(name = "bankAccount") // , nullable = false
+    @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")

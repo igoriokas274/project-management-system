@@ -23,7 +23,7 @@ public class Department extends Auditable {
     @Column(name = "departmentId", nullable = false, unique = true)
     private Long departmentId;
 
-    @Column(name = "departmentName")
+    @Column(name = "departmentName", nullable = false)
     private String departmentName;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
