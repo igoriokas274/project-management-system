@@ -46,7 +46,7 @@ public class Project extends Auditable {
     @Column(name = "projectMemo2", columnDefinition="TEXT")
     private String projectMemo2;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

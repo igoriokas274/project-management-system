@@ -34,10 +34,10 @@ public class Contact extends Auditable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "contactPhone", nullable = false)
+    @Column(name = "contactPhone")
     private String contactPhone;
 
-    @Column(name = "contactEmail", nullable = false)
+    @Column(name = "contactEmail")
     private String contactEmail;
 
     @Enumerated(EnumType.STRING)

@@ -34,7 +34,7 @@ public class Item extends Auditable {
     private String itemDescription;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "itemType", length = 20, nullable = false)
+    @Column(name = "itemType", length = 20)
     private ItemType itemType;
 
     @Column(name = "unit")
@@ -53,7 +53,7 @@ public class Item extends Auditable {
     @Digits(integer=10, fraction=2)
     private BigDecimal purchasePrice;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

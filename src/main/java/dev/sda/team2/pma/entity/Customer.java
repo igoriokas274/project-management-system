@@ -26,43 +26,43 @@ public class Customer extends Auditable {
     @Column(name = "customerName", nullable = false)
     private String customerName;
 
-    @Column(name = "customerRegistrationNumber", nullable = false)
+    @Column(name = "customerRegistrationNumber")
     private String customerRegistrationNumber;
 
-    @Column(name = "customerVATNumber", nullable = false)
+    @Column(name = "customerVATNumber")
     private String customerVATNumber;
 
-    @Column(name = "addressLine1", nullable = false)
+    @Column(name = "addressLine1")
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "zipCode", nullable = false)
+    @Column(name = "zipCode")
     private String zipCode;
 
-    @Column(name = "customerPhone", nullable = false)
+    @Column(name = "customerPhone")
     private String contactPhone;
 
-    @Column(name = "customerEmail", nullable = false)
+    @Column(name = "customerEmail")
     private String contactEmail;
 
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode", nullable = false)
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName", nullable = false)
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount", nullable = false)
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @JsonIgnore

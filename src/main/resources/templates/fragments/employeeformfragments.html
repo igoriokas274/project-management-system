@@ -38,16 +38,16 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <select class="custom-select" id="department" name="department" required disabled>
+                                            <select class="custom-select" id="department" name="department" disabled>
                                                 <option selected disabled value="">Choose Department...</option>
 
                                             </select>
                                         </div>
                                         <div class="col-md-4 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed" required>
+                                            <select class="custom-select" name="closed" id="closed" >
                                                 <option selected disabled value="">Is Closed...</option>
                                                 <option value="true">Closed</option>
                                                 <option value="false">Active</option>
@@ -56,13 +56,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone" required>
+                                            <input type="tel" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="officePhone" name="officePhone" placeholder="Office phone">
+                                            <input type="tel" class="form-control" id="officePhone" name="officePhone" placeholder="Office phone">
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="email" class="form-control" id="workEmail" name="workEmail" placeholder="Work Email" required>
+                                            <input type="email" class="form-control" id="workEmail" name="workEmail" placeholder="Work Email" >
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -74,7 +74,7 @@
                                     <h6 style="font-weight: bold">Personal Information</h6>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Address line 1" required>
+                                            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Address line 1" >
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <input type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Address line 2">
@@ -82,13 +82,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="City" >
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip" required>
+                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip" >
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="country" name="country" required disabled>
+                                            <select class="custom-select" id="country" name="country" disabled>
                                                 <option selected disabled value="">Choose Country...</option>
 
                                             </select>
@@ -96,13 +96,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="homePhone" name="homePhone" placeholder="Home phone" required>
+                                            <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="Home phone" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="email" class="form-control" id="personalEmail" name="personalEmail" placeholder="Personal Email" required>
+                                            <input type="email" class="form-control" id="personalEmail" name="personalEmail" placeholder="Personal Email" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <select class="custom-select" id="gender" name="gender" required>
+                                            <select class="custom-select" id="gender" name="gender" >
                                                 <option selected disabled value="">Choose Gender...</option>
                                                 <option th:each="genders : ${T(dev.sda.team2.pma.enums.Gender).values()}"
                                                         th:value="${genders}" th:text="${genders.displayGender}"></option>
@@ -111,19 +111,19 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-3 mb-3">
-                                            <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Bank name" required>
+                                            <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Bank name" >
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <input type="text" class="form-control" id="bankCode" name="bankCode" placeholder="Bank code">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="bankAccount" name="bankAccount" placeholder="Bank account #" required>
+                                            <input type="text" class="form-control" id="bankAccount" name="bankAccount" placeholder="Bank account #" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label for="dateOfBirth">Date of Birth</label>
-                                            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+                                            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" >
                                         </div>
                                     </div>
                                 </div>
@@ -170,16 +170,16 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Title" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <select class="custom-select" id="department" name="department" required disabled>
+                                            <select class="custom-select" id="department" name="department" disabled>
                                                 <option selected disabled value="">Choose Department...</option>
 
                                             </select>
                                         </div>
                                         <div class="col-md-4 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed" required>
+                                            <select class="custom-select" name="closed" id="closed" >
                                                 <option selected disabled value="">Is Closed...</option>
                                                 <option value="true">Closed</option>
                                                 <option value="false">Active</option>
@@ -188,13 +188,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone" required>
+                                            <input type="tel" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="officePhone" name="officePhone" placeholder="Office phone" required>
+                                            <input type="tel" class="form-control" id="officePhone" name="officePhone" placeholder="Office phone" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="email" class="form-control" id="workEmail" name="workEmail" placeholder="Work Email" required>
+                                            <input type="email" class="form-control" id="workEmail" name="workEmail" placeholder="Work Email" >
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -206,7 +206,7 @@
                                     <h6 style="font-weight: bold">Personal Information</h6>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Address line 1" required>
+                                            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Address line 1" >
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <input type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Address line 2">
@@ -214,13 +214,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="City" >
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip" required>
+                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip" >
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="country" name="country" required disabled >
+                                            <select class="custom-select" id="country" name="country" disabled >
                                                 <option selected disabled value="">Choose Country...</option>
 
                                             </select>
@@ -228,13 +228,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <input type="text" class="form-control" id="homePhone" name="homePhone" placeholder="Home phone" required>
+                                            <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="Home phone" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <input type="email" class="form-control" id="personalEmail" name="personalEmail" placeholder="Personal Email" required>
+                                            <input type="email" class="form-control" id="personalEmail" name="personalEmail" placeholder="Personal Email" >
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <select class="custom-select" id="gender" name="gender" required>
+                                            <select class="custom-select" id="gender" name="gender" >
                                                 <option selected disabled value="">Choose Gender...</option>
                                                 <option th:each="genders : ${T(dev.sda.team2.pma.enums.Gender).values()}"
                                                         th:value="${genders}" th:text="${genders.displayGender}"></option>
@@ -243,19 +243,19 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-3 mb-3">
-                                            <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Bank name" required>
+                                            <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Bank name" >
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <input type="text" class="form-control" id="bankCode" name="bankCode" placeholder="Bank code" >
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <input type="text" class="form-control" id="bankAccount" name="bankAccount" placeholder="Bank account #" required>
+                                            <input type="text" class="form-control" id="bankAccount" name="bankAccount" placeholder="Bank account #" >
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label for="dateOfBirth">Date of Birth</label>
-                                            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+                                            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" >
                                         </div>
                                     </div>
                                 </div>

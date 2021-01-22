@@ -29,7 +29,7 @@ public class Currency extends Auditable {
     @Column(name = "currencyName", nullable = false)
     private String currencyName;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @JsonIgnore

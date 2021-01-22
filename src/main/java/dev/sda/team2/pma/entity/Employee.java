@@ -39,28 +39,28 @@ public class Employee extends Auditable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "addressLine1", nullable = false)
+    @Column(name = "addressLine1")
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "zipCode", nullable = false)
+    @Column(name = "zipCode")
     private String zipCode;
 
-    @Column(name = "officePhone", nullable = false)
+    @Column(name = "officePhone")
     private String officePhone;
 
-    @Column(name = "mobilePhone", nullable = false)
+    @Column(name = "mobilePhone")
     private String mobilePhone;
 
     @Column(name = "homePhone")
     private String homePhone;
 
-    @Column(name = "workEmail", nullable = false)
+    @Column(name = "workEmail")
     private String workEmail;
 
     @Column(name = "personalEmail")
@@ -72,7 +72,7 @@ public class Employee extends Auditable {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "dateOfBirth", nullable = false)
+    @Column(name = "dateOfBirth")
     private Date dateOfBirth;
 
     @Temporal(TemporalType.DATE)
@@ -80,16 +80,16 @@ public class Employee extends Auditable {
     @Column(name = "dateOfEmployment", nullable = false)
     private Date dateOfEmployment;
 
-    @Column(name = "bankCode", nullable = false)
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName", nullable = false)
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount", nullable = false)
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

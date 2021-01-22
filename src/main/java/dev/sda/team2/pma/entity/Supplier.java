@@ -26,43 +26,43 @@ public class Supplier extends Auditable {
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
 
-    @Column(name = "supplierRegistrationNumber", nullable = false)
+    @Column(name = "supplierRegistrationNumber")
     private String supplierRegistrationNumber;
 
-    @Column(name = "supplierVATNumber", nullable = false)
+    @Column(name = "supplierVATNumber")
     private String supplierVATNumber;
 
-    @Column(name = "addressLine1", nullable = false)
+    @Column(name = "addressLine1")
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "zipCode", nullable = false)
+    @Column(name = "zipCode")
     private String zipCode;
 
-    @Column(name = "supplierPhone", nullable = false)
+    @Column(name = "supplierPhone")
     private String contactPhone;
 
-    @Column(name = "supplierEmail", nullable = false)
+    @Column(name = "supplierEmail")
     private String contactEmail;
 
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode", nullable = false)
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName", nullable = false)
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount", nullable = false)
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

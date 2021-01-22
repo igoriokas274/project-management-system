@@ -28,14 +28,13 @@ public class UserAccount extends Auditable {
     private String userName;
 
     @NotBlank
-    @Size(min = 8)
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "role", nullable = false)
     private String role;
 
-    @Column(name = "enabled", nullable = false, columnDefinition = "int default 1")
+    @Column(name = "enabled", columnDefinition = "int default 1")
     private boolean enabled = true;
 
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
