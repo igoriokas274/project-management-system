@@ -28,7 +28,7 @@ public class Quotation extends Auditable {
     @Column(name = "quotationTitle", nullable = false)
     private String quotationTitle;
 
-    @Column(name = "confirmed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "confirmed", columnDefinition = "int default 0")
     private boolean isConfirmed;
 
     @Temporal(TemporalType.DATE)

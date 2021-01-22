@@ -12,8 +12,8 @@ $(document).ready( function () {
         "order": [[ 0, "asc" ]],
         "columns": [
             { "data": "vatId" },
-            { "data": "description" },
-            { "data": "vatValue" }
+            { "data": "vatValue" },
+            { "data": "description" }
         ]
     });
     $('#vatValuesTable tbody').on( 'click', 'tr', function () {

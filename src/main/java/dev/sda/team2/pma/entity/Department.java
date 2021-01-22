@@ -26,7 +26,7 @@ public class Department extends Auditable {
     @Column(name = "departmentName", nullable = false)
     private String departmentName;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @JsonIgnore
