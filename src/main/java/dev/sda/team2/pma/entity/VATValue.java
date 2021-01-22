@@ -6,6 +6,8 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import java.math.BigDecimal;
 import java.util.List;
 
 @ToString
@@ -27,7 +29,8 @@ public class VATValue extends Auditable {
     private String description;
 
     @Column(name = "vatValue", nullable = false)
-    private Long vatValue;
+    @Digits(integer=3, fraction=2)
+    private BigDecimal vatValue;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "vatValue", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
