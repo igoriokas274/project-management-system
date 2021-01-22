@@ -24,32 +24,24 @@ DROP TABLE IF EXISTS `contact`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact` (
   `contact_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birthdate` date DEFAULT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `contact_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `closed` int(11) NOT NULL DEFAULT 0,
+  `closed` int(11) DEFAULT 0,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_id` bigint(20) DEFAULT NULL,
   `supplier_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`contact_id`),
-  KEY `FK4gc6oiumw8n5hycjluoynrlng` (`country_id`),
   KEY `FKckoarj5a5jmet3b3smgdhaopw` (`customer_id`),
   KEY `FK3y0riifnpi1p06oyyu1mwjbk2` (`supplier_id`),
   CONSTRAINT `FK3y0riifnpi1p06oyyu1mwjbk2` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
-  CONSTRAINT `FK4gc6oiumw8n5hycjluoynrlng` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`),
   CONSTRAINT `FKckoarj5a5jmet3b3smgdhaopw` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,14 +63,17 @@ DROP TABLE IF EXISTS `country`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `country` (
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `country_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `country_code` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
-  PRIMARY KEY (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`country_id`),
+  UNIQUE KEY `UK_oqixmig4k8qxc8oba3fl4gqkr` (`country_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +82,7 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,'user','2021-01-10 15:44:17','user','2021-01-10 15:44:17','LT','Lithuania',0),(2,'user','2021-01-10 15:44:32','user','2021-01-10 15:44:32','LV','Latvia',0),(3,'user','2021-01-10 15:44:41','user','2021-01-10 15:44:41','EE','Estonia',0),(4,'user','2021-01-10 15:44:49','user','2021-01-10 15:44:49','PL','Poland',0),(5,'user','2021-01-10 15:45:33','user','2021-01-10 15:45:33','RU','Russian Federation',0),(6,'user','2021-01-10 15:45:47','user','2021-01-10 15:45:47','DE','Germany',0);
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,14 +94,17 @@ DROP TABLE IF EXISTS `currency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `currency` (
-  `currency_id` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `currency_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `currency_code` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
-  PRIMARY KEY (`currency_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`currency_id`),
+  UNIQUE KEY `UK_7n17ygajjchsso2n0lyxrsyif` (`currency_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +113,7 @@ CREATE TABLE `currency` (
 
 LOCK TABLES `currency` WRITE;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
+INSERT INTO `currency` VALUES (1,'user','2021-01-10 15:46:01','user','2021-01-10 15:46:01','EUR','Euro',0),(2,'user','2021-01-10 15:46:38','user','2021-01-10 15:46:38','PLN','Zloty',0),(3,'user','2021-01-10 15:47:16','user','2021-01-10 15:47:16','RUB','Russian Ruble',0),(4,'user','2021-01-10 15:47:47','user','2021-01-10 15:47:56','USD','US Dollar',0),(5,'user','2021-01-10 15:48:38','user','2021-01-10 15:48:38','GBP','Pound Sterling',0);
 /*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,26 +126,26 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `customer_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank_account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
   `customer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_registration_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customervatnumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_registration_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customervatnumber` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `swift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_id` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_id` bigint(20) DEFAULT NULL,
+  `currency_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   KEY `FKmkr4ai7dyofddp8a83hp7yu1h` (`country_id`),
   KEY `FK3fqcpx7dko5slv9s6m31cm4g1` (`currency_id`),
@@ -172,14 +172,14 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `department` (
   `department_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `department_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,6 +188,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,'user','2021-01-10 15:48:58','user','2021-01-10 15:48:58','Administration',0),(2,'user','2021-01-10 15:49:31','user','2021-01-10 15:49:31','Financial dept.',0),(3,'user','2021-01-10 15:49:39','user','2021-01-10 15:49:39','Sales dept.',0),(4,'user','2021-01-10 15:49:53','user','2021-01-10 15:49:53','Production dept.',0),(5,'user','2021-01-10 15:50:06','user','2021-01-10 15:50:06','HR',0);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,26 +201,38 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
   `employee_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `bank_account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
-  `date_of_employment` date NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
+  `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `date_of_employment` date DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `home_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
-  `contact_id` bigint(20) DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `office_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `personal_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_id` bigint(20) DEFAULT NULL,
   `department_id` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
-  KEY `FK9e7h442ja82p8jh9x2o1osx51` (`contact_id`),
+  KEY `FKivtkrlfso4toqek7i2rul2ggy` (`country_id`),
   KEY `FKbejtwvg9bxus2mffsm3swj3u9` (`department_id`),
-  KEY `FK3x5gyy6vh8ugm097krwudajt3` (`user_id`),
-  CONSTRAINT `FK3x5gyy6vh8ugm097krwudajt3` FOREIGN KEY (`user_id`) REFERENCES `user_accounts` (`user_id`),
-  CONSTRAINT `FK9e7h442ja82p8jh9x2o1osx51` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`),
-  CONSTRAINT `FKbejtwvg9bxus2mffsm3swj3u9` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FKbejtwvg9bxus2mffsm3swj3u9` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`),
+  CONSTRAINT `FKivtkrlfso4toqek7i2rul2ggy` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,6 +241,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (1,'admin','2021-01-10 16:18:08','admin','2021-01-10 16:18:08','','','','','','','1977-11-15','2018-02-01','John','M','',0,'Doe','Fitzgerald','','','','CEO','j.f.doe@mail.com','',NULL,NULL),(2,'admin','2021-01-10 16:19:03','admin','2021-01-10 16:19:03','','','','','','','1983-08-31','2020-05-04','Henry','M','',0,'Ford','','','','','Manager','h.ford@mail.com','',NULL,NULL),(3,'admin','2021-01-10 16:20:29','admin','2021-01-10 16:20:29','','','','','','','1980-04-16','2019-02-06','Paul','M','',0,'Collins','','','','','Accountant','p.collins@mail.com','',NULL,NULL),(4,'admin','2021-01-10 16:21:33','admin','2021-01-10 16:23:01','','','','','','','1996-01-31','2019-03-01','Helen','F','',0,'Doe','','','','','Administrator','helen.doe@mail.com','',NULL,NULL),(5,'admin','2021-01-10 16:22:50','admin','2021-01-10 16:23:13','','','','','','','1994-02-15','2020-09-09','Eve','F','',0,'Brown','','','','','Manager','eve.brown@mail.com','',NULL,NULL),(6,'admin','2021-01-10 16:24:42','admin','2021-01-10 16:24:42','','','','','','','1998-10-26','2020-12-07','Felix','M','',0,'Fox','','','','','HR','f.fox@mail.com','',NULL,NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,16 +280,18 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
   `item_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
   `item_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `item_type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `min_stock_level` int(11) DEFAULT NULL,
-  `sales_price` decimal(10,2) DEFAULT NULL,
+  `purchase_price` decimal(5,2) DEFAULT NULL,
+  `sales_price` decimal(5,2) DEFAULT NULL,
+  `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stock_id` bigint(20) DEFAULT NULL,
   `supplier_id` bigint(20) DEFAULT NULL,
   `vat_id` bigint(20) DEFAULT NULL,
@@ -286,7 +302,7 @@ CREATE TABLE `item` (
   CONSTRAINT `FKcjes46ncuefgrkgt6ib0oo2bb` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
   CONSTRAINT `FKjiuoty48tefl27u5olb30f7op` FOREIGN KEY (`vat_id`) REFERENCES `vat_value` (`vat_id`),
   CONSTRAINT `FKrfa78251s9rxf5hxh2gr8bdlx` FOREIGN KEY (`stock_id`) REFERENCES `stock_type` (`stock_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -295,6 +311,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES (1,'user','2021-01-10 16:16:03','user','2021-01-10 16:16:03',0,'','Installation works','SERVICE',0,23.00,32.00,'kompl.',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,6 +324,10 @@ DROP TABLE IF EXISTS `item_to_quotation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item_to_quotation` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `purchase_price` decimal(10,2) DEFAULT NULL,
   `quantity` double NOT NULL,
@@ -341,11 +362,11 @@ DROP TABLE IF EXISTS `pay_term`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pay_term` (
-  `term` decimal(3,2) NOT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
+  `term` bigint(20) NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   PRIMARY KEY (`term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -356,6 +377,7 @@ CREATE TABLE `pay_term` (
 
 LOCK TABLES `pay_term` WRITE;
 /*!40000 ALTER TABLE `pay_term` DISABLE KEYS */;
+INSERT INTO `pay_term` VALUES (5,'user','2021-01-10 15:50:18','user','2021-01-10 15:50:18'),(15,'user','2021-01-10 15:50:22','user','2021-01-10 15:50:22'),(30,'user','2021-01-10 15:50:31','user','2021-01-10 15:50:31'),(45,'user','2021-01-10 15:50:37','user','2021-01-10 15:50:37'),(60,'user','2021-01-10 15:50:43','user','2021-01-10 15:50:43');
 /*!40000 ALTER TABLE `pay_term` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,18 +390,18 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
   `project_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `project_end_date` date DEFAULT NULL,
   `project_memo1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_memo2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `project_start_date` date DEFAULT NULL,
   `customer_id` bigint(20) DEFAULT NULL,
-  `term` decimal(3,2) DEFAULT NULL,
+  `term` bigint(20) DEFAULT NULL,
   `project_status_id` bigint(20) DEFAULT NULL,
   `project_type_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`project_id`),
@@ -412,13 +434,13 @@ DROP TABLE IF EXISTS `project_status`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project_status` (
   `project_status_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `project_status_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`project_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -427,6 +449,7 @@ CREATE TABLE `project_status` (
 
 LOCK TABLES `project_status` WRITE;
 /*!40000 ALTER TABLE `project_status` DISABLE KEYS */;
+INSERT INTO `project_status` VALUES (1,'user','2021-01-10 15:51:08','user','2021-01-10 15:51:08','In Progress'),(2,'user','2021-01-10 15:51:21','user','2021-01-10 15:51:21','Completed');
 /*!40000 ALTER TABLE `project_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,13 +462,13 @@ DROP TABLE IF EXISTS `project_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project_type` (
   `project_type_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `project_type_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`project_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,6 +477,7 @@ CREATE TABLE `project_type` (
 
 LOCK TABLES `project_type` WRITE;
 /*!40000 ALTER TABLE `project_type` DISABLE KEYS */;
+INSERT INTO `project_type` VALUES (1,'user','2021-01-10 15:51:48','user','2021-01-10 15:51:48','Production'),(2,'user','2021-01-10 15:51:59','user','2021-01-10 15:51:59','Retail');
 /*!40000 ALTER TABLE `project_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -466,11 +490,12 @@ DROP TABLE IF EXISTS `quotation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quotation` (
   `quotation_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `confirmed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
+  `quotation_date` date DEFAULT NULL,
   `quotation_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_id` bigint(20) DEFAULT NULL,
   `quotation_status_id` bigint(20) DEFAULT NULL,
@@ -500,13 +525,13 @@ DROP TABLE IF EXISTS `quotation_status`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quotation_status` (
   `quotation_status_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `quotation_status_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`quotation_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -515,6 +540,7 @@ CREATE TABLE `quotation_status` (
 
 LOCK TABLES `quotation_status` WRITE;
 /*!40000 ALTER TABLE `quotation_status` DISABLE KEYS */;
+INSERT INTO `quotation_status` VALUES (1,'user','2021-01-10 15:55:30','user','2021-01-10 15:55:30','Being prepared'),(2,'user','2021-01-10 15:56:39','user','2021-01-10 15:57:23','Provided to'),(3,'user','2021-01-10 15:57:17','user','2021-01-10 15:57:30','Approved by'),(4,'user','2021-01-10 15:57:58','user','2021-01-10 15:57:58','Rejected by'),(5,'user','2021-01-10 15:58:52','user','2021-01-10 15:58:52','Lost');
 /*!40000 ALTER TABLE `quotation_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,21 +553,21 @@ DROP TABLE IF EXISTS `stock_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stock_type` (
   `stock_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `stock_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`stock_id`),
   KEY `FKabmxhidu94k05n7pihhpkp4pb` (`country_id`),
   CONSTRAINT `FKabmxhidu94k05n7pihhpkp4pb` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -550,6 +576,7 @@ CREATE TABLE `stock_type` (
 
 LOCK TABLES `stock_type` WRITE;
 /*!40000 ALTER TABLE `stock_type` DISABLE KEYS */;
+INSERT INTO `stock_type` VALUES (1,'user','2021-01-10 15:59:28','user','2021-01-10 15:59:28','Some Street str. 1','','Vilnius',0,'Main','',NULL),(2,'user','2021-01-10 16:00:09','user','2021-01-10 16:00:09','','','',0,'Temporary','',NULL);
 /*!40000 ALTER TABLE `stock_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -562,6 +589,10 @@ DROP TABLE IF EXISTS `supplier`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `supplier` (
   `supplier_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -570,19 +601,15 @@ CREATE TABLE `supplier` (
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `supplier_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `supplier_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
   `closed` int(11) NOT NULL DEFAULT 0,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
   `supplier_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `supplier_registration_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `suppliervatnumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `swift` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_id` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_id` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `term` decimal(3,2) DEFAULT NULL,
+  `country_id` bigint(20) DEFAULT NULL,
+  `currency_id` bigint(20) DEFAULT NULL,
+  `term` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`),
   KEY `FKdp2i9p8sxew7tj0dksty5dw4t` (`country_id`),
   KEY `FKcwxxjfv1uhv5b7ej4e30yh0wr` (`currency_id`),
@@ -610,13 +637,21 @@ DROP TABLE IF EXISTS `user_accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_accounts` (
-  `user_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `enabled` int(11) NOT NULL DEFAULT 1,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `employee_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `UK_lxwlgwuy2yrbye2vgs9w9x7mr` (`username`),
+  KEY `FKsalhmu557mx3otyqhkqc7rcsp` (`employee_id`),
+  CONSTRAINT `FKsalhmu557mx3otyqhkqc7rcsp` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -625,29 +660,8 @@ CREATE TABLE `user_accounts` (
 
 LOCK TABLES `user_accounts` WRITE;
 /*!40000 ALTER TABLE `user_accounts` DISABLE KEYS */;
+INSERT INTO `user_accounts` VALUES (1,'admin','2021-01-11 15:29:39','admin','2021-01-11 15:29:39',1,'$2a$10$EtBZb0Meft2cp9odhnMRPuYR9B4uv9RBrCfm.4luztYnuKkhnXMMa','ADMIN','admin',NULL),(2,'admin','2021-01-11 15:29:55','admin','2021-01-11 15:29:55',1,'$2a$10$pkX6ahfN8ezMCDTtTPP94uzRjHX7g5qiZQQNucwGmNuEBPDcud.dG','MANAGER','user',NULL);
 /*!40000 ALTER TABLE `user_accounts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user_accounts_seq`
---
-
-DROP TABLE IF EXISTS `user_accounts_seq`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_accounts_seq` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_accounts_seq`
---
-
-LOCK TABLES `user_accounts_seq` WRITE;
-/*!40000 ALTER TABLE `user_accounts_seq` DISABLE KEYS */;
-INSERT INTO `user_accounts_seq` VALUES (1);
-/*!40000 ALTER TABLE `user_accounts_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -659,14 +673,14 @@ DROP TABLE IF EXISTS `vat_value`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vat_value` (
   `vat_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_modified_date` datetime DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_updated_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_updated_date` datetime NOT NULL,
-  `vat_value` decimal(3,2) NOT NULL,
+  `vat_value` bigint(20) NOT NULL,
   PRIMARY KEY (`vat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -675,6 +689,7 @@ CREATE TABLE `vat_value` (
 
 LOCK TABLES `vat_value` WRITE;
 /*!40000 ALTER TABLE `vat_value` DISABLE KEYS */;
+INSERT INTO `vat_value` VALUES (1,'user','2021-01-10 16:01:04','user','2021-01-10 16:01:04','21%',21),(2,'user','2021-01-10 16:01:12','user','2021-01-10 16:01:12','9%',9),(3,'user','2021-01-10 16:01:48','user','2021-01-10 16:01:48','5%',5);
 /*!40000 ALTER TABLE `vat_value` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -687,4 +702,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-23  8:48:47
+-- Dump completed on 2021-01-22 12:48:01

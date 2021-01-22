@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,10 +25,10 @@ public class Quotation extends Auditable {
     @Column(name = "quotationId", nullable = false, unique = true)
     private Long quotationId;
 
-    @Column(name = "quotationTitle")
+    @Column(name = "quotationTitle", nullable = false)
     private String quotationTitle;
 
-    @Column(name = "confirmed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "confirmed", columnDefinition = "int default 0")
     private boolean isConfirmed;
 
     @Temporal(TemporalType.DATE)
@@ -43,6 +44,7 @@ public class Quotation extends Auditable {
     @JoinColumn(name = "quotationStatusId")
     private QuotationStatus quotationStatus;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "quotation", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ItemToQuotation> itemToQuotations;
 

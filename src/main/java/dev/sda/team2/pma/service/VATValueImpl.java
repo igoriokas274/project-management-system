@@ -2,8 +2,10 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.VATValueRepository;
 import dev.sda.team2.pma.entity.VATValue;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +35,13 @@ public class VATValueImpl implements IVATValueService {
     }
 
     @Override
+    @Transactional
+    @Audit(action = "VAT Value saved")
     public void save (VATValue theVATValue){vatValueRepository.save(theVATValue);}
 
     @Override
+    @Transactional
+    @Audit(action = "VAT Value deleted")
     public void deleteById(long theId) {
         vatValueRepository.deleteById(theId);
     }

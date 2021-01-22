@@ -2,8 +2,10 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.ProjectRepository;
 import dev.sda.team2.pma.entity.Project;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,11 +25,15 @@ public class ProjectServiceImpl implements IProjectService {
     }
 
     @Override
+    @Transactional
+    @Audit(action = "Project saved")
     public void save(Project theProject) {
         projectRepository.save(theProject);
     }
 
     @Override
+    @Transactional
+    @Audit(action = "Project deleted")
     public void deleteById(long theId) {
         projectRepository.deleteById(theId);
     }

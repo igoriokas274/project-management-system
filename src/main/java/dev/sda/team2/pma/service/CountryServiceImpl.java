@@ -2,8 +2,10 @@ package dev.sda.team2.pma.service;
 
 import dev.sda.team2.pma.dao.CountryRepository;
 import dev.sda.team2.pma.entity.Country;
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,14 +38,17 @@ public class CountryServiceImpl implements ICountryService {
         }
 
     @Override
+    @Transactional
+    @Audit(action = "Country saved")
     public void save(Country theCountry) {
         countryRepository.save(theCountry);
 
     }
 
     @Override
+    @Transactional
+    @Audit(action = "Country deleted")
     public void deleteById(long theId) {
-
         countryRepository.deleteById(theId);
 
     }

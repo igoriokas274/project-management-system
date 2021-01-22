@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.ItemType;
 import lombok.*;
@@ -42,17 +43,17 @@ public class Item extends Auditable {
     @Column(name = "minStockLevel")
     private Integer minStockLevel;
 
-    @Column(name = "salesPrice") // , precision = 10, scale = 2
+    @Column(name = "salesPrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
+    @Digits(integer=10, fraction=2)
     private BigDecimal salesPrice;
 
-    @Column(name = "purchasePrice") // , precision = 10, scale = 2
+    @Column(name = "purchasePrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
+    @Digits(integer=10, fraction=2)
     private BigDecimal purchasePrice;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -67,6 +68,7 @@ public class Item extends Auditable {
     @JoinColumn(name = "vatId")
     private VATValue vatValue;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ItemToQuotation> itemToQuotations;
 

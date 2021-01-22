@@ -25,15 +25,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="userName">Username</label>
-                                    <input type="text" class="form-control" id="userName" name="userName" value="" placeholder="Username" />
+                                    <input type="text" class="form-control" id="userName" name="userName" value="" placeholder="Username" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" />
+                                    <input type="password" minlength="8" class="form-control" id="password" name="password" value="" placeholder="Password" required/>
+                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                        Your password must be at least 8 characters long.
+                                    </small>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select class="custom-select" id="role" name="role" >
+                                    <select class="custom-select" id="role" name="role" required>
                                         <option th:each="roles : ${T(dev.sda.team2.pma.enums.UserRoles).values()}"
                                                 th:value="${roles}" th:text="${roles}"></option>
                                     </select>
@@ -88,7 +91,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" required />
+                                    <input type="password" minlength="8" class="form-control" id="password" name="password" value="" placeholder="Password" required />
+                                    <small id="passwordHelpBlock" class="form-text text-muted">
+                                        Your password must be at least 8 characters long.
+                                    </small>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
@@ -111,7 +117,7 @@
 
                                 <div class="form-group">
                                     <label for="enabled">Active / Inactive</label>
-                                    <select class="custom-select" name="enabled" id="enabled">
+                                    <select class="custom-select" name="enabled" id="enabled" >
                                         <option selected disabled value="">Choose Activity...</option>
                                         <option value="true">Active</option>
                                         <option value="false">Inactive</option>

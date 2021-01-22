@@ -4,10 +4,8 @@ import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.Gender;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @ToString
 @Setter
@@ -23,13 +21,14 @@ public class Contact extends Auditable {
     @Column(name = "contactId", nullable = false, unique = true)
     private Long contactId;
 
+
     @Column(name = "firstName", nullable = false)
     private String firstName;
 
     @Column(name = "middleName")
     private String middleName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     @Column(name = "title")

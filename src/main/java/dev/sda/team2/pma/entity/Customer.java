@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,10 +26,10 @@ public class Customer extends Auditable {
     @Column(name = "customerName", nullable = false)
     private String customerName;
 
-    @Column(name = "customerRegistrationNumber") // , nullable = false
+    @Column(name = "customerRegistrationNumber")
     private String customerRegistrationNumber;
 
-    @Column(name = "customerVATNumber") // , nullable = false
+    @Column(name = "customerVATNumber")
     private String customerVATNumber;
 
     @Column(name = "addressLine1")
@@ -52,21 +53,23 @@ public class Customer extends Auditable {
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode") // , nullable = false
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName") // , nullable = false
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount") // , nullable = false
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Project> projects;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Contact> contacts;
 

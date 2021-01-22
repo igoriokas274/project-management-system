@@ -28,11 +28,11 @@ public class CountryController {
 
         // List countries
         List<Country> theCountries = countryService.findAll();
-        theModel.addAttribute("country", theCountries);
+        theModel.addAttribute("countries", theCountries);
 
         // add new country
-        Object country = new Country();
-        theModel.addAttribute("countries", theCountries);
+        Object theCountry = new Country();
+        theModel.addAttribute("country", theCountry);
 
         return "settings/list-countries";
     }

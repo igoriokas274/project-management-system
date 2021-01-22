@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/adminpanel", "/adminpanel/**").hasAuthority("ADMIN")
+                .antMatchers("/adminpanel", "/adminpanel/**", "/actuator/**").hasAuthority("ADMIN")
                 .antMatchers("/", "/**").authenticated() // Dashboard must by accessible for ALL users
                 .and()
                 .formLogin()

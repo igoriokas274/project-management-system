@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import dev.sda.team2.pma.enums.Gender;
 import lombok.*;
@@ -32,7 +33,7 @@ public class Employee extends Auditable {
     @Column(name = "middleName")
     private String middleName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     @Column(name = "title")
@@ -76,19 +77,19 @@ public class Employee extends Auditable {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "dateOfEmployment") // nullable = false
+    @Column(name = "dateOfEmployment", nullable = false)
     private Date dateOfEmployment;
 
-    @Column(name = "bankCode") // , nullable = false
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName") // , nullable = false
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount") // , nullable = false
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -103,6 +104,7 @@ public class Employee extends Auditable {
     @JoinColumn(name = "departmentId")
     private Department department;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "employee", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private UserAccount userAccount;
 

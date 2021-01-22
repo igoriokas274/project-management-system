@@ -22,7 +22,7 @@ public class PayTermController {
     @Autowired
     private PayTermRepository payTermRepository;
 
-
+    @Autowired
     public PayTermController(IPayTermService thePayTermService){payTermService = thePayTermService;}
 
     @GetMapping("/list")
@@ -32,7 +32,7 @@ public class PayTermController {
         theModel.addAttribute("payTerms", thePayTerms);
 
         Object payTerm = new PayTerm();
-        theModel.addAttribute("payTerms", payTerm);
+        theModel.addAttribute("payTerm", payTerm);
 
         return "settings/list-payterms";
     }
@@ -46,15 +46,15 @@ public class PayTermController {
 
     @GetMapping("/update")
     @ResponseBody
-    public Optional<PayTerm> editPayTerm(@RequestParam("id") BigDecimal theId) { //<--sios vietos nemoku padaryti
+    public Optional<PayTerm> editPayTerm(@RequestParam("id") Long theId) {
 
         return payTermRepository.findById(theId);
     }
 
     @GetMapping("/delete")
-    public String deletePayTerm(@RequestParam("id") BigDecimal theId) {
+    public String deletePayTerm(@RequestParam("id") Long theId) {
 
-        payTermService.deleteBy( theId );
+        payTermService.deleteById( theId );
         return "redirect:/settings/payterms/list";
     }
 }

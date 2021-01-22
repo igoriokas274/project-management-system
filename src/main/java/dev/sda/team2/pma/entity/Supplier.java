@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,10 +26,10 @@ public class Supplier extends Auditable {
     @Column(name = "supplierName", nullable = false)
     private String supplierName;
 
-    @Column(name = "supplierRegistrationNumber", nullable = false)
+    @Column(name = "supplierRegistrationNumber")
     private String supplierRegistrationNumber;
 
-    @Column(name = "supplierVATNumber", nullable = false)
+    @Column(name = "supplierVATNumber")
     private String supplierVATNumber;
 
     @Column(name = "addressLine1")
@@ -52,16 +53,16 @@ public class Supplier extends Auditable {
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode", nullable = false)
+    @Column(name = "bankCode")
     private String bankCode;
 
-    @Column(name = "bankName", nullable = false)
+    @Column(name = "bankName")
     private String bankName;
 
-    @Column(name = "bankAccount", nullable = false)
+    @Column(name = "bankAccount")
     private String bankAccount;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -79,6 +80,7 @@ public class Supplier extends Auditable {
     @JoinColumn(name = "currencyId")
     private Currency currency;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Item> items;
 

@@ -15,10 +15,10 @@ $(document).ready( function () {
             { "data": "quotationDate" },
             { "data": "quotationTitle" },
             { "data": "confirmed" },
-            { "data": "createdBy" },
+            /*{ "data": "createdBy" },
             { "data": "createdDate" },
             { "data": "lastModifiedBy" },
-            { "data": "lastModifiedDate" },
+            { "data": "lastModifiedDate" },*/
         ]
     });
     $('#quotationTable tbody').on( 'click', 'tr', function () {

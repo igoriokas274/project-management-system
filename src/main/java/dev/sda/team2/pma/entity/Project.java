@@ -1,5 +1,6 @@
 package dev.sda.team2.pma.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.sda.team2.pma.auditing.Auditable;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,12 +32,12 @@ public class Project extends Auditable {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "projectStartDate")
+    @Column(name = "projectStartDate", nullable = false)
     private Date projectStartDate;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "projectEndDate")
+    @Column(name = "projectEndDate", nullable = false)
     private Date projectEndDate;
 
     @Column(name = "projectMemo1", columnDefinition="TEXT")
@@ -45,7 +46,7 @@ public class Project extends Auditable {
     @Column(name = "projectMemo2", columnDefinition="TEXT")
     private String projectMemo2;
 
-    @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "closed", columnDefinition = "int default 0")
     private boolean isClosed;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -67,6 +68,7 @@ public class Project extends Auditable {
     @JoinColumn(name = "term")
     private PayTerm payTerm;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Quotation> quotations;
 

@@ -30,7 +30,7 @@ public class DepartmentController {
         theModel.addAttribute("departments", theDepartments);
 
         Object department = new Department();
-        theModel.addAttribute("departments", theDepartments);
+        theModel.addAttribute("department", department);
 
         return "settings/list-departments";
     }
