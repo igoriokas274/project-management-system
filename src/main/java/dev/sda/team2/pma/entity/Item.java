@@ -45,12 +45,12 @@ public class Item extends Auditable {
 
     @Column(name = "salesPrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
+    @Digits(integer=10, fraction=2)
     private BigDecimal salesPrice;
 
     @Column(name = "purchasePrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
+    @Digits(integer=10, fraction=2)
     private BigDecimal purchasePrice;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")
