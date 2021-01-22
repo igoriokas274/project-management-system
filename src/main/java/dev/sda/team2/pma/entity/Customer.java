@@ -26,40 +26,40 @@ public class Customer extends Auditable {
     @Column(name = "customerName", nullable = false)
     private String customerName;
 
-    @Column(name = "customerRegistrationNumber") // , nullable = false
+    @Column(name = "customerRegistrationNumber", nullable = false)
     private String customerRegistrationNumber;
 
-    @Column(name = "customerVATNumber") // , nullable = false
+    @Column(name = "customerVATNumber", nullable = false)
     private String customerVATNumber;
 
-    @Column(name = "addressLine1")
+    @Column(name = "addressLine1", nullable = false)
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "zipCode")
+    @Column(name = "zipCode", nullable = false)
     private String zipCode;
 
-    @Column(name = "customerPhone")
+    @Column(name = "customerPhone", nullable = false)
     private String contactPhone;
 
-    @Column(name = "customerEmail")
+    @Column(name = "customerEmail", nullable = false)
     private String contactEmail;
 
     @Column(name = "SWIFT")
     private String swift;
 
-    @Column(name = "bankCode") // , nullable = false
+    @Column(name = "bankCode", nullable = false)
     private String bankCode;
 
-    @Column(name = "bankName") // , nullable = false
+    @Column(name = "bankName", nullable = false)
     private String bankName;
 
-    @Column(name = "bankAccount") // , nullable = false
+    @Column(name = "bankAccount", nullable = false)
     private String bankAccount;
 
     @Column(name = "closed", nullable = false, columnDefinition = "int default 0")

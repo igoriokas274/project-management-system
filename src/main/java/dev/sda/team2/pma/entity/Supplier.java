@@ -32,22 +32,22 @@ public class Supplier extends Auditable {
     @Column(name = "supplierVATNumber", nullable = false)
     private String supplierVATNumber;
 
-    @Column(name = "addressLine1")
+    @Column(name = "addressLine1", nullable = false)
     private String addressLine1;
 
     @Column(name = "addressLine2")
     private String addressLine2;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "zipCode")
+    @Column(name = "zipCode", nullable = false)
     private String zipCode;
 
-    @Column(name = "supplierPhone")
+    @Column(name = "supplierPhone", nullable = false)
     private String contactPhone;
 
-    @Column(name = "supplierEmail")
+    @Column(name = "supplierEmail", nullable = false)
     private String contactEmail;
 
     @Column(name = "SWIFT")

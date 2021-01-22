@@ -37,20 +37,20 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <select class="custom-select" id="supplierId" name="supplierId" disabled>
+                                            <select class="custom-select" id="supplierId" name="supplierId" required disabled>
                                                 <option selected disabled value="">Choose Supplier...</option>
 
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="itemType" name="itemType" >
+                                            <select class="custom-select" id="itemType" name="itemType" required>
                                                 <option selected disabled value="">Choose Item Type...</option>
                                                 <option th:each="itemTypes : ${T(dev.sda.team2.pma.enums.ItemType).values()}"
                                                         th:value="${itemTypes}" th:text="${itemTypes.displayItemTypes}"></option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="stockId" name="stockId" disabled>
+                                            <select class="custom-select" id="stockId" name="stockId" required disabled>
                                                 <option selected disabled value="">Choose Stock...</option>
 
                                             </select>
@@ -58,26 +58,26 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="salesPrice" name="salesPrice" placeholder="Sales price">
+                                            <input type="text" class="form-control" id="salesPrice" name="salesPrice" placeholder="Sales price" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="purchasePrice" name="purchasePrice" placeholder="Purchase price">
+                                            <input type="text" class="form-control" id="purchasePrice" name="purchasePrice" placeholder="Purchase price" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
                                             <input type="text" class="form-control" id="minStockLevel" name="minStockLevel" placeholder="Min level">
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit">
+                                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <select class="custom-select" id="vatId" name="vatId" disabled>
+                                            <select class="custom-select" id="vatId" name="vatId" required disabled>
                                                 <option selected disabled value="">Choose VAT...</option>
 
                                             </select>
 
                                         </div>
                                         <div class="col-md-2 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed">
+                                            <select class="custom-select" name="closed" id="closed" required>
                                                 <option selected disabled value="">Is Closed...</option>
                                                 <option value="true">Closed</option>
                                                 <option value="false">Active</option>
@@ -127,20 +127,20 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <select class="custom-select" id="supplierId" name="supplierId" disabled>
+                                            <select class="custom-select" id="supplierId" name="supplierId" required disabled>
                                                 <option selected disabled value="">Choose Supplier...</option>
 
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="itemType" name="itemType" >
+                                            <select class="custom-select" id="itemType" name="itemType" required>
                                                 <option selected disabled value="">Choose Item Type...</option>
                                                 <option th:each="itemTypes : ${T(dev.sda.team2.pma.enums.ItemType).values()}"
                                                         th:value="${itemTypes}" th:text="${itemTypes.displayItemTypes}"></option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <select class="custom-select" id="stockId" name="stockId" disabled>
+                                            <select class="custom-select" id="stockId" name="stockId" required disabled>
                                                 <option selected disabled value="">Choose Stock...</option>
 
                                             </select>
@@ -148,26 +148,26 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="salesPrice" name="salesPrice" placeholder="Sales price">
+                                            <input type="text" class="form-control" id="salesPrice" name="salesPrice" placeholder="Sales price" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="purchasePrice" name="purchasePrice" placeholder="Purchase price">
+                                            <input type="text" class="form-control" id="purchasePrice" name="purchasePrice" placeholder="Purchase price" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
                                             <input type="text" class="form-control" id="minStockLevel" name="minStockLevel" placeholder="Min level">
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit">
+                                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit" required>
                                         </div>
                                         <div class="col-md-2 mb-3">
-                                            <select class="custom-select" id="vatId" name="vatId" disabled>
+                                            <select class="custom-select" id="vatId" name="vatId" required disabled>
                                                 <option selected disabled value="">Choose VAT...</option>
 
                                             </select>
 
                                         </div>
                                         <div class="col-md-2 mb-3 ml-auto">
-                                            <select class="custom-select" name="closed" id="closed">
+                                            <select class="custom-select" name="closed" id="closed" required>
                                                 <option selected disabled value="">Is Closed...</option>
                                                 <option value="true">Closed</option>
                                                 <option value="false">Active</option>

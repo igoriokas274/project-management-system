@@ -23,7 +23,7 @@ public class VATValue extends Auditable {
     @Column(name = "vatId", nullable = false, unique = true)
     private Long vatId;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "vatValue", nullable = false)

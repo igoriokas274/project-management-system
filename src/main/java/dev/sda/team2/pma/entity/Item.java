@@ -34,7 +34,7 @@ public class Item extends Auditable {
     private String itemDescription;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "itemType", length = 20)
+    @Column(name = "itemType", length = 20, nullable = false)
     private ItemType itemType;
 
     @Column(name = "unit")
@@ -43,12 +43,12 @@ public class Item extends Auditable {
     @Column(name = "minStockLevel")
     private Integer minStockLevel;
 
-    @Column(name = "salesPrice") // , precision = 10, scale = 2
+    @Column(name = "salesPrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=3, fraction=2)
     private BigDecimal salesPrice;
 
-    @Column(name = "purchasePrice") // , precision = 10, scale = 2
+    @Column(name = "purchasePrice", precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=3, fraction=2)
     private BigDecimal purchasePrice;
